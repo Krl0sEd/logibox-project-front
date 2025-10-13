@@ -1,6 +1,6 @@
 /* ================= VARIÁVEIS ================= */
 :root {
-    --fonte-padrao: 'Lato', Arial, sans-serif;
+    --fonte-padrao: 'Segoe UI', sans-serif;
 
     /* Cores principais */
     --cor-primaria: rgb(173, 0, 0);
@@ -60,13 +60,17 @@ body.modo-escuro {
     padding: 5px 17px;
     border: 1px solid var(--botao-secundario-texto);
     font-size: 16px;
+    background-color: transparent;
 }
+
 .botao_excluir, .botao_editar, .botao_visualizar {
     color: var(--cor-primaria);
     padding: 11px 20px;
     border: 1px solid var(--cor-primaria);
     font-size: 16px;
+    background-color: transparent;
 }
+
 .botao_delete {
     color: var(--botao-secundario-texto);
     border: 1px solid var(--botao-secundario-texto);
@@ -94,7 +98,15 @@ body.modo-escuro {
     border: none;
     cursor: pointer;
 }
-.botao_modo_escuro { margin-right: 10px; color: var(--botao-secundario-texto); }
+
+/* Botão da lua (modo escuro) com fundo transparente no modo claro */
+.botao_modo_escuro { 
+    margin-right: 10px; 
+    color: var(--botao-secundario-texto); 
+    background-color: transparent; /* fundo transparente no modo claro */
+}
+
+/* Botões de aumentar/diminuir fonte mantêm o fundo normal */
 .botao_diminuir_fonte, .botao_aumentar_fonte {
     color: var(--botao-secundario-texto);
     background-color: var(--cor-fundo);
