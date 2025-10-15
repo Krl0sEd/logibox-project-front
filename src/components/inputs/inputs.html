@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inputs</title> 
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="inputs.css">
+        <script src="inputs.js" defer></script>
+    </head>
+    <body data-theme="light">
+        <!-- Input Texto Padrão-->
+        <input type="text" class="input_padrao" placeholder="Texto">
+
+        <!-- Select Sexo -->
+        <div class="input_seletor">
+            <select id="opcao_sexo" name="opcao_sexo" class="seletor">
+                <option value="" disabled selected hidden>Sexo</option>
+                <option value="M">Masculino</option>
+                <option value="F">Feminino</option>
+            </select>
+            <i class="bi bi-chevron-down"></i>
+        </div>
+
+        <!-- Select Estado -->
+        <div class="input_seletor">
+            <select id="opcao_estado" name="opcao_estado" class="seletor">
+                <option value="" disabled selected hidden>Estado</option>
+                <option value="AC">Acre</option>
+                <option value="AL">Alagoas</option>
+                <option value="AP">Amapá</option>
+                <option value="AM">Amazonas</option>
+                <option value="BA">Bahia</option>
+                <option value="CE">Ceará</option>
+                <option value="DF">Distrito Federal</option>
+                <option value="ES">Espírito Santo</option>
+                <option value="GO">Goiás</option>
+                <option value="MA">Maranhão</option>
+                <option value="MT">Mato Grosso</option>
+                <option value="MS">Mato Grosso do Sul</option>
+                <option value="MG">Minas Gerais</option>
+                <option value="PA">Pará</option>
+                <option value="PB">Paraíba</option>
+                <option value="PR">Paraná</option>
+                <option value="PE">Pernambuco</option>
+                <option value="PI">Piauí</option>
+                <option value="RJ">Rio de Janeiro</option>
+                <option value="RN">Rio Grande do Norte</option>
+                <option value="RS">Rio Grande do Sul</option>
+                <option value="RO">Rondônia</option>
+                <option value="RR">Roraima</option>
+                <option value="SC">Santa Catarina</option>
+                <option value="SP">São Paulo</option>
+                <option value="SE">Sergipe</option>
+                <option value="TO">Tocantins</option>
+            </select>
+            <i class="bi bi-chevron-down"></i>
+        </div>
+
+        <!-- Input Senha -->
+        <div class="input_senha">
+            <input type="password" class="input_padrao" placeholder="Senha" maxlength="8" id="senha" name="senha">
+            <i class="bi bi-eye-fill" id="toggle-senha"></i>
+        </div>
+
+        <!-- Textarea -->
+        <textarea class="input_textarea" placeholder="Texto" rows="4" id="textarea" name="textarea"></textarea>
+
+        <!-- Input Pesquisa -->
+        <div class="input_pesquisa">
+            <i class="bi bi-search"></i>
+            <input type="text" class="input_padrao" placeholder="Pesquisar..." id="pesquisa" name="pesquisa">
+        </div>
+
+        <!-- Nascimento -->
+        <input type="text" class="input_padrao" maxlength="10" placeholder="XX/XX/XXXX" id="data_nascimento" name="data_nascimento">
+
+        <!-- CPF -->
+        <input type="text" class="input_padrao" maxlength="14" placeholder="000.000.000-00" id="cpf" name="cpf">
+
+        <!-- Celular -->
+        <input type="text" class="input_padrao" maxlength="17" placeholder="+55 (00) 00000-0000" id="celular" name="celular">
+
+        <!-- Email -->
+        <input type="email" class="input_padrao" id="email" name="email" placeholder="nome@dominio.com">
+
+        <!-- CEP -->
+        <input type="text" class="input_padrao" maxlength="9" placeholder="00000-000" id="cep">
+
+        <!-- Campos preenchidos pela API -->
+        <input type="text" class="input_padrao" placeholder="Rua" id="rua">
+        <input type="text" class="input_padrao" placeholder="Nº" id="numero_rua">
+        <input type="text" class="input_padrao" placeholder="Bairro" id="bairro">
+        <input type="text" class="input_padrao" placeholder="Cidade" id="cidade">
+        <input type="text" class="input_padrao" placeholder="UF" id="uf">
+        <input type="text" class="input_padrao" placeholder="Complemento" id="complemento">
+    </body>
+</html>

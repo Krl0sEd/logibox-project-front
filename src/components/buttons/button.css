@@ -1,0 +1,171 @@
+/* ================= VARIÁVEIS ================= */
+:root {
+    --fonte-padrao: 'Lato', Arial, sans-serif;
+
+    /* Cores principais */
+    --cor-primaria: rgb(173, 0, 0);
+    --cor-texto: rgb(77, 77, 77);
+    --cor-borda: #aaa;
+    --cor-placeholder: #585858;
+    --cor-fundo: #fff;
+    --cor-fundo-escuro: #1e1e1e;
+
+    /* Botões */
+    --botao-texto: #fff;
+    --botao-secundario-texto: #000;
+}
+
+/* ================= RESET FONTE ================= */
+body, button {
+    font-family: var(--fonte-padrao);
+}
+
+body.modo-escuro {
+    background-color: var(--cor-fundo-escuro);
+    color: #eee; /* opcional, muda a cor do texto */
+}
+
+/* ================= BOTÕES ================= */
+.botao, .botao_criar, .botao_salvar, .botao_limpar, 
+.botao_excluir, .botao_editar, .botao_visualizar,
+.botao_cancelar, .botao_delete {
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    gap: 7px;
+    transition: all 0.3s ease;
+}
+
+/* Botões principais com fundo vermelho */
+.botao, .botao_criar, .botao_salvar {
+    background-color: var(--cor-primaria);
+    color: var(--botao-texto);
+    border: none;
+    font-size: 18px;
+}
+
+.botao { padding: 13px 30px; }
+.botao_criar, .botao_salvar { padding: 11px 20px; }
+.botao_criar i { font-size: 25px; }
+
+.botao:hover, .botao_criar:hover, .botao_salvar:hover {
+    background-color: rgb(210, 64, 61);
+}
+
+/* Botões com borda */
+.botao_limpar {
+    color: var(--botao-secundario-texto);
+    padding: 5px 17px;
+    border: 1px solid var(--botao-secundario-texto);
+    font-size: 16px;
+}
+.botao_excluir, .botao_editar, .botao_visualizar {
+    color: var(--cor-primaria);
+    padding: 11px 20px;
+    border: 1px solid var(--cor-primaria);
+    font-size: 16px;
+}
+.botao_delete {
+    color: var(--botao-secundario-texto);
+    border: 1px solid var(--botao-secundario-texto);
+    padding: 11px 20px;
+    font-size: 16px;
+    background-color: transparent;
+}
+.botao_cancelar {
+    background-color: var(--cor-placeholder);
+    color: var(--botao-texto);
+    padding: 11px 20px;
+    border: none;
+    font-size: 18px;
+}
+
+/* Hover */
+.botao_limpar:hover { background-color: rgb(209, 209, 209); border-color: var(--cor-placeholder); }
+.botao_excluir:hover, .botao_editar:hover, .botao_visualizar:hover { background-color: rgba(173,0,0,0.5); }
+.botao_delete:hover { color: var(--cor-placeholder); border-color: var(--cor-placeholder); }
+.botao_cancelar:hover { background-color: var(--cor-borda); }
+
+/* ================= BOTÕES DE FUNÇÕES (modo escuro/fonte) ================= */
+.botao_modo_escuro, .botao_diminuir_fonte, .botao_aumentar_fonte {
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+}
+.botao_modo_escuro { margin-right: 10px; color: var(--botao-secundario-texto); }
+.botao_diminuir_fonte, .botao_aumentar_fonte {
+    color: var(--botao-secundario-texto);
+    background-color: var(--cor-fundo);
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-left: -11px;
+}
+
+/* ================= MODO ESCURO BOTÕES ================= */
+body.modo-escuro .botao, 
+body.modo-escuro .botao_criar, 
+body.modo-escuro .botao_salvar {
+    background-color: var(--cor-primaria); 
+    color: #fff;
+}
+
+body.modo-escuro .botao_excluir, 
+body.modo-escuro .botao_editar, 
+body.modo-escuro .botao_visualizar {
+    background-color: var(--cor-fundo-escuro);
+    color: var(--cor-primaria);
+    border: 1px solid var(--cor-primaria);
+}
+
+body.modo-escuro .botao_limpar {
+    background-color: var(--cor-fundo-escuro);
+    color: var(--cor-fundo);
+    border: 1px solid var(--cor-fundo);
+}
+
+body.modo-escuro .botao_delete {
+    color: var(--botao-texto);
+    border-color: var(--botao-texto);
+}
+body.modo-escuro .botao_delete:hover {
+    color: var(--cor-placeholder);
+    border-color: var(--cor-placeholder);
+    background-color: transparent;
+}
+
+body.modo-escuro .botao:hover, 
+body.modo-escuro .botao_criar:hover, 
+body.modo-escuro .botao_salvar:hover {
+    background-color: rgb(210, 64, 61);
+}
+body.modo-escuro .botao_excluir:hover, 
+body.modo-escuro .botao_editar:hover, 
+body.modo-escuro .botao_visualizar:hover {
+    background-color: rgba(173,0,0,0.5);
+}
+body.modo-escuro .botao_limpar {
+    background-color: transparent;
+    color: var(--botao-texto);
+}
+body.modo-escuro .botao_limpar:hover {
+    color: var(--cor-placeholder);
+    border-color: var(--cor-placeholder);
+}
+
+/* ================= BOTÕES FUNÇÕES NO MODO ESCURO ================= */
+body.modo-escuro .botao_modo_escuro,
+body.modo-escuro .botao_aumentar_fonte,
+body.modo-escuro .botao_diminuir_fonte {
+    color: var(--cor-fundo);
+    background-color: var(--cor-fundo-escuro);
+}
+body.modo-escuro .botao_diminuir_fonte:hover,
+body.modo-escuro .botao_aumentar_fonte:hover,
+body.modo-escuro .botao_modo_escuro:hover,
+body .botao_diminuir_fonte:hover,
+body .botao_aumentar_fonte:hover,
+body .botao_modo_escuro:hover {
+    color: var(--cor-placeholder);
+}

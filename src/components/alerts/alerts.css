@@ -1,0 +1,163 @@
+/* ================= VARIÁVEIS ================= */
+:root {
+    --fonte-padrao: 'Lato', Arial, sans-serif;
+
+    /* Cores principais */
+    --cor-texto: rgb(77, 77, 77);
+    --cor-borda: #aaa;
+    --cor-placeholder: #585858;
+    --cor-fundo: #fff;
+    --cor-fundo-escuro: #1e1e1e;
+
+    /* Botões */
+    --botao-texto: #fff;
+    --botao-secundario-texto: #000;
+}
+
+/* ================= RESET FONTE ================= */
+body, button {
+    font-family: var(--fonte-padrao);
+}
+
+/* ================= ALERT / MODAL ================= */
+.alert_modelo {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+    
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.alert_modelo.fechar {
+    opacity: 0;
+}
+
+.conteudo_alert {
+    background: var(--cor-fundo);
+    padding: 25px;
+    border-radius: 12px;
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    animation: aparecer 0.3s ease;
+}
+
+.conteudo_alert .fechar_modal {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    font-size: 22px;
+    cursor: pointer;
+    color: var(--cor-placeholder);
+}
+
+.conteudo_alert .icone_modal {
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+
+.conteudo_alert h2 {
+    margin: 10px 0;
+    font-size: 20px;
+    color: var(--cor-texto);
+    font-weight: bold;
+}
+
+.conteudo_alert p {
+    color: var(--cor-placeholder);
+    font-size: 15px;
+    margin: 10px 0 0;
+}
+
+.botoes_modal {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Ícones específicos por alert */
+.conteudo_alert i { color: rgb(255, 205, 48); }
+#alert1 .conteudo_alert i { color: red; }
+#alert2 .conteudo_alert i { color: rgb(28, 74, 255); }
+
+/* ================= BOTÕES USADOS ================= */
+.botao_cancelar {
+    background-color: var(--cor-placeholder);
+    color: var(--botao-texto);
+    padding: 11px 20px;
+    border: none;
+    font-size: 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    transition: all 0.3s ease;
+}
+
+.botao_cancelar:hover {
+    background-color: var(--cor-borda);
+}
+
+.botao_delete {
+    color: var(--botao-secundario-texto);
+    border: 1px solid var(--botao-secundario-texto);
+    padding: 11px 20px;
+    font-size: 16px;
+    background-color: transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    transition: all 0.3s ease;
+}
+
+.botao_delete:hover {
+    color: var(--cor-placeholder);
+    border-color: var(--cor-placeholder);
+    background-color: transparent;
+}
+
+/* ================= MODO ESCURO ================= */
+body.modo-escuro {
+    background-color: var(--cor-fundo-escuro);
+    color: #eee;
+}
+
+body.modo-escuro .conteudo_alert {
+    background-color: var(--cor-fundo-escuro);
+}
+
+body.modo-escuro .conteudo_alert h2,
+body.modo-escuro .conteudo_alert p {
+    color: var(--botao-texto);
+}
+
+body.modo-escuro .botao_cancelar {
+    background-color: var(--cor-borda);
+}
+
+body.modo-escuro .botao_delete {
+    color: var(--botao-texto);
+    border-color: var(--botao-texto);
+}
+
+body.modo-escuro .botao_delete:hover,
+body.modo-escuro .botao_cancelar:hover {
+    color: var(--cor-placeholder);
+}
+
+/* ================= ANIMAÇÃO DE ENTRADA ================= */
+@keyframes aparecer {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}

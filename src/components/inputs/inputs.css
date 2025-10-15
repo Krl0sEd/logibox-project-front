@@ -1,0 +1,118 @@
+/* ================= VARIÁVEIS ================= */
+:root {
+    --fonte-padrao: 'Lato', Arial, sans-serif;
+
+    /* Cores principais */
+    --cor-texto: rgb(77, 77, 77);
+    --cor-borda: #aaa;
+    --cor-placeholder: #585858;
+    --cor-fundo: #fff;
+    --cor-fundo-escuro: #1e1e1e;
+}
+
+/* ================= RESET FONTE ================= */
+body, input, textarea, select {
+    font-family: var(--fonte-padrao);
+}
+
+/* ================= INPUTS ================= */
+.input_padrao, .input_textarea, .seletor {
+    border: 1px solid var(--cor-borda);
+    border-radius: 6px;
+    font-size: 16px;
+    color: var(--cor-texto);
+    padding: 10px 12px;
+    outline: none;
+    box-sizing: border-box;
+    background-color: var(--cor-fundo);
+}
+
+.input_textarea { width: 300px; color: var(--cor-placeholder); }
+
+.input_senha .input_padrao {
+    width: 150px;
+}
+
+.input_pesquisa .input_padrao {
+    width: 350px; 
+}
+
+input[name="email"] {
+    width: 350px; 
+}
+
+.input_padrao::placeholder,
+.input_textarea::placeholder {
+    font-size: var(--placeholder-font-size, 16px);
+}
+
+/* Inputs com ícones */
+.input_senha, .input_pesquisa, .input_seletor {
+    position: relative;
+    display: inline-block;
+}
+
+/* Padding relativo ao ícone */
+.input_senha .input_padrao { padding-right: 2.2em; }
+.input_pesquisa .input_padrao { padding-left: 2.2em; }
+.input_seletor .seletor { padding-right: 2.2em; -webkit-appearance: none; -moz-appearance: none; appearance: none; }
+
+/* Ícones posicionados */
+.input_senha i, .input_pesquisa i, .input_seletor i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1em;
+    cursor: pointer;
+}
+
+/* ícones dos inputs */
+.input_senha i { right: 12px; pointer-events: auto; }
+.input_seletor i { right: 12px; pointer-events: none; }
+.input_pesquisa i { left: 12px; pointer-events: none; }
+
+/* ================= MODO ESCURO ================= */
+body.modo-escuro {
+    background-color: var(--cor-fundo-escuro);
+    color: #eee;
+}
+
+body.modo-escuro .input_padrao,
+body.modo-escuro .input_textarea,
+body.modo-escuro .seletor {
+    background-color: var(--cor-fundo-escuro);
+    color: var(--cor-fundo);
+    border-color: #555;
+}
+
+body.modo-escuro .input_padrao::placeholder,
+body.modo-escuro .input_textarea::placeholder { color: var(--cor-fundo); }
+
+body.modo-escuro .input_senha i,
+body.modo-escuro .input_pesquisa i,
+body.modo-escuro .input_seletor i { color: var(--cor-fundo); }
+
+/* ================= FOCO E ERRO ================= */
+.input_padrao:focus,
+.input_textarea:focus,
+.seletor:focus {
+    border-color: #007bff;
+}
+
+.input_padrao.erro,
+.input_textarea.erro,
+.seletor.erro {
+    border-color: #dc3545;
+}
+
+body.modo-escuro .input_padrao:focus,
+body.modo-escuro .input_textarea:focus,
+body.modo-escuro .seletor:focus {
+    border-color: #007bff;
+}
+
+body.modo-escuro .input_padrao.erro,
+body.modo-escuro .input_textarea.erro,
+body.modo-escuro .seletor.erro {
+    border-color: #dc3545;
+}
