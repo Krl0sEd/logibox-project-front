@@ -29,10 +29,60 @@
         --component-bg-1: #FFFEFA;
         --component-bg-2: #F9F6F4;
         --component-bg-dashboard: #F3F5F7;
+}
 
-/* PS: Estudar sobre clamp para as fontes, especif. sobre rem e vw */
+:root.darkmode {
+          --text-highcontrast: #F8F8F8;
+          --text-main: #EDEDED;
+          --text-hierarchy-1: #CFCFCF;
+          --text-hierarchy-2: #A7A7A7;
+          --text-disabled: #7B7B7B;
+          --text-disabled-contrast: #5E5E5E;
+
+          --component-separator: #2B2B2B;
+          --component-dark-1: #9B9B9B;
+          --component-dark-2: #C5C5C5;
+          --component-dark-main: #D9D9D9;
+          --component-blue: #8D96B8;
+          --component-disabled: #4B4B4B;
+          --component-bg-main: #1C1C1C;
+          --component-bg-1: #212121;
+          --component-bg-2: #2A2A2A;
+          --component-bg-dashboard: #1C1C1C;
 
 }
+
+/* =================== FONT SIZES ====================*/
+
+body.font-small {
+  --fs-xs: clamp(12px, 1.3vw, 13.5px);
+  --fs-sm: clamp(13px, 1.4vw, 14.5px);
+  --fs-md: clamp(14.5px, 1.6vw, 16px);
+  --fs-lg: clamp(20px, 2.2vw, 23.5px);
+  --fs-xl: clamp(32px, 3.6vw, 41px);
+  --fs-xxl: clamp(36px, 4.5vw, 47px);
+}
+
+body.font-normal {
+  --fs-xs: clamp(13px, 1.5vw, 15px);
+  --fs-sm: clamp(14px, 1.6vw, 16px);
+  --fs-md: clamp(16px, 1.8vw, 18px);
+  --fs-lg: clamp(22px, 2.5vw, 26px);
+  --fs-xl: clamp(36px, 4vw, 46px);
+  --fs-xxl: clamp(40px, 5vw, 52px);
+}
+
+body.font-large {
+  --fs-xs: clamp(14px, 1.7vw, 16.5px);
+  --fs-sm: clamp(15.5px, 1.8vw, 18px);
+  --fs-md: clamp(18px, 2vw, 20.5px);
+  --fs-lg: clamp(24.5px, 2.8vw, 29.5px);
+  --fs-xl: clamp(40px, 4.5vw, 52px);
+  --fs-xxl: clamp(44px, 5.5vw, 60px);
+}
+
+
+
 
 /* ================= MODAL CONTAINER ================= */
 .hidden {
