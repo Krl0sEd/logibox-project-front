@@ -1,64 +1,182 @@
 /* ================= VARIÁVEIS ================= */
 :root {
-    --fonte-padrao: 'Lato', Arial, sans-serif;
+    /* === Fontes === */
+    --font-family-base: "Lato", sans-serif;
 
-    /* Cores principais */
-    --cor-texto: rgb(77, 77, 77);
-    --cor-borda: #aaa;
-    --cor-placeholder: #585858;
-    --cor-fundo: #fff;
-    --cor-fundo-escuro: #1e1e1e;
+    /* === Cores === */
+    --logo-primary: #ad0000;
+    --logo-secondary: #4c180c;
+    --logo-hover: #db3e3e;
+    --logo-active: #ca000071;
+
+    --text-highcontrast: #070707;
+    --text-main: #161616;
+    --text-hierarchy-1: #363636;
+    --text-hierarchy-2: #504f4f;
+    --text-disabled: #838382;
+    --text-disabled-contrast: #b9b8b8;
+
+    --component-separator: #e9e7e2;
+    --component-dark-1: #797877;
+    --component-dark-2: #454544;
+    --component-dark-main: #393938;
+    --component-blue: #5b6073;
+    --component-disabled: #d9d7d5;
+    --component-bg-main: #f3f5f7;
+    --component-bg-1: #fffefa;
+    --component-bg-2: #f9f6f4;
+    --component-bg-dashboard: #f3f5f7;
 }
 
-/* ================= RESET FONTE ================= */
-body, input, textarea, select {
-    font-family: var(--fonte-padrao);
+:root.darkmode {
+    --text-highcontrast: #f8f8f8;
+    --text-main: #ededed;
+    --text-hierarchy-1: #cfcfcf;
+    --text-hierarchy-2: #a7a7a7;
+    --text-disabled: #7b7b7b;
+    --text-disabled-contrast: #5e5e5e;
+
+    --component-separator: #2b2b2b;
+    --component-dark-1: #9b9b9b;
+    --component-dark-2: #c5c5c5;
+    --component-dark-main: #d9d9d9;
+    --component-blue: #8d96b8;
+    --component-disabled: #4b4b4b;
+    --component-bg-main: #1c1c1c;
+    --component-bg-1: #212121;
+    --component-bg-2: #2a2a2a;
+    --component-bg-dashboard: #1c1c1c;
+}
+
+/* =================== FONT SIZES ==================== */
+body.font-small {
+    --fs-xs: clamp(12px, 1.3vw, 13.5px);
+    --fs-sm: clamp(13px, 1.4vw, 14.5px);
+    --fs-md: clamp(14.5px, 1.6vw, 16px);
+    --fs-lg: clamp(20px, 2.2vw, 23.5px);
+    --fs-xl: clamp(32px, 3.6vw, 41px);
+    --fs-xxl: clamp(36px, 4.5vw, 47px);
+}
+
+body.font-normal {
+    --fs-xs: clamp(13px, 1.5vw, 15px);
+    --fs-sm: clamp(14px, 1.6vw, 16px);
+    --fs-md: clamp(16px, 1.8vw, 18px);
+    --fs-lg: clamp(22px, 2.5vw, 26px);
+    --fs-xl: clamp(36px, 4vw, 46px);
+    --fs-xxl: clamp(40px, 5vw, 52px);
+}
+
+body.font-large {
+    --fs-xs: clamp(14px, 1.7vw, 16.5px);
+    --fs-sm: clamp(15.5px, 1.8vw, 18px);
+    --fs-md: clamp(18px, 2vw, 20.5px);
+    --fs-lg: clamp(24.5px, 2.8vw, 29.5px);
+    --fs-xl: clamp(40px, 4.5vw, 52px);
+    --fs-xxl: clamp(44px, 5.5vw, 60px);
 }
 
 /* ================= INPUTS ================= */
-.input_padrao, .input_textarea, .seletor {
-    border: 1px solid var(--cor-borda);
+.input_padrao,
+.input_textarea {
+    border: 1px solid var(--text-disabled);
     border-radius: 6px;
-    font-size: 16px;
-    color: var(--cor-texto);
+    font-size: var(--fs-md);
+    color: var(--text-main);
     padding: 10px 12px;
     outline: none;
     box-sizing: border-box;
-    background-color: var(--cor-fundo);
+    background-color: var(--component-bg-1);
 }
 
-.input_textarea { width: 300px; color: var(--cor-placeholder); }
+/* Contêiner do select */
+.input_seletor {
+    position: relative;
+    display: inline-block;
+}
 
+/* Select */
+.seletor {
+    width: 100%;
+    padding: 10px 36px 10px 12px;
+    border: 1px solid var(--text-disabled);
+    border-radius: 6px;
+    font-size: var(--fs-md);
+    color: var(--text-disabled);
+    background-color: var(--component-bg-1);
+    appearance: none;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Mudança de cor quando uma opção é selecionada */
+.seletor:not(:invalid) {
+    color: var(--text-main);
+}
+
+/* Ícone posicionado corretamente */
+.input_seletor i {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 1em;
+    color: var(--text-disabled);
+}
+
+/* Textarea */
+.input_textarea {
+    width: 300px;
+    color: var(--text-main);
+    font-family: var(--font-family-base);
+}
+
+/* Inputs específicos */
 .input_senha .input_padrao {
     width: 150px;
 }
 
-.input_pesquisa .input_padrao {
-    width: 350px; 
-}
-
+.input_pesquisa .input_padrao,
 input[name="email"] {
-    width: 350px; 
+    width: 350px;
 }
 
+/* Placeholder */
 .input_padrao::placeholder,
 .input_textarea::placeholder {
-    font-size: var(--placeholder-font-size, 16px);
+    font-size: var(--fs-sm);
+    color: var(--text-disabled);
 }
 
 /* Inputs com ícones */
-.input_senha, .input_pesquisa, .input_seletor {
+.input_senha,
+.input_pesquisa,
+.input_seletor {
     position: relative;
     display: inline-block;
 }
 
 /* Padding relativo ao ícone */
-.input_senha .input_padrao { padding-right: 2.2em; }
-.input_pesquisa .input_padrao { padding-left: 2.2em; }
-.input_seletor .seletor { padding-right: 2.2em; -webkit-appearance: none; -moz-appearance: none; appearance: none; }
+.input_senha .input_padrao {
+    padding-right: 2.2em;
+}
+
+.input_pesquisa .input_padrao {
+    padding-left: 2.2em;
+}
+
+.input_seletor .seletor {
+    padding-right: 2.2em;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
 
 /* Ícones posicionados */
-.input_senha i, .input_pesquisa i, .input_seletor i {
+.input_senha i,
+.input_pesquisa i,
+.input_seletor i {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -66,31 +184,15 @@ input[name="email"] {
     cursor: pointer;
 }
 
-/* ícones dos inputs */
-.input_senha i { right: 12px; pointer-events: auto; }
-.input_seletor i { right: 12px; pointer-events: none; }
-.input_pesquisa i { left: 12px; pointer-events: none; }
-
-/* ================= MODO ESCURO ================= */
-body.modo-escuro {
-    background-color: var(--cor-fundo-escuro);
-    color: #eee;
+.input_senha i {
+    right: 12px;
+    pointer-events: auto;
 }
 
-body.modo-escuro .input_padrao,
-body.modo-escuro .input_textarea,
-body.modo-escuro .seletor {
-    background-color: var(--cor-fundo-escuro);
-    color: var(--cor-fundo);
-    border-color: #555;
+.input_pesquisa i {
+    left: 12px;
+    pointer-events: none;
 }
-
-body.modo-escuro .input_padrao::placeholder,
-body.modo-escuro .input_textarea::placeholder { color: var(--cor-fundo); }
-
-body.modo-escuro .input_senha i,
-body.modo-escuro .input_pesquisa i,
-body.modo-escuro .input_seletor i { color: var(--cor-fundo); }
 
 /* ================= FOCO E ERRO ================= */
 .input_padrao:focus,
@@ -102,17 +204,5 @@ body.modo-escuro .input_seletor i { color: var(--cor-fundo); }
 .input_padrao.erro,
 .input_textarea.erro,
 .seletor.erro {
-    border-color: #dc3545;
-}
-
-body.modo-escuro .input_padrao:focus,
-body.modo-escuro .input_textarea:focus,
-body.modo-escuro .seletor:focus {
-    border-color: #007bff;
-}
-
-body.modo-escuro .input_padrao.erro,
-body.modo-escuro .input_textarea.erro,
-body.modo-escuro .seletor.erro {
     border-color: #dc3545;
 }
