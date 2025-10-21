@@ -175,13 +175,6 @@ body.font-large {
   color: var(--text-main);
 }
 
-/* ================= FORM BUTTONS ================= */
-
-.formButtons {
-  display: flex;
-  justify-content: center;
-  margin: 50px 0 20px 0;
-}
 
 /* ================= INPUTS CONFIG ================= */
 
@@ -211,19 +204,17 @@ body.font-large {
   width: 350px;
 }
 
-input[name="email"] {
-  width: 350px;
-}
+
 
 .input_padrao::placeholder,
 .input_textarea::placeholder {
-  font-size: var(--placeholder-font-size, 16px);
+     font-size: var(--placeholder-font-size, 16px);
 }
 
 /* Inputs com ícones */
 .input_senha,
 .input_pesquisa {
-  position: relative;
+     position: relative;
   display: inline-block;
 }
 
@@ -236,10 +227,10 @@ input[name="email"] {
 
 /* Padding relativo ao ícone */
 .input_senha .input_padrao {
-  padding-right: 2.2em;
+     padding-right: 2.2em;
 }
 .input_pesquisa .input_padrao {
-  padding-left: 2.2em;
+     padding-left: 2.2em;
 }
 .input_seletor .seletor {
   width: 100%;
@@ -253,7 +244,7 @@ input[name="email"] {
 .input_senha i,
 .input_pesquisa i,
 .input_seletor i {
-  position: absolute;
+     position: absolute;
   top: 50%;
   transform: translateY(-50%);
   font-size: 1em;
@@ -262,7 +253,7 @@ input[name="email"] {
 
 /* ícones dos inputs */
 .input_senha i {
-  right: 12px;
+     right: 12px;
   pointer-events: auto;
 }
 .input_seletor i {
@@ -274,9 +265,16 @@ input[name="email"] {
   pointer-events: none;
 }
 
-/* ================= BOTÕES CONFIG ================= */
 
-.botao_excluir {
+/* ================= FORM BUTTONS ================= */
+
+.formButtons {
+  display: flex;
+  justify-content: space-evenly;
+
+}
+
+.botao_excluir, .botao_limpar {
   border-radius: 6px;
   cursor: pointer;
   display: inline-flex;
@@ -294,6 +292,12 @@ input[name="email"] {
   font-size: 16px;
 }
 
+.botao_limpar {
+    color: var(--component-dark-main);
+    padding: 5px 17px;
+    border: 1px solid var(--component-dark-main);
+    font-size: 16px;
+}
 
 /* Hover */
 
@@ -301,6 +305,10 @@ input[name="email"] {
   background-color: var(--logo-hover);
 }
 
+.botao_limpar:hover {
+     background-color: var(--component-separator);
+     color: var(--text-hierarchy-1);
+}
 
 /* ================= MEDIA QUERY ================= */
 
@@ -324,5 +332,9 @@ input[name="email"] {
 
   .formGroup {
     width: 100%;
+  }
+
+  .formButtons {
+     padding-bottom: 35px;
   }
 }
