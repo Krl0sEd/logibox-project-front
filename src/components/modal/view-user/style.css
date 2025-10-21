@@ -7,7 +7,7 @@
   /* === Cores === */
   --logo-primary: #ad0000;
   --logo-secondary: #4c180c;
-  --logo-hover: #db3e3e;
+  --logo-hover: #ca00007e;
   --logo-active: #ca000071;
 
   --text-highcontrast: #070707;
@@ -154,7 +154,7 @@ body.font-large {
   justify-content: center;
 }
 
-.formContainer {
+.formInfo {
   display: flex;
   flex-wrap: wrap;
   gap: 24px;
@@ -222,10 +222,16 @@ input[name="email"] {
 
 /* Inputs com ícones */
 .input_senha,
-.input_pesquisa,
-.input_seletor {
+.input_pesquisa {
   position: relative;
   display: inline-block;
+}
+
+.input_seletor {
+     position: relative;
+     display: flex;
+     align-items: center;
+     width: 100%;
 }
 
 /* Padding relativo ao ícone */
@@ -236,6 +242,7 @@ input[name="email"] {
   padding-left: 2.2em;
 }
 .input_seletor .seletor {
+  width: 100%;
   padding-right: 2.2em;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -268,15 +275,8 @@ input[name="email"] {
 }
 
 /* ================= BOTÕES CONFIG ================= */
-.botao,
-.botao_criar,
-.botao_salvar,
-.botao_limpar,
-.botao_excluir,
-.botao_editar,
-.botao_visualizar,
-.botao_cancelar,
-.botao_delete {
+
+.botao_excluir {
   border-radius: 6px;
   cursor: pointer;
   display: inline-flex;
@@ -284,82 +284,23 @@ input[name="email"] {
   line-height: 1;
   gap: 7px;
   transition: all 0.3s ease;
-}
-
-/* Botões principais com fundo vermelho */
-.botao,
-.botao_criar,
-.botao_salvar {
-  background-color: var(--cor-primaria);
-  color: var(--botao-texto);
-  border: none;
-  font-size: 18px;
-}
-
-.botao {
-  padding: 13px 30px;
-}
-.botao_criar,
-.botao_salvar {
-  padding: 11px 20px;
-}
-.botao_criar i {
-  font-size: 25px;
-}
-
-.botao:hover,
-.botao_criar:hover,
-.botao_salvar:hover {
-  background-color: rgb(210, 64, 61);
-}
-
-/* Botões com borda */
-.botao_limpar {
-  color: var(--botao-secundario-texto);
-  padding: 5px 17px;
-  border: 1px solid var(--botao-secundario-texto);
-  font-size: 16px;
-}
-.botao_excluir,
-.botao_editar,
-.botao_visualizar {
-  color: var(--cor-primaria);
-  padding: 11px 20px;
-  border: 1px solid var(--cor-primaria);
-  font-size: 16px;
-}
-.botao_delete {
-  color: var(--botao-secundario-texto);
-  border: 1px solid var(--botao-secundario-texto);
-  padding: 11px 20px;
-  font-size: 16px;
   background-color: transparent;
 }
-.botao_cancelar {
-  background-color: var(--cor-placeholder);
-  color: var(--botao-texto);
+
+.botao_excluir {
+  color: var(--logo-primary);
   padding: 11px 20px;
-  border: none;
-  font-size: 18px;
+  border: 1px solid var(--logo-primary);
+  font-size: 16px;
 }
 
+
 /* Hover */
-.botao_limpar:hover {
-  background-color: rgb(209, 209, 209);
-  border-color: var(--cor-placeholder);
+
+.botao_excluir:hover{
+  background-color: var(--logo-hover);
 }
-.botao_excluir:hover,
-.botao_editar:hover,
-.botao_visualizar:hover {
-  background-color: rgba(173, 0, 0, 0.5);
-}
-.botao_delete:hover {
-  color: var(--cor-placeholder);
-  border-color: var(--cor-placeholder);
-}
-.botao_cancelar:hover {
-  background-color: var(--cor-borda);
-}
+
 
 /* ================= MEDIA QUERY ================= */
 
