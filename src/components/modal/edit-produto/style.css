@@ -16,6 +16,7 @@
   --text-hierarchy-2: #504f4f;
   --text-disabled: #838382;
   --text-disabled-contrast: #b9b8b8;
+  --text-oposite: #fffbfb;
 
   --component-separator: #e9e7e2;
   --component-dark-1: #797877;
@@ -113,6 +114,7 @@ body.font-large {
   width: 100%;
 }
 
+
 /* ================= HEADER ================= */
 
 .modalHeader {
@@ -160,7 +162,6 @@ body.font-large {
   gap: 24px;
   width: 100%;
   max-width: 900px;
-  justify-content: center;
 }
 
 .formGroup {
@@ -170,20 +171,34 @@ body.font-large {
   margin-bottom: 20px;
 }
 
+
+/* Organização dos inputs */
+
+.formColumn {
+     display: flex;
+     flex-direction: column;
+     flex: 1;
+}
+
+.flexInput {
+  display: flex;
+  gap: 20px;
+  align-items: flex-end;
+  margin-top: 10%;
+}
+
 .labelInput {
   font-size: 16px;
   color: var(--text-main);
 }
 
-.flexInput {
-     display: flex;
-     flex-direction: row;
-}
+
 
 /* ================= INPUTS CONFIG ================= */
 
 .input_padrao,
 .input_textarea,
+.input_pequeno,
 .seletor {
   border: 1px solid var(--component-dark-1);
   border-radius: 6px;
@@ -200,15 +215,9 @@ body.font-large {
   color: var(--text-disabled);
 }
 
-.input_senha .input_padrao {
-  width: 150px;
+.input_pequeno {
+     width: 100%;
 }
-
-.input_pesquisa .input_padrao {
-  width: 350px;
-}
-
-
 
 .input_padrao::placeholder,
 .input_textarea::placeholder {
@@ -216,17 +225,28 @@ body.font-large {
 }
 
 /* Inputs com ícones */
-.input_senha,
-.input_pesquisa {
-     position: relative;
-  display: inline-block;
-}
 
 .input_seletor {
      position: relative;
      display: flex;
      align-items: center;
      width: 100%;
+}
+
+.input_moeda {
+     position: relative;
+     display: flex;
+     align-items: center;
+}
+
+.input_moeda span {
+  position: absolute;
+  left: 10px;
+  color: var(--text-main);
+}
+
+.input_moeda input {
+  padding-left: 35px; 
 }
 
 /* Padding relativo ao ícone */
@@ -278,7 +298,7 @@ body.font-large {
   margin-top: 10%;
 }
 
-.botao_excluir, .botao_limpar {
+.botao_excluir, .botao_salvar, .botao_limpar, .botao_visualizar {
   border-radius: 6px;
   cursor: pointer;
   display: inline-flex;
@@ -289,11 +309,19 @@ body.font-large {
   background-color: transparent;
 }
 
-.botao_excluir {
+.botao_excluir, .botao_visualizar {
   color: var(--logo-primary);
   padding: 11px 20px;
   border: 1px solid var(--logo-primary);
   font-size: 16px;
+}
+
+.botao_salvar {
+    background-color: var(--logo-primary);
+    color: var(--text-oposite);
+    border: none;
+    font-size: 18px;
+    padding: 11px 20px;
 }
 
 .botao_limpar {
@@ -313,6 +341,17 @@ body.font-large {
      background-color: var(--component-separator);
      color: var(--text-hierarchy-1);
 }
+
+/* Hover */
+
+.botao_excluir:hover,
+.botao_editar:hover,
+.botao_visualizar:hover {
+     background-color: rgba(173, 0, 0, 0.5);
+}
+
+
+
 
 /* ================= MEDIA QUERY ================= */
 
@@ -334,11 +373,34 @@ body.font-large {
     width: 70%;
   }
 
+  .input_moeda input {
+  padding-left: 30px; 
+}
+
   .formGroup {
     width: 100%;
   }
 
   .formButtons {
      padding-bottom: 35px;
+     flex-wrap: wrap;
+     gap: 25px;
+     max-width: 90%;
+  }
+
+   .input_textarea {
+    width: 100%; 
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 600px) {
+  .formButtons {
+     flex-direction: column;
+  }
+
+  .botao_excluir, .botao_salvar, .botao_limpar, .botao_visualizar {
+     width: 100%;
+     justify-content: center;
   }
 }
