@@ -1,0 +1,406 @@
+/* ================= VARIABLES ================= */
+
+:root {
+  /* === Fontes === */
+  --font-family-base: "Lato", sans-serif;
+
+  /* === Cores === */
+  --logo-primary: #ad0000;
+  --logo-secondary: #4c180c;
+  --logo-hover: #ca00007e;
+  --logo-active: #ca000071;
+
+  --text-highcontrast: #070707;
+  --text-main: #161616;
+  --text-hierarchy-1: #363636;
+  --text-hierarchy-2: #504f4f;
+  --text-disabled: #838382;
+  --text-disabled-contrast: #b9b8b8;
+  --text-oposite: #fffbfb;
+
+  --component-separator: #e9e7e2;
+  --component-dark-1: #797877;
+  --component-dark-2: #454544;
+  --component-dark-main: #393938;
+  --component-blue: #5b6073;
+  --component-disabled: #d9d7d5;
+  --component-bg-main: #f3f5f7;
+  --component-bg-1: #fffefa;
+  --component-bg-2: #f9f6f4;
+  --component-bg-dashboard: #f3f5f7;
+}
+
+:root.darkmode {
+  --text-highcontrast: #f8f8f8;
+  --text-main: #ededed;
+  --text-hierarchy-1: #cfcfcf;
+  --text-hierarchy-2: #a7a7a7;
+  --text-disabled: #7b7b7b;
+  --text-disabled-contrast: #5e5e5e;
+
+  --component-separator: #2b2b2b;
+  --component-dark-1: #9b9b9b;
+  --component-dark-2: #c5c5c5;
+  --component-dark-main: #d9d9d9;
+  --component-blue: #8d96b8;
+  --component-disabled: #4b4b4b;
+  --component-bg-main: #1c1c1c;
+  --component-bg-1: #212121;
+  --component-bg-2: #2a2a2a;
+  --component-bg-dashboard: #1c1c1c;
+}
+
+/* =================== FONT SIZES ====================*/
+
+body.font-small {
+  --fs-xs: clamp(12px, 1.3vw, 13.5px);
+  --fs-sm: clamp(13px, 1.4vw, 14.5px);
+  --fs-md: clamp(14.5px, 1.6vw, 16px);
+  --fs-lg: clamp(20px, 2.2vw, 23.5px);
+  --fs-xl: clamp(32px, 3.6vw, 41px);
+  --fs-xxl: clamp(36px, 4.5vw, 47px);
+}
+
+body.font-normal {
+  --fs-xs: clamp(13px, 1.5vw, 15px);
+  --fs-sm: clamp(14px, 1.6vw, 16px);
+  --fs-md: clamp(16px, 1.8vw, 18px);
+  --fs-lg: clamp(22px, 2.5vw, 26px);
+  --fs-xl: clamp(36px, 4vw, 46px);
+  --fs-xxl: clamp(40px, 5vw, 52px);
+}
+
+body.font-large {
+  --fs-xs: clamp(14px, 1.7vw, 16.5px);
+  --fs-sm: clamp(15.5px, 1.8vw, 18px);
+  --fs-md: clamp(18px, 2vw, 20.5px);
+  --fs-lg: clamp(24.5px, 2.8vw, 29.5px);
+  --fs-xl: clamp(40px, 4.5vw, 52px);
+  --fs-xxl: clamp(44px, 5.5vw, 60px);
+}
+
+/* ================= MODAL CONTAINER ================= */
+.hidden {
+  display: none;
+}
+
+#modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--component-dark-2);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+#modalView {
+  background-color: rgb(253, 251, 248);
+  max-width: 1000px;
+  max-height: 95vh;
+  margin: 50px 20px 30px 20px;
+  display: flex;
+  overflow-y: auto;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.2);
+}
+
+#content {
+  padding: 20px;
+  width: 100%;
+}
+
+
+/* ================= HEADER ================= */
+
+.modalHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 1px;
+  gap: 10px;
+  border-bottom: 1px solid var(--component-dark-1);
+}
+
+.modalHeader h1 {
+  margin-left: 12%;
+}
+
+.modalHeader p {
+  color: #5c5a5a;
+  margin-right: 10px;
+}
+
+#closeButton {
+  background-color: transparent;
+  border: none;
+  font-size: 25px;
+  color: var(--component-dark-main);
+}
+
+#closeButton:hover {
+  color: var(--logo-hover);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* ================= FORM ================= */
+.modalForm {
+  margin: 70px 40px 30px 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.formInfo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  width: 100%;
+  max-width: 900px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+
+/* Organização dos inputs */
+
+.formColumn {
+     display: flex;
+     flex-direction: column;
+     flex: 1;
+}
+
+.flexInput {
+  display: flex;
+  gap: 20px;
+  align-items: flex-end;
+  margin-top: 10%;
+}
+
+.labelInput {
+  font-size: 16px;
+  color: var(--text-main);
+}
+
+
+
+/* ================= INPUTS CONFIG ================= */
+
+.input_padrao,
+.input_textarea,
+.input_pequeno,
+.seletor {
+  border: 1px solid var(--component-dark-1);
+  border-radius: 6px;
+  font-size: 16px;
+  color: var(--text-main);
+  padding: 10px 12px;
+  outline: none;
+  box-sizing: border-box;
+  background-color: var(--component-bg-1);
+}
+
+.input_textarea {
+  width: 300px;
+  color: var(--text-disabled);
+}
+
+.input_pequeno {
+     width: 100%;
+}
+
+.input_padrao::placeholder,
+.input_textarea::placeholder {
+     font-size: var(--placeholder-font-size, 16px);
+}
+
+/* Inputs com ícones */
+
+.input_seletor {
+     position: relative;
+     display: flex;
+     align-items: center;
+     width: 100%;
+}
+
+.input_moeda {
+     position: relative;
+     display: flex;
+     align-items: center;
+}
+
+.input_moeda span {
+  position: absolute;
+  left: 10px;
+  color: var(--text-main);
+}
+
+.input_moeda input {
+  padding-left: 35px; 
+}
+
+/* Padding relativo ao ícone */
+.input_senha .input_padrao {
+     padding-right: 2.2em;
+}
+.input_pesquisa .input_padrao {
+     padding-left: 2.2em;
+}
+.input_seletor .seletor {
+  width: 100%;
+  padding-right: 2.2em;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Ícones posicionados */
+.input_senha i,
+.input_pesquisa i,
+.input_seletor i {
+     position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1em;
+  cursor: pointer;
+}
+
+/* ícones dos inputs */
+.input_senha i {
+     right: 12px;
+  pointer-events: auto;
+}
+.input_seletor i {
+  right: 12px;
+  pointer-events: none;
+}
+.input_pesquisa i {
+  left: 12px;
+  pointer-events: none;
+}
+
+
+/* ================= FORM BUTTONS ================= */
+
+.formButtons {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 10%;
+}
+
+.botao_excluir, .botao_salvar, .botao_limpar, .botao_visualizar {
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  gap: 7px;
+  transition: all 0.3s ease;
+  background-color: transparent;
+}
+
+.botao_excluir, .botao_visualizar {
+  color: var(--logo-primary);
+  padding: 11px 20px;
+  border: 1px solid var(--logo-primary);
+  font-size: 16px;
+}
+
+.botao_salvar {
+    background-color: var(--logo-primary);
+    color: var(--text-oposite);
+    border: none;
+    font-size: 18px;
+    padding: 11px 20px;
+}
+
+.botao_limpar {
+    color: var(--component-dark-main);
+    padding: 5px 17px;
+    border: 1px solid var(--component-dark-main);
+    font-size: 16px;
+}
+
+/* Hover */
+
+.botao_excluir:hover{
+  background-color: var(--logo-hover);
+}
+
+.botao_limpar:hover {
+     background-color: var(--component-separator);
+     color: var(--text-hierarchy-1);
+}
+
+/* Hover */
+
+.botao_excluir:hover,
+.botao_editar:hover,
+.botao_visualizar:hover {
+     background-color: rgba(173, 0, 0, 0.5);
+}
+
+
+
+
+/* ================= MEDIA QUERY ================= */
+
+/* Form */
+@media (max-width: 930px) {
+  .formContainer {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .formContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #modalView {
+    max-width: 100%;
+    width: 70%;
+  }
+
+  .input_moeda input {
+  padding-left: 30px; 
+}
+
+  .formGroup {
+    width: 100%;
+  }
+
+  .formButtons {
+     padding-bottom: 35px;
+     flex-wrap: wrap;
+     gap: 25px;
+     max-width: 90%;
+  }
+
+   .input_textarea {
+    width: 100%; 
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 600px) {
+  .formButtons {
+     flex-direction: column;
+  }
+
+  .botao_excluir, .botao_salvar, .botao_limpar, .botao_visualizar {
+     width: 100%;
+     justify-content: center;
+  }
+}
