@@ -79,9 +79,15 @@ body.font-large {
 }
 
 /* ================= BOTÕES ================= */
-.botao, .botao_criar, .botao_salvar, .botao_limpar, 
-.botao_excluir, .botao_editar, .botao_visualizar,
-.botao_cancelar, .botao_delete {
+.botao,
+.botao_criar,
+.botao_salvar,
+.botao_limpar,
+.botao_excluir,
+.botao_editar,
+.botao_visualizar,
+.botao_cancelar,
+.botao_delete {
     border-radius: 6px;
     cursor: pointer;
     display: inline-flex;
@@ -91,35 +97,54 @@ body.font-large {
     transition: all 0.3s ease;
 }
 
-/* Botões principais com fundo vermelho */
-.botao, .botao_criar, .botao_salvar {
+/* Botões principais com fundo vermelho (mantidos) */
+.botao,
+.botao_criar,
+.botao_salvar {
     background-color: var(--logo-primary);
     color: #ffffff;
     border: none;
     font-size: 18px;
 }
 
-.botao { padding: 13px 30px; }
-.botao_criar, .botao_salvar { padding: 11px 20px; }
-.botao_criar i { font-size: 25px; }
+.botao {
+    padding: 13px 30px;
+}
 
-.botao:hover, .botao_criar:hover, .botao_salvar:hover {
+.botao_criar,
+.botao_salvar {
+    padding: 11px 20px;
+}
+
+.botao_criar i {
+    font-size: 25px;
+}
+
+.botao:hover,
+.botao_criar:hover,
+.botao_salvar:hover {
     background-color: var(--logo-hover);
 }
 
-/* Botões com borda */
+/* Botões com borda e fundo TRANSPARENTE */
 .botao_limpar {
     color: var(--text-hierarchy-1);
     padding: 5px 17px;
     border: 1px solid var(--text-hierarchy-1);
     font-size: 16px;
+    background-color: transparent;
 }
-.botao_excluir, .botao_editar, .botao_visualizar {
+
+.botao_excluir,
+.botao_editar,
+.botao_visualizar {
     color: var(--logo-primary);
     padding: 11px 20px;
     border: 1px solid var(--logo-primary);
     font-size: 16px;
+    background-color: transparent;
 }
+
 .botao_delete {
     color: var(--text-hierarchy-1);
     border: 1px solid var(--text-hierarchy-1);
@@ -127,6 +152,7 @@ body.font-large {
     font-size: 16px;
     background-color: transparent;
 }
+
 .botao_cancelar {
     background-color: var(--component-dark-main);
     color: #ffffff;
@@ -136,35 +162,54 @@ body.font-large {
 }
 
 /* Hover */
-.botao_limpar:hover { background-color: var(--component-bg-2); border-color: var(--component-dark-2); }
-.botao_excluir:hover, .botao_editar:hover, .botao_visualizar:hover { background-color: var(--logo-active); }
-.botao_delete:hover { color: var(--component-dark-2); border-color: var(--component-dark-2); }
-.botao_cancelar:hover { background-color: var(--component-dark-1); }
+.botao_limpar:hover {
+    background-color: var(--component-bg-2);
+    border-color: var(--component-dark-2);
+}
+
+.botao_excluir:hover,
+.botao_editar:hover,
+.botao_visualizar:hover {
+    background-color: var(--logo-active);
+}
+
+.botao_delete:hover {
+    color: var(--component-dark-2);
+    border-color: var(--component-dark-2);
+}
+
+.botao_cancelar:hover {
+    background-color: var(--component-dark-1);
+}
 
 /* ================= BOTÕES DE FUNÇÕES (modo escuro/fonte) ================= */
-.botao_modo_escuro, .botao_diminuir_fonte, .botao_aumentar_fonte {
+.botao_modo_escuro,
+.botao_diminuir_fonte,
+.botao_aumentar_fonte {
     font-size: 20px;
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
+    background-color: transparent;
 }
 
-.botao_modo_escuro { 
-    margin-right: 10px; 
-    color: #000000; 
-    background-color: var(--component-bg-main);
-}
-.botao_diminuir_fonte, .botao_aumentar_fonte {
+.botao_modo_escuro {
+    margin-right: 10px;
     color: #000000;
-    background-color: var(--component-bg-main);
+}
+
+.botao_diminuir_fonte,
+.botao_aumentar_fonte {
+    color: #000000;
     border-radius: 6px;
     padding: 8px 12px;
     margin-left: -11px;
 }
 
-/* Hover */ 
+/* Hover */
 .botao_modo_escuro:hover,
 .botao_diminuir_fonte:hover,
 .botao_aumentar_fonte:hover {
-    color: var(--component-dark-2); border-color: var(--component-dark-2)
+    color: var(--component-dark-2);
+    border-color: var(--component-dark-2)
 }
