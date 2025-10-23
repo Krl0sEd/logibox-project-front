@@ -268,7 +268,7 @@ body.font-large {
 .input_senha i,
 .input_pesquisa i,
 .input_seletor i {
-     position: absolute;
+position: absolute;
   top: 50%;
   transform: translateY(-50%);
   font-size: 1em;
