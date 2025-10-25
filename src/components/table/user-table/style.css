@@ -82,6 +82,15 @@ body.font-large {
 
 /* =================== TABLE CONTAINER ====================*/
 
+ .content_geral { /* remover depois */
+     display: flex;
+     justify-content: center; 
+     align-items: center;     
+     min-height: 100vh;      
+     padding: 20px;          
+     box-sizing: border-box;
+}
+
 .table-container {
      position: relative;
      justify-self: center;
@@ -94,7 +103,7 @@ body.font-large {
      box-shadow: 5px 10px 30px var(--component-disabled);
 }
 
-/* =================== TABLE ACTIONS ====================*/
+/* =================== ÁREA DE AÇÕES ====================*/
 
 .table-actions {
      display: flex;
@@ -160,3 +169,33 @@ body.font-large {
 .table-actions-button:hover {
      background-color: var(--component-separator);
 }
+
+
+/* =================== TABLE CELL ====================*/
+
+ .table_wrapper {
+     overflow-y: scroll;
+      overflow-x: hidden;
+     display: flex;
+     justify-content: center;
+     margin-top: 20px
+} 
+
+.table_conteudo {
+     border-collapse: collapse;
+     font-size: var(--fs-sm);
+     margin: 10px 0px;
+}
+
+.table_conteudo thead tr {
+    text-align: left;
+}
+
+.table_conteudo th,
+.table_conteudo td {
+     padding: 5px 30px;
+}
+
+.table_conteudo tr td{
+     border-bottom: 1px solid var(--component-separator);
+} 
