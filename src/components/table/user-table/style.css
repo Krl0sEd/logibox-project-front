@@ -96,8 +96,8 @@ body.font-large {
      justify-self: center;
      width: 100%;
      max-width: 900px;
-     height: 700px;
-     overflow-x: hidden;
+     min-height: 700px;
+     height: auto;
      background-color: var(--component-bg-1);
      border-radius: 14px;
      box-shadow: 5px 10px 30px var(--component-disabled);
@@ -172,25 +172,30 @@ body.font-large {
 
 /* =================== TABLE CELL ====================*/
 
- .table_wrapper {
-     overflow-y: scroll;
-      overflow-x: hidden;
-    width: 100%;
-     justify-items: center;
-     margin-top: 20px
-} 
+.table_wrapper {
+  overflow-x: auto;
+  overflow-y: auto;
+  width: 100%;
+  margin-top: 20px;
+  scroll-behavior: smooth;
+  border-radius: 10px;
+}
+
 
 .table_conteudo {
-     border-collapse: collapse;
-     font-size: var(--fs-sm);
-     margin: 10px 0px;
+  border-collapse: collapse;
+  font-size: var(--fs-sm);
   width: 100%;
+  min-width: 600px;
+  text-align: center;
 }
 
 .table_conteudo th,
 .table_conteudo td {
      padding: 5px 30px;
      text-align: center;
+     white-space: nowrap;
+     
 }
 
 .table_conteudo tr td{
@@ -199,9 +204,8 @@ body.font-large {
 } 
 
 .table_conteudo td {
-  white-space: nowrap;         
-  overflow-x: auto;           
-  max-width: 230px;          
+  text-overflow: ellipsis;        
+  max-width: 230px;               
 }
 
 /* =================== TABLE OPTIONS MENU ====================*/
@@ -244,4 +248,30 @@ body.font-large {
 
 .options_menu.ativo {
   display: block;
+}
+
+
+/* =================== MEDIA QUERY ====================*/
+
+@media (max-width: 750px) {
+
+.table-actions {
+     gap: 8px;
+}
+
+  .input_pesquisa {
+    max-width: 90%; /* ajusta melhor no mobile */
+  }
+
+  .table_conteudo {
+    min-width: 500px;
+  }
+
+  .table_wrapper {
+    overflow-x: auto;
+  }
+
+  .input_padrao {
+     width: auto;
+  }
 }
