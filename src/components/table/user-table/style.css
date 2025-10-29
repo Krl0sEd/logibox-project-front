@@ -120,7 +120,6 @@ body.font-large {
 .input_padrao {
      border: 1px solid var(--component-dark-1);
      border-radius: 16px;
-     font-size: 16px;
      color: var(--text-main);
      padding: 10px 12px;
      outline: none;
@@ -176,8 +175,8 @@ body.font-large {
  .table_wrapper {
      overflow-y: scroll;
       overflow-x: hidden;
-     display: flex;
-     justify-content: center;
+    width: 100%;
+     justify-items: center;
      margin-top: 20px
 } 
 
@@ -185,17 +184,64 @@ body.font-large {
      border-collapse: collapse;
      font-size: var(--fs-sm);
      margin: 10px 0px;
-}
-
-.table_conteudo thead tr {
-    text-align: left;
+  width: 100%;
 }
 
 .table_conteudo th,
 .table_conteudo td {
      padding: 5px 30px;
+     text-align: center;
 }
 
 .table_conteudo tr td{
      border-bottom: 1px solid var(--component-separator);
+     padding-bottom: 18px;
 } 
+
+.table_conteudo td {
+  white-space: nowrap;         
+  overflow-x: auto;           
+  max-width: 230px;          
+}
+
+/* =================== TABLE OPTIONS MENU ====================*/
+
+.options_button {
+     background-color: transparent;
+     border: none;
+     font-size: var(--fs-lg);
+}
+
+.options_menu {
+     background-color: var(--component-bg-2);
+     border-radius: 5px;
+     display: none; 
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+     position: absolute;
+     padding: 15px 10px;
+}
+
+.options_menu ul {
+     padding: 5px;
+}
+
+.options_menu li {
+     list-style: none;
+     padding: 8px 5px 8px;
+     color: var(--text-main);
+     transition: 0.3s ease;
+     transition: all 0.3s ease;
+     text-align: left;
+}
+.options_menu li :hover {
+     color: var(--text-hierarchy-2);
+}
+
+.options_crud_button {
+     background-color: transparent;
+     border: none;
+}
+
+.options_menu.ativo {
+  display: block;
+}
