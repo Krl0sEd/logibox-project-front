@@ -4,7 +4,7 @@
 <head>
      <meta charset="UTF-8" />
      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-     <title>Tabela de Usuários</title>
+     <title>Tabela de Estoque</title>
 
      <!-- Estilos e ícones -->
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -42,29 +42,33 @@
                               <tr>
                                    <th>ID</th>
                                    <th>Nome</th>
-                                   <th>Tipo</th>
-                                   <th>CPF</th>
-                                   <th>Sexo</th>
+                                   <th>Categoria</th>
+                                   <th>Quantidade</th>
+                                   <th>Preço uni.</th>
                                    <th>Opções</th>
                               </tr>
                          </thead>
 
                          <tbody>
                               <tr>
-                                   <td>idUser</td>
-                                   <td>userName</td>
-                                   <td>userType</td>
-                                   <td>userCpf</td>
-                                   <td>userSexo</td>
+                                   <td>idProduto</td>
+                                   <td>produtoName</td>
+                                   <td>produtoCatType</td>
+                                   <td>produtoQuant</td>
+                                   <td>produtoPreco</td>
                                    <td>
                                         <div class="container_opcoes">
                                              <button class="botao_opcoes" id="options_button_1"
                                                   aria-label="Abrir opções do usuário">
                                                   <i class="bi bi-three-dots"></i>
                                              </button>
-
                                              <div class="menu_opcoes">
                                                   <ul>
+                                                       <li>
+                                                            <button class="botao_acao" aria-label="Editar usuário">
+                                                                 <i class="bi bi-eye-fill"></i> Editar
+                                                            </button>
+                                                       </li>
                                                        <li>
                                                             <button class="botao_acao" aria-label="Visualizar usuário">
                                                                  <i class="bi bi-eye-fill"></i> Visualizar

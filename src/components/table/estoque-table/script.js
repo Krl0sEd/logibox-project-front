@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   buttons.forEach(button => {
 
-  const container = button.closest('.container_opcoes');
+    const container = button.closest('.container_opcoes');
     if (!container) return;
-  const menu = container.querySelector('.menu_opcoes');
+    const menu = container.querySelector('.menu_opcoes');
     if (!menu) return;
 
     menu.addEventListener('click', e => e.stopPropagation());
