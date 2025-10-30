@@ -1,4 +1,4 @@
-const steps = document.querySelectorAll('.step');
+ const steps = document.querySelectorAll('.step');
 const form_steps = document.querySelectorAll('.form_step');
 let current_step = parseInt(localStorage.getItem('current_step')) || 0;
 
@@ -187,4 +187,23 @@ document.getElementById('multi_step_form').addEventListener('submit', async e=>{
     localStorage.clear();
     show_modal('Sucesso!', 'Cadastro concluído com sucesso!', true);
   }
+});
+
+// Função para toggle password
+document.querySelectorAll('.toggle-password').forEach(button => {
+  button.addEventListener('click', function() {
+    const targetId = this.getAttribute('data-target');
+    const passwordInput = document.getElementById(targetId);
+    const icon = this.querySelector('i');
+    
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+      icon.classList.remove('bi-eye');
+      icon.classList.add('bi-eye-slash');
+    } else {
+      passwordInput.type = 'password';
+      icon.classList.remove('bi-eye-slash');
+      icon.classList.add('bi-eye');
+    }
+  });
 });

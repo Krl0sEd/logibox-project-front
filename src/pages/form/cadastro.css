@@ -1,22 +1,29 @@
+ * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Lato', sans-serif;
   font-weight: 500;
   margin: 0;
-  height: 100vh;
-  overflow: hidden;
+  height: 100dvh; /* substitui 100vh */
+  overflow: auto; /* deixa rolar se necessário */
 }
 
 .main_container {
   display: flex;
-  height: 100vh;
+  min-height: 100dvh; /* corrige altura dinâmica */
   width: 100%;
 }
 
 .left_side {
   flex: 0 0 75%;
   background-image: url('../images/patternLogo.png');
-  background-size: cover;
-  background-position: center;
+  background-size: contain;
+  background-position: initial;
+  background-repeat: no-repeat;
 }
 
 .right_side {
@@ -40,7 +47,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 90%;
+  min-height: 0
 }
 
 .form_header {
@@ -57,7 +64,7 @@ body {
 .intro_text {
   text-align: justify;
   margin-bottom: 15px;
-  margin-top: 25px;
+  margin-top: 20px;
 }
 
 .intro_text h6 {
@@ -162,7 +169,7 @@ body {
 }
 
 .form_step.active:first-of-type .text-center {
-  margin-top: 50px !important;
+  margin-top: 25px !important;
 }
 
 .text-muted.small {
@@ -198,6 +205,41 @@ body {
 .form_step[data-step="2"] .limpar {
   display: block;
   margin: 10px 0 10px auto;
+  max-width: 220px;
+}
+
+/* Estilos para o toggle password */
+.password-input-group {
+  position: relative;
+  max-width: 220px;
+  margin: 0 auto 10px auto;
+}
+
+.password-input-group input {
+  padding-right: 40px !important;
+  width: 100% !important;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #6c757d;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.toggle-password:hover {
+  color: #495057;
+}
+
+/* Container para o botão limpar no passo 3 */
+.limpar-container {
+  max-width: 220px;
+  margin: 0 auto;
 }
 
 @media (max-width: 992px) {
