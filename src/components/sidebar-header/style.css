@@ -250,3 +250,10 @@ aside {
      background-color: var(--logo-active);
      color: var(--logo-primary);
 }
+
+
+/*  -------- sidebar fechado -------- */
+
+.sidebar.on {
+     width: 90px;
+}
