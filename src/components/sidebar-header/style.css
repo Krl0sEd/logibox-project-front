@@ -1,4 +1,6 @@
-/* ================= VARIABLES ================= */
+/* =========================================================
+                          VARIÁVEIS
+========================================================= */
 
 :root {
   /* === Fontes === */
@@ -50,7 +52,9 @@
   --component-bg-dashboard: #1c1c1c;
 }
 
-/* =================== FONT SIZES ====================*/
+/* =========================================================
+                     TAMANHO DE FONTE
+========================================================= */
 
 body.font-small {
   --fs-xs: clamp(12px, 1.3vw, 13.5px);
@@ -79,181 +83,179 @@ body.font-large {
   --fs-xxl: clamp(44px, 5.5vw, 60px);
 }
 
-
-/* =================== GERAL CONFIGS ====================*/
+/* =========================================================
+                     CONFIGURAÇÕES GLOBAIS
+========================================================= */
 
 * {
-      transition: 0.3s ease all
+  transition: 0.3s ease all;
 }
 
 body {
-     box-sizing: border-box;
-     overflow: hidden;
-     font-family: "Lato", sans-serif;
-     padding: 0;
-     margin: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  font-family: var(--font-family-base);
+  padding: 0;
+  margin: 0;
 }
 
-
-/* =================== LAYOUT SETTINGS ====================*/
+/* =========================================================
+                       ESTRUTURA LAYOUT
+========================================================= */
 
 .layout_wrapper {
-     display: grid;
-     grid-template-areas: 
-     "sidebar header"
-     "sidebar main";
-     grid-template-columns: 250px 1fr;
-     grid-template-rows: 45px 1fr;
-     height: 100vh;
+  display: grid;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main";
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: 45px 1fr;
+  height: 100vh;
 }
 
+/* ---------- Header ---------- */
 header {
-     grid-area: header;
-     border-bottom: 2px solid var(--component-separator);
+  grid-area: header;
+  border-bottom: 2px solid var(--component-separator);
 }
 
+/* ---------- Main Content ---------- */
 main {
-     grid-area: main;
-     display: flex;
-     background-color: var(--component-bg-dashboard);
-     overflow-y: auto;
+  grid-area: main;
+  display: flex;
+  background-color: var(--component-bg-dashboard);
+  overflow-y: auto;
 }
-
-
-/* =================== SIDEBAR ====================*/
 
 aside {
-     background-color: var(--component-bg-1);
-     grid-area: sidebar;
-     border-right: 1px solid var(--component-separator);
-     position: relative;
+  grid-area: sidebar;
+  position: relative;
+  background-color: var(--component-bg-1);
+  border-right: 1px solid var(--component-separator);
 }
 
-/*  -------- Área reservada para logo -------- */
+/* =========================================================
+                         SIDEBAR
+========================================================= */
+
+
+/* ---------- Logo Section ---------- */
 .sidebar_logo_area {
-     display: flex;
-     width: 100%;
-     height: 40px;
-     justify-content: center;
-     gap: 10px;
-     margin-top: 10px;
+  display: flex;
+  width: 100%;
+  height: 40px;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 .logo_icone {
-     width: 50px;
-     height: auto;
-     fill: var(--text-main);
+  width: 50px;
+  height: auto;
+  fill: var(--text-main);
 }
 
 .logo_texto {
-     font-weight: 600;
-     color: var(--text-main);
-     position: relative;
-     top: 6px;
-     font-size: var(--fs-md);
+  font-weight: 600;
+  color: var(--text-main);
+  position: relative;
+  top: 6px;
+  font-size: var(--fs-md);
 }
 
-/*  -------- Botão para minimizar o sidebar -------- */
-
+/* ---------- Collapse Button ---------- */
 .sidebar_close_btn {
-    position: absolute; 
-    top: 50px; 
-    right: 0px; 
-    transform: translateX(50%);
+  position: absolute;
+  top: 50px;
+  right: 0px;
+  transform: translateX(50%);
 }
 
 .sidebar_close_btn button {
-     background-color: var(--component-bg-2);
-     border: 0.5px solid var(--component-separator);
-     width: 30px;
-     height: 30px;
-     border-radius: 50%;
-     display: flex;
-     align-items: center;
-     justify-content: center;
+  background-color: var(--component-bg-2);
+  border: 0.5px solid var(--component-separator);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.sidebar_close_btn i{
-     font-size: 30px;
-    color: var(--text-hierarchy-2);
+.sidebar_close_btn i {
+  font-size: 30px;
+  color: var(--text-hierarchy-2);
 }
 
-
-/*  -------- Links de navegação -------- */
-
+/* ---------- Navigation Links ---------- */
 .sidebar_nav {
-     display: flex;
-     flex-direction: column;
-     margin-top: 40px;
-     width: 100%;
-     gap: 28px;
-     list-style: none;
-    padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  width: 100%;
+  gap: 28px;
+  list-style: none;
+  padding: 0 10px;
 }
 
 .sidebar_item_titulo {
-     font-size: var(--fs-xs);
-     color: var(--text-hierarchy-2);
-     font-weight: 800;
-     position: relative;
-     padding: 0;
+  font-size: var(--fs-xs);
+  color: var(--text-hierarchy-2);
+  font-weight: 800;
+  position: relative;
+  padding: 0;
 }
 
 .sidebar_icone_dashboard {
-     width: 26px;
-     height: auto;
-    fill: currentColor;
+  width: 26px;
+  height: auto;
+  fill: currentColor;
 }
 
 .sidebar_link {
-     display: flex;
-     position: relative;
-     text-decoration: none;
-     gap: 18px;
-     font-size: var(--fs-md);
-     color: var(--text-main);
-     padding-bottom: 3px; 
-     padding: 10px;
-     border-radius: 10px;
-     max-width: 350px;
-     width: 100%;
+  display: flex;
+  position: relative;
+  text-decoration: none;
+  gap: 18px;
+  font-size: var(--fs-md);
+  color: var(--text-main);
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 350px;
+  width: 100%;
 }
 
 .sidebar_link i {
-     font-size: 26px;
+  font-size: 26px;
 }
 
-/*  -------- animações e adicionais -------- */
-
+/* ---------- Animações & estados ---------- */
 .sidebar_link:after {
-     content: "";
-     position: absolute;
-     bottom: 0;
-     left: 0;
-     width: 0px;
-     height: 2px;
-     border-bottom: 2px solid var(--logo-primary);
-     transition: all 0.3s ease; 
-     z-index: 1;
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0px;
+  height: 2px;
+  border-bottom: 2px solid var(--logo-primary);
+  transition: all 0.3s ease;
+  z-index: 1;
 }
 
 .sidebar_link:hover {
-     color: var(--logo-primary);
+  color: var(--logo-primary);
 }
 
-
 .sidebar_link:hover:after {
-     width: 100%;
+  width: 100%;
 }
 
 .sidebar_link.ativo {
-     background-color: var(--logo-active);
-     color: var(--logo-primary);
+  background-color: var(--logo-active);
+  color: var(--logo-primary);
 }
 
-
-/*  -------- sidebar fechado -------- */
-
+/* ---------- Sidebar Collapsed ---------- */
 .sidebar.on {
-     width: 90px;
+  width: 90px;
 }
