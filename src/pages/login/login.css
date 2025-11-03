@@ -1,0 +1,170 @@
+body {
+      font-family: 'Lato', sans-serif;
+      font-weight: 500;
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .main-container {
+      position: relative;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .right-side {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 75%;
+      height: 100%;
+      background-image: url('../images/patternLogo.png');
+      background-size: contain;
+      background-position: right;
+      background-repeat: no-repeat;
+    }
+
+    .left-side {
+      position: relative;
+      z-index: 2;
+      width: 55%;
+      height: 100vh;
+      background-color: #fff;
+      border-top-right-radius: 90px;
+      box-shadow: 10px 0 30px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 35px;
+    }
+
+    .form-container {
+      width: 100%;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 90%;
+      align-items: center;
+    }
+
+    .form-header {
+      text-align: center;
+      margin-top: 55px;
+    }
+
+    .form-header img {
+      width: 140px;
+      height: auto;
+      margin-top: auto;
+    }
+
+    .intro-text {
+      text-align: justify;
+      margin-bottom: 20px;
+      margin-top: 0%;
+    }
+
+    .intro-text h5 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 9px;
+    }
+
+    .intro-text p {
+      font-size: 1.05rem;
+      color: #777;
+      margin: 0;
+    }
+
+    .login-group {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+
+    .login-group label {
+      font-size: 0.9rem;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+
+    .login-input {
+      font-size: 0.9rem;
+      height: 38px;
+      width: 100%;
+      min-width: 220px;
+      box-sizing: border-box;
+    }
+
+    .password-input-group {
+      position: relative;
+      width: 100%;
+    }
+
+    .password-input-group input {
+      padding-right: 40px !important;
+      width: 100% !important;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #6c757d;
+      cursor: pointer;
+      z-index: 10;
+      height: 100%;
+      padding: 0 10px;
+    }
+
+    .toggle-password:hover {
+      color: #495057;
+    }
+
+    .btn-danger {
+      background-color: #b40000;
+      border: none;
+      font-size: 0.9rem;
+      padding: 5px 12px;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+    }
+
+    .btn-danger:hover {
+      background-color: #8d0000;
+      transform: scale(1.02);
+    }
+
+    .btn-outline-dark.btn-sm {
+      font-size: 0.75rem;
+      padding: 3px 8px;
+    }
+
+    .text-muted.small {
+      margin-top: 0.5rem;
+      font-size: 0.80rem;
+    }
+
+    @media (max-width: 992px) {
+      .main-container { flex-direction: column; }
+      .right-side { display: none; }
+      .left-side {
+        flex: 1;
+        margin-right: 0;
+        border-radius: 0;
+        height: auto;
+        box-shadow: none;
+      }
+      .form-container { height: auto; padding: 30px 15px; }
+      body { overflow: auto; }
+    }
+
+    .btn-danger.w-100 {
+     width: 55% !important;
+     display: block;
+     margin: 0 auto;
+   }

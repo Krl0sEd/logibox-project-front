@@ -10,14 +10,16 @@ const feedback_modal = new bootstrap.Modal(document.getElementById('feedback_mod
 function show_modal(title, message, success=false){
   document.getElementById('modal_title').textContent = title;
   document.getElementById('modal_message').textContent = message;
-  document.querySelector('.modal-header').classList.toggle('bg-success', success);
-  document.querySelector('.modal-header').classList.toggle('bg-danger', !success);
+  const header = document.querySelector('.modal-header');
+  header.classList.toggle('bg-success', success);
+  header.classList.toggle('bg-danger', !success);
   feedback_modal.show();
 }
 
-// Máscaras
+// Máscaras (aplicadas somente onde necessário)
 document.addEventListener('input', e=>{
   const el = e.target;
+  if(!el) return;
   if(el.dataset.key==='cpf') el.value = el.value.replace(/\D/g,'').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2');
   if(el.dataset.key==='cep') el.value = el.value.replace(/\D/g,'').replace(/(\d{5})(\d)/,'$1-$2');
   if(el.dataset.key === 'telefone') {
@@ -32,22 +34,21 @@ document.addEventListener('input', e=>{
       el.value = "(+55)" + val.slice(0,2) + "-" + val.slice(2,7) + "-" + val.slice(7);
     }
   }
-  if(el.dataset.key==='data_nasc') el.value = el.value.replace(/\D/g,'').replace(/(\d{2})(\d)/,'$1/$2').replace(/(\d{2})(\d)/,'$1/$2');
   save_form_data();
 });
 
 // CEP automático
-document.querySelector('[data-key="cep"]').addEventListener('blur', async e=>{
+document.getElementById('cep').addEventListener('blur', async e=>{
   const cep = e.target.value.replace(/\D/g,'');
   if(cep.length===8){
     try{
       const res = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
       const data = await res.json();
       if(!data.erro){
-        document.querySelector('[data-key="rua"]').value = data.logradouro || '';
-        document.querySelector('[data-key="bairro"]').value = data.bairro || '';
-        document.querySelector('[data-key="cidade"]').value = data.localidade || '';
-        document.querySelector('[data-key="estado"]').value = data.uf || '';
+        document.getElementById('rua').value = data.logradouro || '';
+        document.getElementById('bairro').value = data.bairro || '';
+        document.getElementById('cidade').value = data.localidade || '';
+        document.getElementById('estado').value = data.uf || '';
         save_form_data();
       }else{
         show_modal('Erro', 'CEP não encontrado.');
@@ -58,13 +59,14 @@ document.querySelector('[data-key="cep"]').addEventListener('blur', async e=>{
   }
 });
 
-// Salvar automaticamente
+// Salvar automaticamente (NÃO salvar a senha real)
 function save_form_data(){
   const inputs = document.querySelectorAll('[data-key]');
   const form_data = {};
   inputs.forEach(i=>{
-    // NÃO salvar senha real no localStorage
-    if(i.dataset.key !== 'senha') form_data[i.dataset.key]=i.value;
+    if(i.dataset.key !== 'senha' && i.dataset.key !== 'repetir_senha'){
+      form_data[i.dataset.key]=i.value;
+    }
   });
   localStorage.setItem('form_data', JSON.stringify(form_data));
   localStorage.setItem('current_step', current_step);
@@ -80,12 +82,14 @@ function restore_form_data(){
 }
 restore_form_data();
 
-// Limpar localStorage
+// Limpar localStorage (apaga só os dados do formulário)
 document.querySelectorAll('.limpar').forEach(btn=>{
   btn.addEventListener('click',()=>{
     localStorage.removeItem('form_data');
     localStorage.removeItem('current_step');
     show_modal('Limpado', 'Os dados foram apagados com sucesso!', true);
+    // opcional: limpar inputs visíveis também
+    setTimeout(()=>location.reload(), 700);
   });
 });
 
@@ -110,7 +114,7 @@ async function validate_step(step){
     if(key==='nome_materno' && value.length<3) { show_modal('Erro', 'Preencha o nome materno corretamente.'); return false; }
     if(key==='email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) { show_modal('Erro', 'E-mail inválido.'); return false; }
     if(key==='telefone' && value.replace(/\D/g,'').length<10) { show_modal('Erro', 'Telefone inválido.'); return false; }
-    if(key==='data_nasc' && !/^\d{2}\/\d{2}\/\d{4}$/.test(value)) { show_modal('Erro', 'Data de nascimento inválida.'); return false; }
+    if(key==='data_nasc' && value==='') { show_modal('Erro', 'Data de nascimento inválida.'); return false; }
     if(key==='sexo' && value==='') { show_modal('Erro', 'Selecione o sexo.'); return false; }
     if(key==='cpf' && !validate_cpf(value)) { show_modal('Erro', 'CPF inválido.'); return false; }
     if(key==='cep' && value.replace(/\D/g,'').length!==8) { show_modal('Erro', 'CEP inválido.'); return false; }
@@ -179,13 +183,47 @@ function show_step(){
 }
 show_step();
 
-// Submit final
+// Submit final -> envia via application/x-www-form-urlencoded (igual ao login)
 document.getElementById('multi_step_form').addEventListener('submit', async e=>{
   e.preventDefault();
   if(await validate_step(current_step)){
-    console.log('Enviar dados com senha hash:', senhaHashGlobal); // use isso para envio ao servidor
-    localStorage.clear();
-    show_modal('Sucesso!', 'Cadastro concluído com sucesso!', true);
+    // Monta os dados para envio (substitui senha por hash, não envia repetir_senha)
+    const inputs = document.querySelectorAll('[data-key]');
+    const payload = {};
+    inputs.forEach(i=>{
+      const key = i.dataset.key;
+      if(key === 'repetir_senha') return; // não enviar
+      if(key === 'senha') {
+        payload[key] = senhaHashGlobal;
+      } else {
+        payload[key] = i.value;
+      }
+    });
+
+    // Envio igual ao login: application/x-www-form-urlencoded
+    fetch('cadastro.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(payload)
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        modalTitle.textContent = 'Cadastro realizado!';
+        modalMessage.textContent = 'Seu cadastro foi concluído com sucesso.';
+        modal.show();
+
+        setTimeout(() => {
+          window.location.href = 'login.html';  
+        }, 2000); // Redireciona após 2 segundos
+      } else {
+        show_modal('Erro', data.message || 'Não foi possível concluir o cadastro.');
+      }
+    })
+    .catch(error => {
+      show_modal('Erro de conexão', 'Não foi possível conectar ao servidor.');
+      console.error('Erro no envio:', error);
+    });
   }
 });
 

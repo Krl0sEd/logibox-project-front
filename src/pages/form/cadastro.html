@@ -35,39 +35,39 @@
           <div class="form_step active" data-step="0">
             <div class="row">
               <div class="col">
-                <label>Nome Completo</label>
-                <input type="text" class="form-control" placeholder="Ex: Paula Silva Ferreira" data-key="nome">
+                <label for="nome">Nome Completo</label>
+                <input id="nome" type="text" class="form-control" placeholder="Ex: Paula Silva Ferreira" data-key="nome" />
               </div>
               <div class="col">
-                <label>Nome Materno</label>
-                <input type="text" class="form-control" placeholder="Ex: Ana Souza Ferreira" data-key="nome_materno">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col">
-                <label>E-mail</label>
-                <input type="text" class="form-control" placeholder="exemplo@email.com" data-key="email">
-              </div>
-              <div class="col">
-                <label>Telefone Celular</label>
-                <input type="text" class="form-control" placeholder="(+55)XX-XXXXXXXX" data-key="telefone">
+                <label for="nome_materno">Nome Materno</label>
+                <input id="nome_materno" type="text" class="form-control" placeholder="Ex: Ana Souza Ferreira" data-key="nome_materno" />
               </div>
             </div>
             <div class="row">
               <div class="col">
-                <label>Data de nascimento</label>
-                <input type="text" class="form-control" placeholder="XX/XX/XXXX" data-key="data_nasc">
+                <label for="email">E-mail</label>
+                <input id="email" type="email" class="form-control" placeholder="exemplo@email.com" data-key="email" />
               </div>
               <div class="col">
-                <label>Sexo</label>
-                <select class="form-select" data-key="sexo">
+                <label for="telefone">Telefone Celular</label>
+                <input id="telefone" type="tel" inputmode="tel" class="form-control" placeholder="(+55) XX XXXXX-XXXX" data-key="telefone" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <label for="data_nasc">Data de nascimento</label>
+                <input id="data_nasc" type="date" class="form-control" data-key="data_nasc" />
+              </div>
+              <div class="col">
+                <label for="sexo">Sexo</label>
+                <select id="sexo" class="form-select" data-key="sexo">
                   <option value="">Selecione...</option>
                   <option>Feminino</option><option>Masculino</option><option>Outro</option>
                 </select>
               </div>
               <div class="col">
-                <label>CPF</label>
-                <input type="text" class="form-control" placeholder="000.000.000-00" data-key="cpf">
+                <label for="cpf">CPF</label>
+                <input id="cpf" type="text" inputmode="numeric" class="form-control" placeholder="000.000.000-00" data-key="cpf" />
               </div>
             </div>
             <div class="text-end">
@@ -82,12 +82,12 @@
           <div class="form_step" data-step="1">
             <div class="row">
               <div class="col">
-                <label>CEP</label>
-                <input type="text" class="form-control" placeholder="00000-000" data-key="cep">
+                <label for="cep">CEP</label>
+                <input id="cep" type="tel" inputmode="numeric" class="form-control" placeholder="00000-000" data-key="cep" />
               </div>
               <div class="col">
-                <label>Estado</label>
-                <select class="form-select" data-key="estado">
+                <label for="estado">Estado</label>
+                <select id="estado" class="form-select" data-key="estado">
                   <option value="">Selecione...</option>
                   <option>RJ</option><option>SP</option><option>MG</option>
                 </select>
@@ -95,27 +95,27 @@
             </div>
             <div class="row">
               <div class="col">
-                <label>Cidade</label>
-                <input type="text" class="form-control" placeholder="Cidade" data-key="cidade">
+                <label for="cidade">Cidade</label>
+                <input id="cidade" type="text" class="form-control" placeholder="Cidade" data-key="cidade" />
               </div>
               <div class="col">
-                <label>Bairro</label>
-                <input type="text" class="form-control" placeholder="Bairro" data-key="bairro">
+                <label for="bairro">Bairro</label>
+                <input id="bairro" type="text" class="form-control" placeholder="Bairro" data-key="bairro" />
               </div>
             </div>
             <div class="row">
               <div class="col">
-                <label>Nº da rua</label>
-                <input type="text" class="form-control" placeholder="Número" data-key="numero">
+                <label for="numero">Nº da rua</label>
+                <input id="numero" type="text" class="form-control" placeholder="Número" data-key="numero" />
               </div>
               <div class="col">
-                <label>Rua</label>
-                <input type="text" class="form-control" placeholder="Rua" data-key="rua">
+                <label for="rua">Rua</label>
+                <input id="rua" type="text" class="form-control" placeholder="Rua" data-key="rua" />
               </div>
             </div>
             <div class="mb-2">
-              <label>Complemento</label>
-              <input type="text" class="form-control" placeholder="Complemento" data-key="complemento">
+              <label for="complemento">Complemento</label>
+              <input id="complemento" type="text" class="form-control" placeholder="Complemento" data-key="complemento" />
             </div>
             <div class="text-end">
               <button type="reset" class="btn btn-outline-dark btn-sm limpar"><i class="bi bi-trash-fill"></i> Limpar</button>
@@ -129,22 +129,22 @@
           <!-- Passo 3 -->
           <div class="form_step" data-step="2">
             <div class="mb-2">
-              <label>Login</label>
-              <input type="text" class="form-control" placeholder="6 letras" data-key="login">
+              <label for="login">Login</label>
+              <input id="login" type="text" class="form-control" placeholder="6 letras" data-key="login" />
             </div>
             
             <div class="password-input-group">
-              <label>Senha</label>
-              <input type="password" class="form-control" placeholder="8 letras" data-key="senha" id="senha" autocomplete="new-password">
-              <button type="button" class="toggle-password mt-3" data-target="senha">
+              <label for="senha">Senha</label>
+              <input id="senha" type="password" class="form-control" placeholder="8 letras" data-key="senha" autocomplete="new-password" />
+              <button type="button" class="toggle-password mt-3" data-target="senha" aria-label="Mostrar ou ocultar senha">
                 <i class="bi bi-eye"></i>
               </button>
             </div>
             
             <div class="password-input-group">
-              <label>Repetir senha</label>
-              <input type="password" class="form-control" placeholder="Repita a senha" data-key="repetir_senha" id="repetir_senha" autocomplete="new-password">
-              <button type="button" class="toggle-password mt-3" data-target="repetir_senha">
+              <label for="repetir_senha">Repetir senha</label>
+              <input id="repetir_senha" type="password" class="form-control" placeholder="Repita a senha" data-key="repetir_senha" autocomplete="new-password" />
+              <button type="button" class="toggle-password mt-3" data-target="repetir_senha" aria-label="Mostrar ou ocultar senha">
                 <i class="bi bi-eye"></i>
               </button>
             </div>
@@ -159,7 +159,7 @@
             </div>
           </div>
         </form>
-        <p class="text-muted text-center small mt-3">Já possui uma conta? <a href="#">Faça seu login.</a></p>
+        <p class="text-muted text-center small mt-3">Já possui uma conta? <a href="../login/login.html">Faça seu login.</a></p>
       </div>
     </div>
   </div>
