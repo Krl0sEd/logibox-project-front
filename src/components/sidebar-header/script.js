@@ -1,8 +1,9 @@
+document.addEventListener("DOMContentLoaded", () => {
+
 /* =========================================================
                          SIDEBAR
 ========================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
   const body = document.querySelector("body");
   const sidebar = body.querySelector(".sidebar");
   const layout_wrapper = document.querySelector(".layout_wrapper");
@@ -39,4 +40,21 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   sidebar_btn.addEventListener("click", ligarSideBar);
+  
+  /* =========================================================
+  HEADER
+  ========================================================= */
+  
+  const header_btn = document.querySelector(".btn_open_submenu");
+  const submenu_userinfo = document.querySelector(".submenu_userinfo");
+
+  function abrirSubMenu () {
+     submenu_userinfo.classList.toggle("on");
+    header_btn.classList.toggle("rotacionar");
+  }
+  
+  header_btn.addEventListener("click", abrirSubMenu);
+
+
+
 });

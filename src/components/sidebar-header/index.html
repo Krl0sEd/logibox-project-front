@@ -19,7 +19,53 @@
 
      <div class="layout_wrapper">
           <header>
-               <h2>Header</h2>
+               <div class="header_area">
+                    <div class="header_acessibilidade">
+                         <div class="acessibidade_btns">
+                              <button type="button" class="btn_darkmode">
+                                   <i class="bi bi-moon"></i>
+                              </button>
+                              <button class="btn_font_plus">
+                                   <svg width="43" height="25" viewBox="0 0 43 25" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4.075 16.3333H16.375M1 24L10.225 1L19.45 24M33.8 24V1M33.8 1L25.6 11.2222M33.8 1L42 11.2222"
+                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                   </svg>
+                              </button>
+                              <button class="btn_font_menos">
+                                   <svg width="40" height="25" viewBox="0 0 40 25" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M3.85 16.3333H15.25M1 24L9.55 1L18.1 24M31.4 1V24M31.4 24L23.8 13.7778M31.4 24L39 13.7778"
+                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                   </svg>
+                              </button>
+                         </div>
+                    </div>
+
+                    <div class="header_userinfo">
+                         <div class="header_user_img">
+                              <img src="../../../public/assets/img/userImg.png" alt="Imagem do usuario">
+                         </div>
+                         <div class="header_user_text">
+                              <span class="header_username">Nome Sobrenome</span>
+                              <span class="header_usertype">Administrador</span>
+                         </div>
+                         <div class="header_button_info">
+                              <button class="btn_open_submenu">
+                                   <i class="bi bi-caret-down-fill"></i>
+                              </button>
+                         </div>
+                    </div>
+                    <div class="submenu_userinfo">
+                         <div class="submenu_area">
+                              <button class="btn_submenu">
+                                   <i class="bi bi-box-arrow-left"></i>
+                                   <span>Sair</span>
+                              </button>
+                         </div>
+                    </div>
+               </div>
+
           </header>
 
           <aside class="sidebar">
@@ -36,7 +82,7 @@
                </div>
                <div class="sidebar_close_btn">
                     <button id="sidebar_btn" type="button">
-                        <i class="bi bi-arrow-right-short"></i>
+                         <i class="bi bi-arrow-left-short"></i>
                     </button>
                </div>
 
@@ -75,9 +121,9 @@
                          </a>
                     </li>
                     <li class="sidebar_item">
-                          <a href="#" class="sidebar_link">
-                         <i class="bi bi-people-fill"></i>
-                         <span class="sidebar_link_text">Usuários</span>
+                         <a href="#" class="sidebar_link">
+                              <i class="bi bi-people-fill"></i>
+                              <span class="sidebar_link_text">Usuários</span>
                          </a>
                     </li>
                     <li class="sidebar_item">
@@ -90,7 +136,6 @@
           </aside>
 
           <main>
-               <h1>Main</h1>
           </main>
      </div>
 
