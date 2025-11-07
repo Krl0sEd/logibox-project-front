@@ -170,7 +170,6 @@ aside {
 .acessibidade_btns button {
      background-color: transparent;
      border: none;
-
 }
 
 .acessibidade_btns button:hover {
@@ -189,6 +188,7 @@ aside {
 
 
 .header_userinfo {
+     position: relative;
      display: flex;
      margin-right: 30px;
      gap: 16px;
@@ -208,6 +208,7 @@ aside {
 
 .header_user_text {
      display: flex;
+     min-width: 120px;
      flex-direction: column;
      font-size: var(--fs-sm);
      justify-content: center;
@@ -237,12 +238,13 @@ aside {
 .submenu_userinfo {
      display: none;
      position: absolute;
+     margin-right: 20px;
      width: 100%;
      height: 100%;
      max-width: 180px;
      max-height: 50px;
      top: 6%;
-     left: 88%;
+     right: 0;
      padding: 18px;
      background-color: var(--component-bg-1);
      border-radius: 4px;
@@ -272,7 +274,6 @@ aside {
 }
 
 
-
 /* =========================================================
                          SIDEBAR
 ========================================================= */
@@ -291,6 +292,7 @@ aside {
 .logo_icone {
   width: 50px;
   height: auto;
+    flex-shrink: 0;
   fill: var(--text-main);
 }
 
@@ -309,7 +311,7 @@ aside {
 /* ---------- Collapse Button ---------- */
 .sidebar_close_btn {
   position: absolute;
-  top: 50px;
+  top: 65px;
   right: 0px;
   transform: translateX(50%);
 }
@@ -357,10 +359,11 @@ aside {
 }
 
 .sidebar_icone_dashboard {
-  width: 50px;
+  width: 40px;
+  padding: 5px;
   height: auto;
-  padding: 10px;
   display: block;
+  flex-shrink: 0;
   transform-origin: center; 
   transition: transform 0.3s ease, opacity 0.3s ease;
   fill: currentColor;
@@ -431,4 +434,61 @@ aside {
   color: var(--logo-primary);
 }
 
-/* ---------- Sidebar Collapsed ---------- */
+
+
+/* =========================================================
+                       MEDIA QUERY
+========================================================= */
+
+@media (max-width: 694px) {
+
+     /* ---------- Layout  ---------- */
+     .layout_wrapper {
+     grid-template-columns: 200px 1fr;
+     grid-template-rows: 55px 1fr;
+     }
+     
+
+     /* ---------- Header  ---------- */
+
+     .acessibidade_btns {
+          gap: 14px;
+     }
+
+     .acessibidade_btns i {
+     font-size: 16px;
+}
+
+     /* ---------- sidebar  ---------- */
+     .sidebar_icone_dashboard {
+          width: 35px;
+     }
+
+     .sidebar_link i {
+          font-size: 24px;
+     }
+
+}
+
+
+@media (max-width: 613px) { 
+     
+     .layout_wrapper {
+     display: grid;
+     grid-template-areas:
+     "header header"
+     "main main";
+     grid-template-columns: 250px 1fr;
+     grid-template-rows: 55px 1fr;
+     height: 100vh;
+}
+     
+     aside {
+          display: none;
+     }
+
+      .layout_wrapper {
+     grid-template-columns: 200px 1fr;
+     grid-template-rows: 55px 1fr;
+     }
+}

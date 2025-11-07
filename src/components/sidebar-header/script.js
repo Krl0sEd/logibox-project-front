@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const sidebar_links = document.querySelectorAll(".sidebar_link");
   const btn_fechar = document.querySelector(".sidebar_close_btn i");
 
-  function ligarSideBar() {
+  function ligarSideBar() { // abrir e fechar
     sidebar.classList.toggle("on");
     layout_wrapper.classList.toggle("sidebar_fechado");
 
@@ -40,9 +40,23 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   sidebar_btn.addEventListener("click", ligarSideBar);
+
+  //ao passar o mouse, vai abrir
+  sidebar.addEventListener("mouseenter", () => {
+     if (layout_wrapper.classList.contains("sidebar_fechado")) {
+          ligarSideBar();
+     }
+  })
+
+  sidebar.addEventListener("mouseleave", () => {
+     if (layout_wrapper.classList.contains("on")) {
+          ligarSideBar();
+     }
+  })
+
   
   /* =========================================================
-  HEADER
+                         HEADER
   ========================================================= */
   
   const header_btn = document.querySelector(".btn_open_submenu");
