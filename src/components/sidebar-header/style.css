@@ -145,6 +145,7 @@ aside {
                          HEADER
 ========================================================= */
 
+
 .header_area {
      display: flex;
      width: 100%;
@@ -190,7 +191,6 @@ aside {
 .header_userinfo {
      position: relative;
      display: flex;
-     margin-right: 30px;
      gap: 16px;
      justify-content: center;
      margin-top: 5px;
@@ -237,14 +237,12 @@ aside {
 
 .submenu_userinfo {
      display: none;
-     position: absolute;
+     position: fixed;
      margin-right: 20px;
-     width: 100%;
-     height: 100%;
-     max-width: 180px;
-     max-height: 50px;
-     top: 6%;
-     right: 0;
+     width: 180px;
+     height: 50px;
+     top: 60px;
+     right: 50px;
      padding: 18px;
      background-color: var(--component-bg-1);
      border-radius: 4px;
@@ -272,6 +270,8 @@ aside {
 .btn_submenu:hover {
     color: var(--logo-primary);
 }
+
+/* Alert de sair da conta */
 
 
 /* =========================================================
@@ -434,13 +434,227 @@ aside {
   color: var(--logo-primary);
 }
 
+/* Quando mobile estiver ligado*/
+
+
+
+.hamburguer {
+     display: none;
+     font-size: 28px;
+     background-color: transparent;
+     border: none;
+     color: var(--text-hierarchy-2);
+     padding: 6px;
+}
+
+.hamburguer:hover {
+     color: var(--logo-primary);
+}
+
+
+/* sidebar mobile */
+
+.sidebar_mobile {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 60vh;
+  width: 300px;
+  background-color: var(--component-bg-1);
+  z-index: 1002;
+  transition: transform 0.3s ease;
+  border-radius: 10px;
+}
+
+
+.sidebar_mobile .sidebar_logo_area {
+     margin-top: 40px;
+     display: flex;
+     justify-content: center;
+
+}
+
+.sidebar_mobile .sidebar_nav {
+     align-items: center;
+     justify-content: center;
+     gap: 40px;
+     margin-top: 60px;
+}
+
+.sidebar_mobile .sidebar_item {
+       width: 70%;
+}
+
+.sidebar_mobile .sidebar_link {
+     justify-content: center;
+}
+
+.btn_fechar_mobile {
+     background-color: transparent;
+     border: none;
+     position: absolute;
+     left: 5px;
+     top: 5px;
+     font-size: 20px;
+     border-radius: 10px;
+     color: var(--text-main);
+}
+
+.btn_fechar_mobile :hover{
+     color: var(--logo-hover);
+}
+
+.backdrop {
+  display: none;          
+  position: fixed;
+  inset: 0;                    
+  background: rgba(0, 0, 0, 0.555);
+  z-index: 900;
+  transition: opacity 200ms ease;
+  opacity: 0;
+}
+
+.sidebar_mobile.on {
+     display: block; /* aparece quando o menu abre */
+}
+
+.backdrop.on {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;             /* aparece quando o menu abre */
+}
+
+/* ================= ALERT / MODAL ================= */
+.alert_modelo {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+
+}
+
+.alert_modelo.aberto {
+  display: flex;
+}
+
+.conteudo_alert {
+  background: var(--component-bg-1);
+  padding: 25px;
+  border-radius: 12px;
+  max-width: 420px;
+  width: 90%;
+  max-height: 300px;
+  text-align: center;
+  position: relative; 
+  z-index: 1000; 
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  animation: aparecer 0.3s ease;
+
+}
+
+.conteudo_alert .fechar_modal {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    font-size: 22px;
+    cursor: pointer;
+    color: var(--component-dark-main);
+    border: none;
+    background-color: transparent;
+}
+.conteudo_alert .fechar_modal:hover {
+    color: var(--logo-primary);
+}
+
+.conteudo_alert .icone_modal {
+     display: flex;
+     justify-content: center;
+     font-size: 50px;
+     margin-bottom: 15px;
+     padding: 2px 2px 2px 2px;
+}
+
+.conteudo_alert .icone_modal_fill {
+     background-color: rgba(28, 73, 255, 0.349);
+     padding: 10px 20px;
+     border-radius: 50px;
+}
+
+.conteudo_alert h2 {
+    margin: 10px 0;
+    font-size: 20px;
+    color: var(--text-highcontrast);
+    font-weight: bold;
+}
+
+.conteudo_alert p {
+    color: var(--text-hierarchy-2);
+    font-size: 15px;
+    margin: 10px 0 0;
+}
+
+.botoes_modal {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+/* Ícones específicos por alert */
+.conteudo_alert i { color: rgb(255, 205, 48); }
+#alert1 .conteudo_alert i { color: red; }
+#alert2 .conteudo_alert i { color: rgb(28, 74, 255); }
+
+/* botões usados no alert */
+.botao_cancelar {
+    background-color: var(--text-highcontrast);
+    color: var(--text-oposite);
+    padding: 5px 40px;
+    border: none;
+    font-size: var(--fs-sm);
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    white-space: nowrap;
+    align-items: center;
+    gap: 7px;
+    transition: all 0.3s ease;
+}
+
+.botao_cancelar:hover {
+    background-color: var(--logo-primary);
+}
+
+.botao_delete {
+    color: var(--text-main);
+    border: 1px solid var(--component-dark-main);
+    padding: 1px 40px;
+   font-size: var(--fs-sm);
+    background-color: transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    transition: all 0.3s ease;
+}
+
+.botao_delete:hover {
+    color: var(--logo-primary);
+    border-color: var(--logo-primary);
+    background-color: transparent;
+}
 
 
 /* =========================================================
                        MEDIA QUERY
 ========================================================= */
 
-@media (max-width: 694px) {
+@media (max-width: 632px) {
 
      /* ---------- Layout  ---------- */
      .layout_wrapper {
@@ -451,13 +665,34 @@ aside {
 
      /* ---------- Header  ---------- */
 
+     .header_area {
+          gap: 30px;
+          justify-content: space-between;
+          margin: 0;
+          padding: 0 10px 0px 10px;
+          align-content: center;
+     }
+     
      .acessibidade_btns {
           gap: 14px;
      }
 
      .acessibidade_btns i {
      font-size: 16px;
-}
+     }
+
+     .header_user_img img{
+          width: 34px;
+     }
+
+     .header_user_text {
+          font-size: var(--fs-xs);
+     }
+
+     .header_button_info {
+          padding: 0;
+          margin: 0;
+     }
 
      /* ---------- sidebar  ---------- */
      .sidebar_icone_dashboard {
@@ -467,20 +702,16 @@ aside {
      .sidebar_link i {
           font-size: 24px;
      }
-
 }
 
 
 @media (max-width: 613px) { 
      
      .layout_wrapper {
-     display: grid;
      grid-template-areas:
      "header header"
      "main main";
-     grid-template-columns: 250px 1fr;
      grid-template-rows: 55px 1fr;
-     height: 100vh;
 }
      
      aside {
@@ -488,7 +719,56 @@ aside {
      }
 
       .layout_wrapper {
-     grid-template-columns: 200px 1fr;
      grid-template-rows: 55px 1fr;
      }
+
+        .hamburguer {
+               display: flex;
+          }
+
+          .submenu_userinfo {
+          top: 60px;
+          right: 5px;
+          }
+
+
+}
+
+@media (max-width: 450px) {
+     .header_area {
+         gap: 8px;
+    }
+
+     .acessibidade_btns i,
+     .acessibidade_btns svg {
+          font-size: 15px;
+          width: 20px;
+     }
+
+     .hamburguer {
+          font-size: 26px;
+     }
+
+      .acessibidade_btns {
+          gap: 0px;
+     }
+
+     .acessibidade_btns i,
+     .acessibidade_btns svg {
+          font-size: 15px;
+          width: 20px;
+     }
+
+     .header_user_img img {
+          width: 30px;
+     }
+
+     .header_user_text {
+          font-size: 13px;
+          min-width: 40px;
+          white-space: nowrap;        
+          overflow: hidden;          
+          text-overflow: ellipsis;
+     }
+
 }
