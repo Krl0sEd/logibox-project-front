@@ -95,30 +95,31 @@ document.addEventListener("DOMContentLoaded", () => {
      
      
      
-});
-
-
-/* =========================================================
-ALERTS E MODAIS
-========================================================= */
-const alert_modelo = document.querySelector(".alert_modelo"); 
-const btn_cancelar_modal = document.querySelector(".botao_delete");
-const btn_fechar_modal = document.querySelector(".fechar_modal");
-const btn_submenu = document.querySelector(".btn_submenu");
-
-
-//Função abrir alert de confirmação de logout
-function abrirAlert() {
+     
+     
+     /* =========================================================
+     ALERTS E MODAIS
+     ========================================================= */
+     const alert_modelo = document.querySelector(".alert_modelo"); 
+     const btn_cancelar_modal = document.querySelector(".botao_delete");
+     const btn_fechar_modal = document.querySelector(".fechar_modal");
+     const btn_submenu = document.querySelector(".btn_submenu");
+     
+     
+     //Função abrir alert de confirmação de logout
+     function abrirAlert() {
      alert_modelo.classList.toggle("aberto");
      backdrop.classList.toggle("on");
 }
 
 function fecharAlert() {
      alert_modelo.classList.toggle("aberto");
-        backdrop.classList.toggle("on");
+     backdrop.classList.toggle("on");
    }
    
    btn_fechar_modal.addEventListener("click", fecharAlert);
-    btn_cancelar_modal.addEventListener("click", fecharAlert);
-
-  btn_submenu.addEventListener("click", abrirAlert);
+   btn_cancelar_modal.addEventListener("click", fecharAlert);
+   
+   btn_submenu.addEventListener("click", abrirAlert);
+   
+});

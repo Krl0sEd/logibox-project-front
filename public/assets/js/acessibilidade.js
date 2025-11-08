@@ -1,3 +1,5 @@
+document.addEventListener("DOMContentLoaded", () => {
+
 /* ========================================
                     Dark Mode
    ======================================== */
@@ -32,3 +34,38 @@
           ligarDarkMode();
      }
    })
+
+/* ========================================
+          Aumentar/diminuir fonte
+   ======================================== */
+  
+let fontSizeLevel = parseInt(localStorage.getItem('fontSizeLevel')) || 0;
+  const body = document.body;
+  const increaseBtn = document.querySelector(".btn_font_plus");
+  const decreaseBtn = document.querySelector(".btn_font_menos");
+
+function applyFontSize() {
+  body.classList.remove("font-small", "font-normal", "font-large");
+  if (fontSizeLevel < 0) body.classList.add("font-small");
+  else if (fontSizeLevel === 0) body.classList.add("font-normal");
+  else body.classList.add("font-large");
+  localStorage.setItem('fontSizeLevel', fontSizeLevel);
+}
+
+  increaseBtn.addEventListener("click", () => {
+    if (fontSizeLevel < 1) {
+      fontSizeLevel++;
+      applyFontSize();
+    }
+  });
+
+  decreaseBtn.addEventListener("click", () => {
+    if (fontSizeLevel > -1) {
+      fontSizeLevel--;
+      applyFontSize();
+    }
+  });
+
+  applyFontSize();
+
+});
