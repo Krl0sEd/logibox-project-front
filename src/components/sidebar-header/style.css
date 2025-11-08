@@ -39,6 +39,7 @@
   --text-hierarchy-2: #a7a7a7;
   --text-disabled: #7b7b7b;
   --text-disabled-contrast: #5e5e5e;
+    --text-oposite: #080808;
 
   --component-separator: #2b2b2b;
   --component-dark-1: #9b9b9b;
@@ -119,20 +120,21 @@ header {
   border-bottom: 2px solid var(--component-separator);
 }
 
+
+/* ---------- Sidebar ---------- */
+aside {
+     grid-area: sidebar;
+  position: relative;
+  background-color: var(--component-bg-1);
+  border-right: 1px solid var(--component-separator);
+}
+
 /* ---------- Main Content ---------- */
 main {
   grid-area: main;
   display: flex;
   background-color: var(--component-bg-dashboard);
   overflow-y: auto;
-}
-
-/* ---------- Sidebar ---------- */
-aside {
-  grid-area: sidebar;
-  position: relative;
-  background-color: var(--component-bg-1);
-  border-right: 1px solid var(--component-separator);
 }
 
 /* ---------- Sidebar Colapsed ---------- */
@@ -148,11 +150,13 @@ aside {
 
 .header_area {
      display: flex;
+     height: 100%;
      width: 100%;
      justify-content: end;
      align-content: center;
      padding: 0 35px;
      gap: 70px;
+     background-color: var(--component-bg-1);
 }
 
 .header_acessibilidade {
@@ -164,11 +168,11 @@ aside {
 .acessibidade_btns {
      gap: 20px;
      display: flex;
-     color: var(--text-main);
      align-items: center;
 }
 
 .acessibidade_btns button {
+     color: var(--text-main);
      background-color: transparent;
      border: none;
 }
@@ -213,6 +217,7 @@ aside {
      font-size: var(--fs-sm);
      justify-content: center;
      line-height: 1.3;
+     color: var(--text-main);
 }
 
 .header_username {
@@ -222,8 +227,9 @@ aside {
 .btn_open_submenu {
      background-color: transparent;
      border: none;
-       transform: rotateX(1deg);
-      transition: all 0.3s ease;
+     transform: rotateX(1deg);
+     transition: all 0.3s ease;
+     color: var(--text-main);
 }
 
 .btn_open_submenu.rotacionar { /* para ativar animação submenu */
