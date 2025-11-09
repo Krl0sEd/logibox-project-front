@@ -1,74 +1,106 @@
-/* ================= VARIÁVEIS ================= */
 :root {
-    /* === Fontes === */
-    --font-family-base: "Lato", sans-serif;
+     /* === Fontes === */
+     --font-family-base: "Lato", sans-serif;
 
-    /* === Cores === */
-    --logo-primary: #ad0000;
-    --logo-secondary: #4c180c;
-    --logo-hover: #db3e3e;
-    --logo-active: #ca000071;
+     /* === Cores === */
+     --logo-primary: #ad0000;
+     --logo-secondary: #4c180c;
+     --logo-hover: #ca00007e;
+     --logo-active: #ca000071;
 
-    --text-highcontrast: #070707;
-    --text-main: #161616;
-    --text-hierarchy-1: #363636;
-    --text-hierarchy-2: #504f4f;
-    --text-disabled: #838382;
-    --text-disabled-contrast: #b9b8b8;
+     --text-highcontrast: #070707;
+     --text-main: #161616;
+     --text-hierarchy-1: #363636;
+     --text-hierarchy-2: #504f4f;
+     --text-disabled: #838382;
+     --text-disabled-contrast: #b9b8b8;
+     --text-oposite: #fffbfb;
 
-    --component-separator: #e9e7e2;
-    --component-dark-1: #797877;
-    --component-dark-2: #454544;
-    --component-dark-main: #393938;
-    --component-blue: #5b6073;
-    --component-disabled: #d9d7d5;
-
-    --component-bg-main: #f3f5f7;
-    --component-bg-1: #fffefa;
-    --component-bg-2: #f9f6f4;
-    --component-bg-dashboard: #f3f5f7;
+     --component-separator: #e9e7e2;
+     --component-dark-1: #797877;
+     --component-dark-2: #454544;
+     --component-dark-main: #393938;
+     --component-blue: #5b6073;
+     --component-disabled: #d9d7d5;
+     --component-shadow: #1a1a1a48;
+     --component-bg-main: #f3f5f7;
+     --component-bg-1: #fffefa;
+     --component-bg-2: #f9f6f4;
+     --component-bg-dashboard: #f3f5f7;
 }
 
 :root.darkmode {
-    --text-highcontrast: #f8f8f8;
-    --text-main: #ededed;
-    --text-hierarchy-1: #cfcfcf;
-    --text-hierarchy-2: #a7a7a7;
-    --text-disabled: #7b7b7b;
-    --text-disabled-contrast: #5e5e5e;
+     --text-highcontrast: #f8f8f8;
+     --text-main: #ededed;
+     --text-hierarchy-1: #cfcfcf;
+     --text-hierarchy-2: #a7a7a7;
+     --text-disabled: #7b7b7b;
+     --text-disabled-contrast: #5e5e5e;
 
-    --component-separator: #2b2b2b;
-    --component-dark-1: #9b9b9b;
-    --component-dark-2: #c5c5c5;
-    --component-dark-main: #d9d9d9;
-    --component-blue: #8d96b8;
-    --component-disabled: #4b4b4b;
-
-    --component-bg-main: #1c1c1c;
-    --component-bg-1: #212121;
-    --component-bg-2: #2a2a2a;
-    --component-bg-dashboard: #1c1c1c;
+     --component-separator: #2b2b2b;
+     --component-dark-1: #9b9b9b;
+     --component-dark-2: #c5c5c5;
+     --component-dark-main: #d9d9d9;
+     --component-blue: #8d96b8;
+     --component-disabled: #4b4b4b;
+       --component-shadow: #0000004b;
+     --component-bg-main: #1c1c1c;
+     --component-bg-1: #212121;
+     --component-bg-2: #2a2a2a;
+     --component-bg-dashboard: #1c1c1c;
 }
+
+/* =================== FONT SIZES ====================*/
+
+body.font-small {
+     --fs-xs: clamp(12px, 1.3vw, 13.5px);
+     --fs-sm: clamp(13px, 1.4vw, 14.5px);
+     --fs-md: clamp(14.5px, 1.6vw, 16px);
+     --fs-lg: clamp(20px, 2.2vw, 23.5px);
+     --fs-xl: clamp(32px, 3.6vw, 41px);
+     --fs-xxl: clamp(36px, 4.5vw, 47px);
+}
+
+body.font-normal {
+     --fs-xs: clamp(13px, 1.5vw, 15px);
+     --fs-sm: clamp(14px, 1.6vw, 16px);
+     --fs-md: clamp(16px, 1.8vw, 18px);
+     --fs-lg: clamp(22px, 2.5vw, 26px);
+     --fs-xl: clamp(36px, 4vw, 46px);
+     --fs-xxl: clamp(40px, 5vw, 52px);
+}
+
+body.font-large {
+     --fs-xs: clamp(14px, 1.7vw, 16.5px);
+     --fs-sm: clamp(15.5px, 1.8vw, 18px);
+     --fs-md: clamp(18px, 2vw, 20.5px);
+     --fs-lg: clamp(24.5px, 2.8vw, 29.5px);
+     --fs-xl: clamp(40px, 4.5vw, 52px);
+     --fs-xxl: clamp(44px, 5.5vw, 60px);
+}
+
 
 /* ================= TOASTS ================= */
 .toast_modelo {
     position: fixed;
-    bottom: 30px;
     left: 50%;
     transform: translateX(-50%) translateY(20px);
-    display: flex;
-    align-items: center;
-    gap: 12px;
     background-color: var(--component-bg-1);
     border-radius: 10px;
     padding: 12px 16px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    max-width: 350px;
+    box-shadow: 0 4px 8px var(--component-shadow);
+    max-width: 100%;
+    width: 450px;
     z-index: 9999;
     opacity: 0;
-    pointer-events: none;
     transition: all 0.4s ease;
     font-family: var(--font-family-base); /* fonte Lato do root */
+}
+
+.toast_content {
+     display: flex;
+     justify-content: left;
+     gap: 12px;
 }
 
 .toast_modelo.show {
@@ -77,27 +109,64 @@
     pointer-events: auto;
 }
 
-.toast_modelo i {
-    font-size: 24px; /* mesmo tamanho de antes */
+.toast_content i {
+    font-size: 36px; 
+    padding: 5px 8px;
+    border-radius: 50%;
 }
+
+/* Botão de fechar  */
+.btn_fechar_toast {
+     background-color: transparent;
+     border: none;
+     position: absolute;
+     left: 93%;
+     top: 10%;
+}
+
+.btn_fechar_toast i{
+     color: var(--text-highcontrast);
+     font-size: var(--fs-md);
+     cursor: pointer;
+}
+
+.btn_fechar_toast i:hover{
+     color: var(--logo-primary);
+     
+}
+
+
+/* texto e icones */
 
 .texto_alerta h4 {
     margin: 0 0 4px 0;
-    font-size: 16px; /* mesmo tamanho de antes */
+    font-size: var(--fs-md); /* mesmo tamanho de antes */
     font-weight: bold;
+    color: var(--text-highcontrast);
 }
 
 .texto_alerta p {
     margin: 0;
-    font-size: 14px; /* mesmo tamanho de antes */
-    color: #555; /* mesmo tom de antes */
+    font-size: var(--fs-sm); /* mesmo tamanho de antes */
+    color: var(--text-hierarchy-2); /* mesmo tom de antes */
 }
 
 /* Ícones de cada toast */
-#toast_confirma i {
-    color: #28a745;
+#toast_confirma .icone_alerta {
+  color: #28a745;
+  background-color: #28a7451a; /* um leve fundo */
 }
 
-#toast_erro i {
-    color: #dc3545;
+#toast_erro .icone_alerta {
+  color: #dc3545;
+  background-color: #fa23233d;
+}
+
+/* Borda do toast */
+#toast_confirma {
+     border-top: solid 4px #28a745;
+}
+
+#toast_erro {
+        border-top: solid 4px #dc3545;
 }

@@ -10,6 +10,19 @@ function mostrarToast(id) {
     }, 3000);
 }
 
+// para fechar toast 
+const btnFecharToast = document.querySelectorAll('.btn_fechar_toast')
+
+btnFecharToast.forEach(botao => {
+     botao.addEventListener('click', () => {
+          const toast = botao.closest('.toast_modelo');
+          if (toast) {
+               toast.classList.remove('show');
+          }
+     })
+})
+
+
 // pra mostrar:
 mostrarToast("toast_confirma");
 mostrarToast("toast_erro");

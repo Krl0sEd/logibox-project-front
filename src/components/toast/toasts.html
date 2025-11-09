@@ -8,22 +8,34 @@
         <link rel="stylesheet" href="toasts.css">
         <script src="toasts.js" defer></script>
     </head>
-    <body data-theme="light">
+    <body class="font-normal">
         <!-- Toast Confirma -->
         <div class="toast_modelo" id="toast_confirma">
+          <button class="btn_fechar_toast">
+               <i class="bi bi-x"></i>
+          </button>
+
+           <div class="toast_content">
             <i class="bi bi-check-circle-fill icone_alerta"></i>
             <div class="texto_alerta">
                 <h4>Ação feita com sucesso.</h4>
                 <p>Seu item foi salvo com sucesso!</p>
             </div>
         </div>
-        <!-- Toast Erro -->
-        <div class="toast_modelo" id="toast_erro">
-            <i class="bi bi-x-circle-fill icone_alerta"></i>
-            <div class="texto_alerta">
-                <h4>Ocorreu um erro na ação.</h4>
-                <p>texto pra depois</p>
-            </div>
         </div>
+        <!-- Toast Erro -->
+         <div class="toast_modelo" id="toast_erro"> 
+          <button class="btn_fechar_toast">
+               <i class="bi bi-x"></i>
+          </button>
+
+             <div class="toast_content">
+                  <i class="bi bi-x-circle-fill icone_alerta"></i>
+                  <div class="texto_alerta">
+                       <h4>Ocorreu um erro na ação.</h4>
+                       <p>texto pra depois</p>
+                    </div>
+               </div>
+        </div> 
     </body>
 </html>
