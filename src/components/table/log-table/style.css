@@ -105,6 +105,7 @@ body.font-large {
      background-color: var(--component-bg-1);
      box-shadow: 2px 1px 20px var(--component-shadow);
      border-radius: 14px;
+     overflow: hidden;
 }
 
 /* =========================================================
@@ -116,6 +117,7 @@ body.font-large {
      justify-content: center;
      gap: 30px;
      padding: 14px 0 18px 0;
+     flex-wrap: nowrap;
      border-bottom: 2px solid var(--component-separator);
 }
 
@@ -123,6 +125,7 @@ body.font-large {
 .input_padrao {
      border: 1px solid var(--component-dark-1);
      border-radius: 20px;
+     flex: 1;
      color: var(--text-main);
      padding: 10px 12px;
      outline: none;
@@ -146,7 +149,7 @@ body.font-large {
      top: 50%;
      left: 48px;
      transform: translateY(-50%);
-     font-size: 1em;
+     font-size: var(--fs-md);
      pointer-events: none;
      color: var(--text-main);
 }
@@ -163,7 +166,7 @@ body.font-large {
 }
 
 .botao_acao_tabela i {
-     font-size: 25px;
+     font-size: var(--fs-lg);
 }
 
 .botao_acao_tabela:hover {
@@ -234,4 +237,36 @@ body.font-large {
      .input_padrao {
           width: auto;
      }
+
+}
+
+@media (max-width: 488px) {
+     .acoes_tabela {
+          gap: 10px;
+     }
+     
+     .input_padrao {
+          width: 180px;
+     }
+
+    .table_conteudo td {
+     text-overflow: ellipsis;
+     max-width: 50x;
+     }
+}
+
+@media (max-width: 362px) {
+   .botao_acao_tabela i {
+     font-size: 20px;
+     }
+}
+
+
+@media (max-width: 338px) {
+    .input_padrao {
+          width: 140px;
+     }
+
+ 
+     
 }
