@@ -24,6 +24,7 @@
      --component-dark-main: #393938;
      --component-blue: #5b6073;
      --component-disabled: #d9d7d5;
+     --component-shadow: #1a1a1a48;
      --component-bg-main: #f3f5f7;
      --component-bg-1: #fffefa;
      --component-bg-2: #f9f6f4;
@@ -44,6 +45,7 @@
      --component-dark-main: #d9d9d9;
      --component-blue: #8d96b8;
      --component-disabled: #4b4b4b;
+       --component-shadow: #0000004b;
      --component-bg-main: #1c1c1c;
      --component-bg-1: #212121;
      --component-bg-2: #2a2a2a;
@@ -80,12 +82,13 @@ body.font-large {
 }
 
 
-/* =================== TABLE CONTAINER ====================*/
+/* =========================================================
+                      TABLE CONTAINER
+========================================================= */
 
 .content_geral {
-     /* remover depois */
      display: flex;
-     justify-content: center;
+     flex-direction: column;
      align-items: center;
      min-height: 100vh;
      padding: 20px;
@@ -100,9 +103,11 @@ body.font-large {
      min-height: 700px;
      height: auto;
      background-color: var(--component-bg-1);
+     box-shadow: 2px 1px 20px var(--component-shadow);
      border-radius: 14px;
-     box-shadow: 5px 10px 30px var(--component-disabled);
+     overflow: hidden;
 }
+
 
 /* =================== ÁREA DE AÇÕES ====================*/
 
@@ -277,4 +282,36 @@ body.font-large {
      .input_padrao {
           width: auto;
      }
+
+}
+
+@media (max-width: 488px) {
+     .acoes_tabela {
+          gap: 10px;
+     }
+     
+     .input_padrao {
+          width: 180px;
+     }
+
+    .table_conteudo td {
+     text-overflow: ellipsis;
+     max-width: 50x;
+     }
+}
+
+@media (max-width: 362px) {
+   .botao_acao_tabela i {
+     font-size: 20px;
+     }
+}
+
+
+@media (max-width: 338px) {
+    .input_padrao {
+          width: 140px;
+     }
+
+ 
+     
 }
