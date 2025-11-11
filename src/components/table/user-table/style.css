@@ -105,7 +105,6 @@ body.font-large {
      background-color: var(--component-bg-1);
      box-shadow: 2px 1px 20px var(--component-shadow);
      border-radius: 14px;
-     overflow: hidden;
 }
 
 
