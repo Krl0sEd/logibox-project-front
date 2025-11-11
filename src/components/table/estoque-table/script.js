@@ -1,38 +1,42 @@
-
 document.addEventListener('DOMContentLoaded', () => {
-
   const buttons = document.querySelectorAll('.botao_opcoes');
+  let activeMenu = null;
 
   function closeAllMenus() {
-    document.querySelectorAll('.menu_opcoes.ativo').forEach(m => m.classList.remove('ativo'));
-    buttons.forEach(b => b.setAttribute('aria-expanded', 'false'));
+    if (activeMenu) {
+      activeMenu.classList.remove('ativo');
+      document.body.removeChild(activeMenu);
+      activeMenu = null;
+    }
   }
 
   buttons.forEach(button => {
-
-    const container = button.closest('.container_opcoes');
-    if (!container) return;
-    const menu = container.querySelector('.menu_opcoes');
-    if (!menu) return;
-
-    menu.addEventListener('click', e => e.stopPropagation());
-
     button.addEventListener('click', e => {
       e.stopPropagation();
-      const isOpen = menu.classList.contains('ativo');
 
+      // Fecha qualquer menu aberto
       closeAllMenus();
 
-      if (!isOpen) {
-        menu.classList.add('ativo');
-        button.setAttribute('aria-expanded', 'true');
-      } else {
-        menu.classList.remove('ativo');
-        button.setAttribute('aria-expanded', 'false');
-      }
+      // Clona o menu e adiciona no body
+      const menu = button.nextElementSibling.cloneNode(true);
+      menu.classList.add('ativo');
+      document.body.appendChild(menu);
+      activeMenu = menu;
+
+      // Calcula posição abaixo do botão
+      const rect = button.getBoundingClientRect();
+      menu.style.top = `${rect.bottom + 4}px`;
+      menu.style.left = `${rect.left + 0}px`;
+      menu.style.right = `${rect.right + 50}px`;
+
+      // Impede o fechamento ao clicar dentro do menu
+      menu.addEventListener('click', ev => ev.stopPropagation());
     });
   });
 
+  // Fecha ao clicar fora
   document.addEventListener('click', () => closeAllMenus());
 
+  // Fecha se redimensionar a tela
+  window.addEventListener('resize', () => closeAllMenus());
 });

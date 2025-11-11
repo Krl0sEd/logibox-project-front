@@ -179,7 +179,7 @@ body.font-large {
 
 .envoltura_tabela {
      overflow-x: auto;
-     overflow-y: auto;
+     overflow-y: visible;
      width: 100%;
      margin-top: 20px;
      scroll-behavior: smooth;
@@ -215,6 +215,10 @@ body.font-large {
 
 /* =================== TABLE OPTIONS MENU ====================*/
 
+.container_opcoes {
+  position: relative; 
+}
+
 .botao_opcoes {
      background-color: transparent;
      border: none;
@@ -222,12 +226,14 @@ body.font-large {
 }
 
 .menu_opcoes {
-     background-color: var(--component-bg-2);
-     border-radius: 5px;
-     display: none;
-     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-     position: absolute;
-     padding: 15px 10px;
+  position: fixed; 
+  display: none;
+  background-color: var(--component-bg-2);
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  z-index: 9999;
+  min-width: 150px;
 }
 
 .menu_opcoes ul {
@@ -255,7 +261,6 @@ body.font-large {
 .menu_opcoes.ativo {
      display: block;
 }
-
 
 /* =================== MEDIA QUERY ====================*/
 
