@@ -12,7 +12,7 @@ body {
     }
     .left_side {
       flex: 0 0 75%;
-      background-image: url('../images/patternLogo.png');
+      background-image: url('../img/patternLogo.png');
       background-size: cover;
       background-position: center;
     }
