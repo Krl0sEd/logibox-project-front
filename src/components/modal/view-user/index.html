@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Modal</title>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+          rel="stylesheet">
+
+     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+     <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+     <div id="modalOverlay" class="hidden">
+
+          <div id="modalView">
+               <div id="content">
+                    <button id="closeButton">
+                         <i class="bi bi-x-lg"></i>
+                    </button>
+                    <div class="modalHeader">
+                         <h1>Visualizar userName</h1>
+                         <p class="modalId">#0000</p>
+
+                    </div>
+                    <div class="modalForm">
+                         <form action="#" method="POST" id="formViewUser">
+                              <div class="formInfo">
+                                   <div class="formGroup">
+                                        <label class="labelInput" for="nome_user" class="labelInput">Nome
+                                             completo</label>
+                                        <input type="text" class="input_padrao" placeholder="Texto" id="nome_user"
+                                             disabled>
+                                   </div>
+
+                                   <div class="formGroup">
+                                        <label class="labelInput" for="nome_mae" class="labelInput">Nome materno</label>
+                                        <input type="text" class="input_padrao" placeholder="Texto" id="nome_mae"
+                                             disabled>
+                                   </div>
+
+                                   <div class="formGroup">
+                                        <label class="labelInput" for="email" class="labelInput">Email</label>
+                                        <input type="email" class="input_padrao" id="email" name="email"
+                                             placeholder="nome@dominio.com" disabled>
+                                   </div>
+
+                                   <div class="formGroup">
+                                        <label class="labelInput" for="data_nascimento" class="labelInput">Data de
+                                             nascimento</label>
+                                        <input type="text" class="input_padrao" maxlength="10" placeholder="XX/XX/XXXX"
+                                             id="data_nascimento" name="data_nascimento" disabled>
+                                   </div>
+
+                                   <div class="formGroup">
+                                        <label class="labelInput" for="opcao_sexo" class="labelInput">Sexo</label>
+                                        <div class="input_seletor">
+                                             <select id="opcao_sexo" name="opcao_sexo" class="seletor" disabled>
+                                                  <option value="" disabled selected hidden>Sexo
+                                                  </option>
+                                                  <option value="M">Masculino</option>
+                                                  <option value="F">Feminino</option>
+                                             </select>
+                                             <i class="bi bi-chevron-down"></i>
+                                        </div>
+                                   </div>
+
+                                   <div class="formGroup">
+                                        <label class="labelInput" for="cpf" class="labelInput">CPF</label>
+                                        <input type="text" class="input_padrao" maxlength="14"
+                                             placeholder="000.000.000-00" id="cpf" name="cpf" disabled>
+                                   </div>
+
+                                   <div class="formGroup">
+                                        <label class="labelInput" for="celular" class="labelInput">Celular</label>
+                                        <input type="text" class="input_padrao" maxlength="17"
+                                             placeholder="+55 (00) 00000-0000" id="celular" name="celular" disabled>
+                                   </div>
+
+                                   <div class="formGroup">
+                                        <label class="labelInput" for="cep" class="labelInput">CEP</label>
+                                        <input type="text" class="input_padrao" maxlength="9" placeholder="00000-000"
+                                             id="cep" name="cep" disabled>
+                                   </div>
+
+                                   <div class="formGroup">
+                                        <label class="labelInput" for="rua" class="labelInput">Rua</label>
+                                        <input type="text" class="input_padrao" placeholder="Rua" id="rua" name="rua"
+                                             disabled>
+                                   </div>
+
+                                   <div class="formGroup">
+                                        <label class="labelInput" for="complemento"
+                                             class="labelInput">Complemento</label>
+                                        <input type="text" class="input_padrao" placeholder="Complemento"
+                                             id="complemento" name="complemento" disabled>
+                                   </div>
+
+                                   <div class="formGroup">
+                                        <label class="labelInput" for="numero_rua" class="labelInput">Nº</label>
+                                        <input type="text" class="input_padrao" placeholder="Nº" id="numero_rua"
+                                             disabled>
+                                   </div>
+
+                                   <div class="formGroup">
+                                        <label class="labelInput" for="bairro" class="labelInput">Bairro</label>
+                                        <input type="text" class="input_padrao" placeholder="Bairro" id="bairro"
+                                             name="bairro" disabled>
+                                   </div>
+
+                                   <div class="formGroup">
+                                        <label class="labelInput" for="Cidade" class="labelInput">Cidade</label>
+                                        <input type="text" class="input_padrao" placeholder="Cidade" id="cidade"
+                                             name="cidade" disabled>
+                                   </div>
+
+                                   <div class="formGroup">
+                                        <label class="labelInput" for="opcao_estado" class="labelInput">Estado</label>
+                                        <div class="input_seletor">
+                                             <select id="opcao_estado" name="opcao_estado" class="seletor" disabled>
+                                                  <option value="" disabled selected hidden>Estado</option>
+                                                  <option value="AC">Acre</option>
+                                                  <option value="AL">Alagoas</option>
+                                                  <option value="AP">Amapá</option>
+                                                  <option value="AM">Amazonas</option>
+                                                  <option value="BA">Bahia</option>
+                                                  <option value="CE">Ceará</option>
+                                                  <option value="DF">Distrito Federal</option>
+                                                  <option value="ES">Espírito Santo</option>
+                                                  <option value="GO">Goiás</option>
+                                                  <option value="MA">Maranhão</option>
+                                                  <option value="MT">Mato Grosso</option>
+                                                  <option value="MS">Mato Grosso do Sul</option>
+                                                  <option value="MG">Minas Gerais</option>
+                                                  <option value="PA">Pará</option>
+                                                  <option value="PB">Paraíba</option>
+                                                  <option value="PR">Paraná</option>
+                                                  <option value="PE">Pernambuco</option>
+                                                  <option value="PI">Piauí</option>
+                                                  <option value="RJ">Rio de Janeiro</option>
+                                                  <option value="RN">Rio Grande do Norte</option>
+                                                  <option value="RS">Rio Grande do Sul</option>
+                                                  <option value="RO">Rondônia</option>
+                                                  <option value="RR">Roraima</option>
+                                                  <option value="SC">Santa Catarina</option>
+                                                  <option value="SP">São Paulo</option>
+                                                  <option value="SE">Sergipe</option>
+                                                  <option value="TO">Tocantins</option>
+                                             </select>
+                                             <i class="bi bi-chevron-down"></i>
+                                        </div>
+                                   </div>
+                              </div>
+                    </div>
+                    <div class="formButtons">
+                         <button class="botao_excluir"><i class="bi bi-trash-fill"></i> Excluir</button>
+                    </div>
+               </div>
+               </form>
+          </div>
+     </div>
+
+     </div>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+          crossorigin="anonymous"></script>
+</body>
+
+</html>

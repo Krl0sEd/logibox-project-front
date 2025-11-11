@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+     <meta charset="UTF-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <title>Tabela de Log</title>
+
+     <!-- Estilos e ícones -->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet" />
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+     <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="font-normal"> <!-- remover depois -->
+
+     <div class="content_geral">
+          <div class="container_tabela">
+               <!-- Ações da tabela -->
+               <div class="acoes_tabela">
+                    <div class="input_pesquisa">
+                         <i class="bi bi-search" aria-hidden="true"></i>
+                         <input type="text" class="input_padrao" placeholder="Pesquisar..." id="pesquisa"
+                              name="pesquisa" aria-label="Campo de pesquisa" />
+                    </div>
+
+                    <button class="botao_acao_tabela" id="filter-button" title="Filtrar"
+                         aria-label="Filtrar resultados">
+                         <i class="bi bi-filter"></i>
+                    </button>
+
+                    <button class="botao_acao_tabela" id="download-button" title="Baixar" aria-label="Baixar tabela">
+                         <i class="bi bi-download"></i>
+                    </button>
+               </div>
+
+               <!-- Tabela -->
+               <div class="envoltura_tabela">
+                    <table class="table_conteudo">
+                         <thead>
+                              <tr>
+                                   <th>Data</th>
+                                   <th>Nome do usuário</th>
+                                   <th>Ação</th>
+                              </tr>
+                         </thead>
+
+                         <tbody>
+                              <tr>
+                                   <td>10 de Dec 2025, 10:00</td>
+                                   <td>userNome</td>
+                                   <td>userAcao</td>
+                              </tr>
+                         </tbody>
+                    </table>
+               </div>
+          </div>
+     </div>
+</body>
+
+<script src="script.js"></script>
+
+</html>
