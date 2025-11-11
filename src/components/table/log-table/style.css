@@ -173,19 +173,17 @@ body.font-large {
      background-color: var(--component-separator);
 }
 
-/* =========================================================
-                      TABLE CELL
-========================================================= */
+/* =================== TABLE CELL ====================*/
 
 .envoltura_tabela {
      overflow-x: auto;
-     overflow-y: auto;
+     overflow-y: visible;
      width: 100%;
      margin-top: 20px;
      scroll-behavior: smooth;
      border-radius: 10px;
-     color: var(--text-highcontrast);
 }
+
 
 .table_conteudo {
      border-collapse: collapse;
@@ -197,20 +195,69 @@ body.font-large {
 
 .table_conteudo th,
 .table_conteudo td {
+     padding: 5px 30px;
      text-align: center;
      white-space: nowrap;
-     vertical-align: middle;
+
 }
 
 .table_conteudo tr td {
      border-bottom: 1px solid var(--component-separator);
-     padding: 20px 0px 20px 0px;
-     margin: 0px 5px 0px 5px;
+     padding-bottom: 18px;
 }
 
 .table_conteudo td {
      text-overflow: ellipsis;
-     max-width: 100px;
+     max-width: 230px;
+}
+
+/* =================== TABLE OPTIONS MENU ====================*/
+
+.container_opcoes {
+  position: relative; 
+}
+
+.botao_opcoes {
+     background-color: transparent;
+     border: none;
+     font-size: var(--fs-lg);
+}
+
+.menu_opcoes {
+  position: fixed; 
+  display: none;
+  background-color: var(--component-bg-2);
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  z-index: 9999;
+  min-width: 150px;
+}
+
+.menu_opcoes ul {
+     padding: 5px;
+}
+
+.menu_opcoes li {
+     list-style: none;
+     padding: 8px 5px 8px;
+     color: var(--text-main);
+     transition: 0.3s ease;
+     transition: all 0.3s ease;
+     text-align: left;
+}
+
+.menu_opcoes li :hover {
+     color: var(--text-hierarchy-2);
+}
+
+.botao_acao {
+     background-color: transparent;
+     border: none;
+}
+
+.menu_opcoes.ativo {
+     display: block;
 }
 
 /* =================== MEDIA QUERY ====================*/
