@@ -4,7 +4,7 @@
 <head>
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Sidebar e header</title>
+     <title>Dashboard</title>
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
@@ -12,7 +12,7 @@
      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
      <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
           rel="stylesheet">
-          <link rel="icon" type="image/png"  sizes="32x32" href="../assets/img/favicon/favicon.png">
+     <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon/favicon.png">
      <link rel="stylesheet" href="../assets/css/dashboard.css">
 </head>
 
@@ -186,19 +186,19 @@
                          </a>
                     </li>
                     <li class="sidebar_item">
-                         <a href="#" class="sidebar_link">
+                         <a href="estoque.html" class="sidebar_link">
                               <i class="bi bi-stack"></i>
                               <span class="sidebar_link_text">Estoque</span>
                          </a>
                     </li>
                     <li class="sidebar_item">
-                         <a href="#" class="sidebar_link">
+                         <a href="usuarios.html" class="sidebar_link">
                               <i class="bi bi-people-fill"></i>
                               <span class="sidebar_link_text">Usuários</span>
                          </a>
                     </li>
                     <li class="sidebar_item">
-                         <a href="#" class="sidebar_link">
+                         <a href="historico.html" class="sidebar_link">
                               <i class="bi bi-clock-fill"></i>
                               <span class="sidebar_link_text">Histórico</span>
                          </a>
@@ -208,7 +208,44 @@
                </main>
           </div>
 
-          <main></main>
+          <main>
+               <div class="dashboard_container">
+                    <div class="dashboard_cabecalho">
+                         <h1>Dashboard</h1>
+                         <p>Bem vindo(a), <span class="usuario_nome">userName</span></p>
+                    </div>
+
+                    <div class="dashboard_dados">
+                         <div class="linha_dados">
+                              <div class="bloco_dado">
+                                   <h2>Total de produtos</p>
+                                   <p class="valor_dado" id="quant_produto">00</p>
+                              </div>
+                              <div class="bloco_dado">
+                                   <h2>Total de ações no log</p>
+                                   <p class="valor_dado" id="quant_ações">00</p>
+                              </div>
+                              <div class="bloco_dado">
+                                   <h2>Total de usuários</p>
+                                   <p class="valor_dado" id="quant_user">00</p>
+                              </div>
+                         </div>
+                         <div class="linha_graficos">
+                              <div class="grafico_card">
+                                   <h2>Produtos por Categoria</h2>
+                                   <canvas id="grafico_categoria"></canvas>
+                              </div>
+
+                         <div class="linha_graficos">
+                              <div class="grafico_card">
+                                   <h2>Produtos com maior valor em estoque</h2>
+                                   <canvas id="grafico_valor"></canvas>
+                              </div>
+
+                         </div>
+                    </div>
+               </div>
+          </main>
      </div>
 
      <!-- Alert globais -->
