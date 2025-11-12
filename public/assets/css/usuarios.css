@@ -820,6 +820,7 @@ main {
      z-index: 1000;
      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
      animation: aparecer 0.3s ease;
+
 }
 
 .conteudo_alert .fechar_modal {
@@ -923,6 +924,7 @@ main {
      border-color: var(--logo-primary);
      background-color: transparent;
 }
+
 
 /* =========================================================
                        POPup e Highlitht
