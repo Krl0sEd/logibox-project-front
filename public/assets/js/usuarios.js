@@ -1,75 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     /* ========================================
-                     DARK MODE
-    ======================================== */
-
-    let darkmode = localStorage.getItem('darkmode');
-    const btn_darkmode = document.querySelector('.btn_darkmode');
-    const darkmode_icon = btn_darkmode.querySelector('i');
-
-    const ligarDarkMode = () => {
-        document.documentElement.classList.add('darkmode');
-        darkmode_icon.classList.replace('bi-moon', 'bi-sun');
-        localStorage.setItem('darkmode', 'ligado');
-    };
-
-    const desligarDarkMode = () => {
-        document.documentElement.classList.remove('darkmode');
-        darkmode_icon.classList.replace('bi-sun', 'bi-moon');
-        localStorage.setItem('darkmode', 'desligado');
-    };
-
-    if (darkmode === 'ligado') {
-        ligarDarkMode();
-    } else {
-        desligarDarkMode();
-    }
-
-    btn_darkmode.addEventListener('click', () => {
-        darkmode = localStorage.getItem('darkmode');
-        if (darkmode === 'ligado') {
-            desligarDarkMode();
-        } else {
-            ligarDarkMode();
-        }
-    });
-
-
-    /* ========================================
-               AUMENTAR/DIMINUIR FONTE
-    ======================================== */
-
-    let fontSizeLevel = parseInt(localStorage.getItem('fontSizeLevel')) || 0;
-    const body = document.body;
-    const increaseBtn = document.querySelector(".btn_font_plus");
-    const decreaseBtn = document.querySelector(".btn_font_menos");
-
-    function applyFontSize() {
-        body.classList.remove("font-small", "font-normal", "font-large");
-        if (fontSizeLevel < 0) body.classList.add("font-small");
-        else if (fontSizeLevel === 0) body.classList.add("font-normal");
-        else body.classList.add("font-large");
-        localStorage.setItem('fontSizeLevel', fontSizeLevel);
-    }
-
-    increaseBtn.addEventListener("click", () => {
-        if (fontSizeLevel < 1) {
-            fontSizeLevel++;
-            applyFontSize();
-        }
-    });
-
-    decreaseBtn.addEventListener("click", () => {
-        if (fontSizeLevel > -1) {
-            fontSizeLevel--;
-            applyFontSize();
-        }
-    });
-
-    applyFontSize();
-
-    /* ========================================
                     PESQUISA NA TABELA
     ========================================*/
 
@@ -137,52 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    /* ========================================
-                     SIDEBAR
-    ======================================== */
-
-    const sidebar = document.querySelector(".sidebar");
-    const layout_wrapper = document.querySelector(".layout_wrapper");
-    const sidebar_btn = document.getElementById("sidebar_btn");
-    const logo_texto = document.querySelector(".logo_texto");
-    const sidebar_link_texts = document.querySelectorAll(".sidebar_link_text");
-    const sidebar_links = document.querySelectorAll(".sidebar_link");
-    const btn_fechar_desktop = document.querySelector(".sidebar_close_btn i");
-
-    const sidebar_mobile = document.querySelector(".sidebar_mobile");
-    const btn_fechar_mobile = document.querySelector(".btn_fechar_mobile");
-    const hamburguerBtn = document.getElementById("btn_hamburguer");
-    const backdrop = document.querySelector(".backdrop");
-
-    function ligarSideBar() {
-        sidebar.classList.toggle("on");
-        layout_wrapper.classList.toggle("sidebar_fechado");
-
-        logo_texto.classList.toggle("invisivel");
-        btn_fechar_desktop.classList.toggle("inverte");
-        sidebar_link_texts.forEach(el => el.classList.toggle("invisivel"));
-        sidebar_links.forEach(el => el.classList.toggle("invisivel"));
-    }
-
-    sidebar_btn.addEventListener("click", ligarSideBar);
-
-    sidebar.addEventListener("mouseenter", () => {
-        if (layout_wrapper.classList.contains("sidebar_fechado")) ligarSideBar();
-    });
-
-    sidebar.addEventListener("mouseleave", () => {
-        if (layout_wrapper.classList.contains("on")) ligarSideBar();
-    });
-
-    btn_fechar_mobile.addEventListener("click", () => {
-        sidebar_mobile.classList.remove("on");
-        backdrop.classList.remove("on");
-    });
-
-    hamburguerBtn.addEventListener("click", () => {
-        sidebar_mobile.classList.toggle("on");
-        backdrop.classList.toggle("on");
-    });
 
 
     /* ======================================== 
@@ -264,20 +149,6 @@ document.addEventListener("DOMContentLoaded", () => {
         // Restaura o botão
         botao.innerHTML = '<i class="bi bi-download"></i>';
         botao.disabled = false;
-    });
-
-
-
-    /* ========================================
-                     HEADER
-    ======================================== */
-
-    const header_btn = document.querySelector(".btn_open_submenu");
-    const submenu_userinfo = document.querySelector(".submenu_userinfo");
-
-    header_btn.addEventListener("click", () => {
-        submenu_userinfo.classList.toggle("on");
-        header_btn.classList.toggle("rotacionar");
     });
 
 
