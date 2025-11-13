@@ -312,26 +312,124 @@ body {
 }
 
 
-/* ================= RESPONSIVIDADE ================= */
+/* ================= RESPONSIVIDADE GERAL ================= */
+
+/* Telas até 1200px */
+@media (max-width: 1200px) {
+  .right_side {
+    margin-left: -20%;
+  }
+}
+
+/* Telas até 1024px */
+@media (max-width: 1024px) {
+  .right_side {
+    margin-left: -10%;
+  }
+}
+
+/* Telas até 992px — muda para layout vertical */
 @media (max-width: 992px) {
   .main_container {
     flex-direction: column;
   }
+
   .left_side {
     display: none;
   }
+
   .right_side {
     flex: 1;
     margin-left: 0;
     border-radius: 0;
     height: auto;
     box-shadow: none;
+    width: 100%;
+    padding: 25px 20px;
   }
+
   .form_container {
-    height: auto;
-    padding: 30px 15px;
+    max-width: 100%;
+    width: 100%;
+    padding: 0 10px;
   }
-  body {
-    overflow: auto;
+
+  /* Steps em 1 linha mais compacta */
+  .steps {
+    gap: 10px;
+    font-size: 0.75rem;
+  }
+
+  .step {
+    width: 32%;
+  }
+
+  /* Inputs em coluna */
+  .form_step .row {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .form_step .col {
+    width: 100%;
+  }
+
+  /* Tamanho único para inputs */
+  .form_step input,
+  .form_step select {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 40px !important;
+    font-size: 0.9rem !important;
+  }
+
+  /* Passo 3 — centralizado e fluido */
+  .form_step[data-step="2"] input,
+  .form_step[data-step="2"] .mb-2,
+  .password-input-group,
+  .form_step[data-step="2"] .limpar-container {
+    max-width: 100%;
+  }
+
+  .toggle-password {
+    right: 12px;
+  }
+
+  /* Botões */
+  .btn-danger {
+    width: 100%;
+    margin-top: 5px;
+    height: 42px;
+  }
+
+  .btn-outline-dark.btn-sm {
+    height: 36px;
+    padding: 5px 10px;
   }
 }
+
+/* Telas muito pequenas (até 480px) */
+@media (max-width: 480px) {
+  .intro_text p {
+    font-size: 0.75rem;
+  }
+
+  .form_header img {
+    width: 90px;
+  }
+
+  .steps {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .step {
+    width: 100%;
+    font-size: 0.75rem;
+  }
+
+  body {
+    padding: 0 5px;
+  }
+}
+
