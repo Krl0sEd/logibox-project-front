@@ -68,7 +68,19 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    const radios = popupFiltro.querySelectorAll('input[type="radio"]');
+    let radioSelecionado = null;
 
+        radios.forEach(radio => {
+        radio.addEventListener('click', () => {
+            if (radioSelecionado === radio) {
+            radio.checked = false; // desseleciona
+            radioSelecionado = null;
+            } else {
+            radioSelecionado = radio;
+            }
+        });
+    });
 
     /* ======================================== 
             GERAR PDF DA TABELA
@@ -97,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
             cloneTabela.querySelectorAll("tr").forEach(tr => {
                 const cells = tr.querySelectorAll("th, td");
                 if (cells[indiceOpcoes]) {
-                        cells[indiceOpcoes].remove();
+                    cells[indiceOpcoes].remove();
                 }
             });
         }
@@ -153,27 +165,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* ========================================
-               ALERTS E MODAIS
+            ALERTS E MODAIS
     ======================================== */
 
-    const alert_modelo = document.querySelector(".alert_modelo");
-    const btn_cancelar_modal = document.querySelector(".botao_delete");
-    const btn_fechar_modal = document.querySelector(".fechar_modal");
-    const btn_submenu = document.querySelector(".btn_submenu");
+    const alert_modelo_1 = document.getElementById("alert1");
+    const alert_modelo_2 = document.getElementById("alert2");
+    const backdrop = document.getElementById("backdrop");
 
-    function abrirAlert() {
-        alert_modelo.classList.toggle("aberto");
-        backdrop.classList.toggle("on");
+    // Função genérica para abrir um alert
+    function abrirAlert(id) {
+        const alerta = document.getElementById(id);
+        if (!alerta) return;
+        alerta.classList.add("aberto");
+        if (backdrop) backdrop.classList.add("on");
     }
 
-    function fecharAlert() {
-        alert_modelo.classList.toggle("aberto");
-        backdrop.classList.toggle("on");
+    // Função genérica para fechar um alert
+    function fecharAlert(id) {
+        const alerta = document.getElementById(id);
+        if (!alerta) return;
+        alerta.classList.remove("aberto");
+        if (backdrop) backdrop.classList.remove("on");
     }
 
-    btn_fechar_modal.addEventListener("click", fecharAlert);
-    btn_cancelar_modal.addEventListener("click", fecharAlert);
-    btn_submenu.addEventListener("click", abrirAlert);
+    // Fecha alert1
+    document.querySelectorAll("#alert1 .fechar_modal, #alert1 .botao_cancelar, #alert1 .botao_delete")
+        .forEach(btn => btn.addEventListener("click", () => fecharAlert("alert1")));
+
+    // Fecha alert2
+    document.querySelectorAll("#alert2 .fechar_modal, #alert2 .botao_cancelar, #alert2 .botao_delete")
+        .forEach(btn => btn.addEventListener("click", () => fecharAlert("alert2")));
+
+    // Ativa alert1 ao clicar no botão ou no texto “Excluir”
+    document.querySelectorAll(".botao_acao[aria-label='Excluir usuário']").forEach(botao => {
+        botao.addEventListener("click", () => abrirAlert("alert1"));
+    });
 
 
     /* ========================================

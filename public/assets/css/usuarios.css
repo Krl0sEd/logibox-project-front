@@ -791,6 +791,14 @@ main {
      display: block;
 }
 
+.botao_acao:hover {
+     color: var(--logo-primary); 
+}
+
+.botao_acao:hover i {
+     color: var(--logo-primary); 
+}
+
 /* =========================================================
                        ALERT / MODAL
 ========================================================= */
@@ -801,11 +809,18 @@ main {
      align-items: center;
      position: fixed;
      inset: 0;
+     background: rgba(0, 0, 0, 0.5);
      z-index: 999;
+     opacity: 1;
+     transition: opacity 0.3s ease;
 }
 
 .alert_modelo.aberto {
      display: flex;
+}
+
+.alert_modelo.fechar {
+     opacity: 0; /* veio do CSS de cima */
 }
 
 .conteudo_alert {
@@ -820,7 +835,7 @@ main {
      z-index: 1000;
      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
      animation: aparecer 0.3s ease;
-
+     font-family: var(--font-family-base);
 }
 
 .conteudo_alert .fechar_modal {
@@ -832,6 +847,7 @@ main {
      color: var(--component-dark-main);
      border: none;
      background-color: transparent;
+     transition: color 0.3s ease;
 }
 
 .conteudo_alert .fechar_modal:hover {
@@ -843,7 +859,7 @@ main {
      justify-content: center;
      font-size: 50px;
      margin-bottom: 15px;
-     padding: 2px 2px 2px 2px;
+     padding: 2px;
 }
 
 .conteudo_alert .icone_modal_fill {
@@ -881,11 +897,19 @@ main {
      color: red;
 }
 
+#alert1 .icone_modal_fill {
+    background-color: rgba(255, 0, 0, 0.2);
+    margin-left: 10px;
+}
+
 #alert2 .conteudo_alert i {
      color: rgb(28, 74, 255);
 }
 
-/* botões usados no alert */
+/* =========================================================
+                       BOTÕES USADOS
+========================================================= */
+
 .botao_cancelar {
      background-color: var(--text-highcontrast);
      color: var(--text-oposite);
@@ -924,7 +948,6 @@ main {
      border-color: var(--logo-primary);
      background-color: transparent;
 }
-
 
 /* =========================================================
                        POPup e Highlitht
