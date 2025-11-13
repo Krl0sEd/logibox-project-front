@@ -631,7 +631,7 @@ main {
      position: relative;
      justify-self: center;
      width: 100%;
-     max-width: 950px;
+     max-width: 900px;
      min-height: 700px;
      height: auto;
      background-color: var(--component-bg-1);
