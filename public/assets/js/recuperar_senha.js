@@ -1,45 +1,55 @@
 const form = document.getElementById('recoverForm');
-      const email = document.getElementById('email');
-      const feedbackModal = new bootstrap.Modal(document.getElementById('feedback_modal'));
-      const modalTitle = document.getElementById('modal_title');
-      const modalMessage = document.getElementById('modal_message');
+const email = document.getElementById('email');
+const feedbackModal = new bootstrap.Modal(document.getElementById('feedback_modal'));
+const modalTitle = document.getElementById('modal_title');
+const modalMessage = document.getElementById('modal_message');
+const modalHeader = document.querySelector('.modal-header');
+const modalBtn = document.querySelector('#feedback_modal .modal-footer button');
 
-      form.addEventListener('submit', (e) => {
-        e.preventDefault(); // impede envio real (simulação)
+form.addEventListener('submit', (e) => {
+  e.preventDefault(); // REMOVE quando o PHP estiver pronto
 
-        if (!email.value.trim()) {
-          email.classList.add('is-invalid');
-          email.focus();
-          return;
-        }
+  if (!email.value.trim()) {
+    email.classList.add('is-invalid');
+    email.focus();
+    return;
+  }
 
-        email.classList.remove('is-invalid');
+  email.classList.remove('is-invalid');
 
-        // Simulação de resposta do PHP
-        const emailValido = (email.value === "teste@exemplo.com"); // apenas para teste
+  // --- SIMULAÇÃO TEMPORÁRIA (para testar sem PHP) ---
+  const emailValido = (email.value === "teste@exemplo.com");
+  // ---------------------------------------------------
 
-        if (emailValido) {
-          modalTitle.textContent = "✔ Link enviado!";
-          modalMessage.innerHTML = "Enviamos um link de redefinição para o seu e-mail.";
-          document.querySelector('.modal-header').classList.replace("bg-danger", "bg-success");
-          document.querySelector('.btn.btn-danger').classList.replace("btn-danger", "btn-success");
-          
-          feedbackModal.show();
+  // RESET de estilos do modal
+  modalHeader.classList.remove("bg-danger", "bg-success");
+  modalBtn.classList.remove("btn-danger", "btn-success");
 
-          document.getElementById('feedback_modal').addEventListener('hidden.bs.modal', () => {
-            window.location.href = "login.html";
-          });
+  if (emailValido) {
+    modalTitle.textContent = "✔ Link enviado!";
+    modalMessage.innerHTML = "Enviamos um link de redefinição para o seu e-mail.";
 
-        } else {
-          modalTitle.textContent = "✖ E-mail não encontrado!";
-          modalMessage.innerHTML = "Verifique o endereço digitado e tente novamente.";
-          document.querySelector('.modal-header').classList.replace("bg-success", "bg-danger");
-          document.querySelector('.btn.btn-success')?.classList.replace("btn-success", "btn-danger");
-          
-          feedbackModal.show();
-        }
-      });
+    modalHeader.classList.add("bg-success");
+    modalBtn.classList.add("btn-success");
 
-      email.addEventListener('input', () => {
-        email.classList.remove('is-invalid');
-      });
+    feedbackModal.show();
+
+    // redirecionar após fechar
+    document.getElementById('feedback_modal').addEventListener('hidden.bs.modal', () => {
+      window.location.href = "login.html";
+    });
+
+  } else {
+    modalTitle.textContent = "✖ E-mail não encontrado!";
+    modalMessage.innerHTML = "Verifique o endereço digitado e tente novamente.";
+
+    modalHeader.classList.add("bg-danger");
+    modalBtn.classList.add("btn-danger");
+
+    feedbackModal.show();
+  }
+});
+
+email.addEventListener('input', () => {
+  email.classList.remove('is-invalid');
+});

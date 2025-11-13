@@ -3,31 +3,43 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Logibox - Recuperar Senha</title>
+    <title>Logibox - Redefinir Senha</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../assets/img/favicon/favicon.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/recuperar_senha.css">
+
+    <!-- CSS PESONALIZADO -->
+    <link rel="stylesheet" href="../assets/css/redefinir_senha.css">
   </head>
+
   <body>
     <main class="recover-wrapper">
-      <a href="../pages/login.html" class="back-link">&lt; Voltar</a>
-      <h1 class="headline"><strong>Recuperar senha</strong></h1>
-      <p class="subhead">Digite seu e-mail para receber o link de redefinição de senha.</p>
+
+      <a href="../pages/recuperar_senha.html" class="back-link">&lt; Voltar</a>
+
+      <h1 class="headline"><strong>Redefinir senha</strong></h1>
+      <p class="subhead">Crie uma nova senha para continuar.</p>
 
       <section class="form-area">
-        <form id="recoverForm" method="POST" action="recuperar_senha.php" novalidate>
+        <form id="resetForm" method="POST" action="alterar_senha.php" novalidate>
+
           <div class="mb-3">
-            <label for="email" class="form-label">E-mail</label>
-            <input type="email" name="email" class="form-control input-shadow" id="email" placeholder="Digite seu e-mail..." required>
-            <div class="invalid-feedback">Por favor, insira um e-mail válido.</div>
+            <label for="senha" class="form-label">Nova Senha</label>
+            <input type="password" id="senha" name="senha" class="form-control input-shadow" placeholder="Digite sua nova senha..." required>
+            <div class="invalid-feedback">Digite uma senha válida.</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="confirmar" class="form-label">Confirmar Senha</label>
+            <input type="password" id="confirmar" name="confirmar" class="form-control input-shadow" placeholder="Confirme sua senha..." required>
+            <div class="invalid-feedback">As senhas não coincidem.</div>
           </div>
 
           <div class="d-flex justify-content-center mt-4">
-            <button type="submit" class="btn btn-accent">Enviar Link</button>
+            <button type="submit" class="btn btn-accent">Redefinir Senha</button>
           </div>
 
-          <p class="small-note">Certifique-se de responder corretamente para continuar com a redefinição de senha.</p>
+          <p class="small-note">Sua nova senha deve ter pelo menos 6 caracteres.</p>
         </form>
       </section>
     </main>
@@ -40,7 +52,9 @@
             <h5 class="modal-title" id="modal_title"></h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
           </div>
+
           <div class="modal-body" id="modal_message"></div>
+
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
           </div>
@@ -48,9 +62,10 @@
       </div>
     </div>
 
-    <!-- Bootstrap JS -->
+    <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="../assets/js/recuperar_senha.js"></script>
+    <!-- JS PERSONALIZADO -->
+    <script src="../assets/js/redefinir_senha.js"></script>
   </body>
 </html>
