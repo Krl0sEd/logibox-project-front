@@ -1,0 +1,428 @@
+/* ================= VARIÁVEIS ================= */
+:root {
+  /* === Fontes === */
+  --font-family-base: "Lato", sans-serif;
+
+  /* === Cores === */
+  --logo-primary: #ad0000;
+  --logo-secondary: #4c180c;
+  --logo-hover: #db3e3e;
+  --logo-active: #ca000071;
+
+  --text-highcontrast: #070707;
+  --text-main: #161616;
+  --text-hierarchy-1: #363636;
+  --text-hierarchy-2: #504f4f;
+  --text-disabled: #838382;
+  --text-disabled-contrast: #b9b8b8;
+
+  --component-separator: #e9e7e2;
+  --component-dark-1: #797877;
+  --component-dark-2: #454544;
+  --component-dark-main: #393938;
+  --component-blue: #5b6073;
+  --component-disabled: #d9d7d5;
+
+  --component-bg-main: #f3f5f7;
+  --component-bg-1: #fffefa;
+  --component-bg-2: #f9f6f4;
+  --component-bg-dashboard: #f3f5f7;
+}
+
+:root.darkmode {
+  --text-highcontrast: #f8f8f8;
+  --text-main: #ededed;
+  --text-hierarchy-1: #cfcfcf;
+  --text-hierarchy-2: #a7a7a7;
+  --text-disabled: #7b7b7b;
+  --text-disabled-contrast: #5e5e5e;
+
+  --component-separator: #2b2b2b;
+  --component-dark-1: #9b9b9b;
+  --component-dark-2: #c5c5c5;
+  --component-dark-main: #d9d9d9;
+  --component-blue: #8d96b8;
+  --component-disabled: #4b4b4b;
+
+  --component-bg-main: #1c1c1c;
+  --component-bg-1: #212121;
+  --component-bg-2: #2a2a2a;
+  --component-bg-dashboard: #1c1c1c;
+}
+
+/* ================= BASE ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+<<<<<<< HEAD:public/assets/css/cadastro.css
+      font-family: 'Lato', sans-serif;
+      font-weight: 500;
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .main_container {
+      display: flex;
+      height: 100vh;
+      width: 100%;
+    }
+    .left_side {
+      flex: 0 0 75%;
+      background-image: url('../img/patternLogo.png');
+      background-size: cover;
+      background-position: center;
+    }
+    .right_side {
+      flex: 0 0 55%;
+      margin-left: -30%;
+      background-color: #fff;
+      border-top-left-radius: 90px;
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 35px;
+      height: 100vh;
+    }
+    
+    .form_container {
+      width: 100%;
+      max-width: 460px;
+      font-size: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 90%;
+    }
+    .form_header {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .form_header img {
+      width: 120px;
+      height: auto;
+      margin-bottom: 8px;
+    }
+    .intro_text {
+      text-align: justify;
+      margin-bottom: 15px;
+      margin-top: 25px;
+    }
+    .intro_text h6 {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .intro_text p {
+      font-size: 0.85rem;
+      color: #777;
+      margin: 0;
+    }
+    .steps {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      margin-bottom: 1.2rem;
+      gap: 30px;
+      align-items: flex-start;
+    }
+    .step {
+      text-align: center;
+      color: #888;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 2px;
+      width: 30%;
+      cursor: pointer;
+      transition: color 0.25s ease, border-color 0.25s ease;
+    }
+    .step.active {
+      color: #b40000;
+      border-color: #b40000;
+      font-weight: 600;
+    }
+    .step.completed {
+      color: #b40000;
+      border-color: #b40000;
+      font-weight: 600;
+    }
+    .form_step {
+      display: none;
+    }
+    .form_step.active {
+      display: block;
+    }
+=======
+  font-family: var(--font-family-base);
+  font-weight: 500;
+  margin: 0;
+  height: 100dvh;
+  overflow: auto;
+  background-color: var(--component-bg-main);
+  color: var(--text-main);
+}
+>>>>>>> feature-form:src/pages/form/cadastro.css
+
+/* ================= LAYOUT ================= */
+.main_container {
+  display: flex;
+  min-height: 100dvh;
+  width: 100%;
+}
+
+.left_side {
+  flex: 0 0 75%;
+  background-image: url('../images/patternLogo.png');
+  background-size: contain;
+  background-position: initial;
+  background-repeat: no-repeat;
+}
+
+<<<<<<< HEAD:public/assets/css/cadastro.css
+    @media (max-width: 992px) {
+      .main_container { flex-direction: column; }
+      .left_side { display: none; }
+      .right_side { flex: 1; margin-left: 0; border-radius: 0; height: auto; box-shadow: none; }
+      .form_container { height: auto; padding: 30px 15px; }
+      body { overflow: auto; }
+    }
+=======
+.right_side {
+  flex: 0 0 55%;
+  margin-left: -30%;
+  background-color: var(--component-bg-1);
+  border-top-left-radius: 90px;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 35px;
+  height: 100vh;
+}
+
+/* ================= FORM ================= */
+.form_container {
+  width: 100%;
+  max-width: 460px;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.form_header {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.form_header img {
+  width: 120px;
+  height: auto;
+  margin-bottom: 8px;
+}
+
+.intro_text {
+  text-align: justify;
+  margin-bottom: 15px;
+  margin-top: 20px;
+}
+
+.intro_text h6 {
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--text-highcontrast);
+}
+
+.intro_text p {
+  font-size: 0.85rem;
+  color: var(--text-disabled);
+  margin: 0;
+}
+
+/* ================= STEPS ================= */
+.steps {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  margin-bottom: 1.2rem;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.step {
+  text-align: center;
+  color: var(--text-disabled);
+  border-bottom: 2px solid var(--component-disabled);
+  padding-bottom: 2px;
+  width: 30%;
+  cursor: pointer;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.step.active,
+.step.completed {
+  color: var(--logo-primary);
+  border-color: var(--logo-primary);
+  font-weight: 600;
+}
+
+/* ================= CAMPOS ================= */
+.form_step {
+  display: none;
+}
+
+.form_step.active {
+  display: block;
+}
+
+.form_step .row {
+  margin-bottom: auto;
+}
+
+.form_step label {
+  font-size: 0.78rem;
+  margin-bottom: auto;
+  color: var(--text-hierarchy-1);
+}
+
+.form_step input,
+.form_step select {
+  padding: 4px 6px;
+  font-size: 0.8rem;
+  height: 28px;
+  color: var(--text-main);
+  background-color: var(--component-bg-1);
+  border: 1px solid var(--component-disabled);
+}
+
+.form_step:first-of-type input,
+.form_step:first-of-type select {
+  padding: 8px 10px;
+  font-size: 0.9rem;
+  height: 38px;
+  margin-bottom: 8px;
+}
+
+.form_step:first-of-type label {
+  font-size: 0.78rem;
+  margin-top: 20px;
+}
+
+/* ================= BOTÕES ================= */
+.btn-danger {
+  background-color: var(--logo-primary);
+  border: none;
+  font-size: 0.9rem;
+  padding: 5px 12px;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background-color: var(--logo-hover);
+}
+
+.btn-outline-dark.btn-sm {
+  font-size: 0.75rem;
+  padding: 3px 8px;
+  border: 1px solid var(--component-dark-2);
+  color: var(--text-main);
+}
+
+/* ================= DETALHES ================= */
+.form_step.active:first-of-type .text-center {
+  margin-top: 25px !important;
+}
+
+.text-muted.small {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-disabled);
+}
+
+/* Passo 3: inputs menores de largura */
+.form_step[data-step="2"] input {
+  max-width: 220px;
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+  padding: 8px 10px;
+  font-size: 0.9rem;
+  height: 40px;
+}
+
+/* Passo 3: centraliza label + input e define largura */
+.form_step[data-step="2"] .mb-2 {
+  max-width: 220px;
+  margin: 0 auto 10px auto;
+  text-align: left;
+}
+
+.form_step[data-step="2"] .mb-2 label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 0.85rem;
+}
+
+/* Passo 3: botão limpar alinhado à direita */
+.form_step[data-step="2"] .limpar {
+  display: block;
+  margin: 10px 0 10px auto;
+  max-width: 220px;
+}
+
+/* ================= TOGGLE PASSWORD ================= */
+.password-input-group {
+  position: relative;
+  max-width: 220px;
+  margin: 0 auto 10px auto;
+}
+
+.password-input-group input {
+  padding-right: 40px !important;
+  width: 100% !important;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--component-dark-1);
+  cursor: pointer;
+  z-index: 10;
+}
+
+.toggle-password:hover {
+  color: var(--text-main);
+}
+
+/* ================= RESPONSIVIDADE ================= */
+@media (max-width: 992px) {
+  .main_container {
+    flex-direction: column;
+  }
+  .left_side {
+    display: none;
+  }
+  .right_side {
+    flex: 1;
+    margin-left: 0;
+    border-radius: 0;
+    height: auto;
+    box-shadow: none;
+  }
+  .form_container {
+    height: auto;
+    padding: 30px 15px;
+  }
+  body {
+    overflow: auto;
+  }
+}
+>>>>>>> feature-form:src/pages/form/cadastro.css
