@@ -71,7 +71,7 @@
 
   /* === Fundo e layout === */
   --color-background-left: var(--component-bg-1);
-  --image-background-pattern: url('../images/patternLogo.png');
+  --image-background-pattern: url('../img/patternLogo.png');
 }
 
 /* =========================================================

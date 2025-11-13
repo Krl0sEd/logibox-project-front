@@ -21,11 +21,6 @@
 
       let attempts = 0;
 
-      backBtn.addEventListener('click', (e)=>{
-        e.preventDefault();
-        window.history.back();
-      });
-
       form.addEventListener('submit', (e)=>{
         e.preventDefault();
         const answer = answerInput.value.trim().toLowerCase();

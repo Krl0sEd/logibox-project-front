@@ -54,19 +54,23 @@
       })
       .then(response => response.json())
       .then(data => {
-        if (data.success) {
-          modal_title.textContent = 'Login bem-sucedido!';
-          modal_message.textContent = data.message || 'Bem-vindo à Logibox.';
-          modal.show();
+  if (data.success) {
+    modal_title.textContent = 'Login bem-sucedido!';
+    modal_message.textContent = data.message || 'Bem-vindo à Logibox.';
+    modal.show();
 
-          // Redirecionar após sucesso
-          // window.location.href = 'dashboard.html';
-        } else {
-          modal_title.textContent = 'Erro ao entrar';
-          modal_message.textContent = data.message || 'Login ou senha incorretos.';
-          modal.show();
-        }
-      })
+    // Redirecionar após sucesso (aguarda 800ms só para o usuário ver o modal)
+    setTimeout(() => {
+      window.location.href = '../pages/twofa.html';
+    }, 800);
+
+  } else {
+    modal_title.textContent = 'Erro ao entrar';
+    modal_message.textContent = data.message || 'Login ou senha incorretos.';
+    modal.show();
+  }
+})
+
       .catch(error => {
         modal_title.textContent = 'Erro de conexão';
         modal_message.textContent = 'Não foi possível conectar ao servidor.';
