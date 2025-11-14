@@ -1,68 +1,79 @@
 const form = document.getElementById('resetForm');
-const senha = document.getElementById('senha');
-const confirmar = document.getElementById('confirmar');
+      const senha = document.getElementById('senha');
+      const confirmar = document.getElementById('confirmar');
 
-const feedbackModal = new bootstrap.Modal(document.getElementById('feedback_modal'));
-const modalTitle = document.getElementById('modal_title');
-const modalMessage = document.getElementById('modal_message');
+      const feedback_modal = new bootstrap.Modal(document.getElementById('feedback_modal'));
+      const modal_title = document.getElementById('modal_title');
+      const modal_message = document.getElementById('modal_message');
+      const modal_header = document.querySelector('.modal-header');
+      const modal_btn = document.querySelector('#feedback_modal .modal-footer button');
 
-const modalHeader = document.querySelector('.modal-header');
-const modalBtn = document.querySelector('#feedback_modal .modal-footer button');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
 
-form.addEventListener('submit', (e) => {
-  e.preventDefault(); // remover quando o PHP estiver pronto
+        senha.classList.remove("is-invalid");
+        confirmar.classList.remove("is-invalid");
 
-  let valido = true;
+        modal_header.classList.remove("bg-success", "bg-danger");
+        modal_btn.classList.remove("btn-success", "btn-danger");
 
-  if (senha.value.trim().length < 6) {
-    senha.classList.add('is-invalid');
-    valido = false;
-  } else {
-    senha.classList.remove('is-invalid');
-  }
+        if (senha.value.trim() === "") {
+          senha.classList.add("is-invalid");
+          modal_title.textContent = "Campo obrigatório";
+          modal_message.textContent = "Digite sua nova senha.";
+          modal_header.classList.add("bg-danger");
+          modal_btn.classList.add("btn-danger");
+          feedback_modal.show();
+          return;
+        }
 
-  if (confirmar.value !== senha.value || confirmar.value.trim() === "") {
-    confirmar.classList.add('is-invalid');
-    valido = false;
-  } else {
-    confirmar.classList.remove('is-invalid');
-  }
+        if (confirmar.value.trim() === "") {
+          confirmar.classList.add("is-invalid");
+          modal_title.textContent = "Campo obrigatório";
+          modal_message.textContent = "Confirme sua senha.";
+          modal_header.classList.add("bg-danger");
+          modal_btn.classList.add("btn-danger");
+          feedback_modal.show();
+          return;
+        }
 
-  if (!valido) return;
+        if (senha.value.length < 6) {
+          senha.classList.add("is-invalid");
+          modal_title.textContent = "Senha muito curta";
+          modal_message.textContent = "A senha deve ter pelo menos 6 caracteres.";
+          modal_header.classList.add("bg-danger");
+          modal_btn.classList.add("btn-danger");
+          feedback_modal.show();
+          return;
+        }
 
-  // Reset visual do modal
-  modalHeader.classList.remove("bg-success", "bg-danger");
-  modalBtn.classList.remove("btn-success", "btn-danger");
+        if (senha.value !== confirmar.value) {
+          confirmar.classList.add("is-invalid");
+          modal_title.textContent = "Senhas não coincidem";
+          modal_message.textContent = "As senhas informadas devem ser iguais.";
+          modal_header.classList.add("bg-danger");
+          modal_btn.classList.add("btn-danger");
+          feedback_modal.show();
+          return;
+        }
 
-  // --- SIMULAÇÃO TEMPORÁRIA (alterar quando houver PHP) ---
-  const simulacaoOk = true;
-  // ---------------------------------------------------------
+        modal_title.textContent = "✔ Senha redefinida!";
+        modal_message.textContent = "Sua senha foi alterada com sucesso.";
+        modal_header.classList.add("bg-success");
+        modal_btn.classList.add("btn-success");
 
-  if (simulacaoOk) {
-    modalTitle.textContent = "✔ Senha redefinida!";
-    modalMessage.innerHTML = "Sua senha foi alterada com sucesso.";
+        feedback_modal.show();
 
-    modalHeader.classList.add("bg-success");
-    modalBtn.classList.add("btn-success");
+        document.getElementById('feedback_modal').addEventListener('hidden.bs.modal', () => {
+          window.location.href = "login.html";
+        });
+      });
 
-    feedbackModal.show();
+      document.getElementById('feedback_modal').addEventListener('hidden.bs.modal', () => {
+        senha.classList.remove('is-invalid');
+        confirmar.classList.remove('is-invalid');
+      });
 
-    // redirecionar após fechar
-    document.getElementById('feedback_modal').addEventListener('hidden.bs.modal', () => {
-      window.location.href = "login.html";
-    });
-
-  } else {
-    modalTitle.textContent = "Erro ao alterar!";
-    modalMessage.innerHTML = "Tente novamente mais tarde.";
-
-    modalHeader.classList.add("bg-danger");
-    modalBtn.classList.add("btn-danger");
-
-    feedbackModal.show();
-  }
-});
-
-// Remove erro ao digitar
-senha.addEventListener('input', () => senha.classList.remove('is-invalid'));
-confirmar.addEventListener('input', () => confirmar.classList.remove('is-invalid'));
+      // Remove erro ao digitar
+      senha.addEventListener('input', () => senha.classList.remove('is-invalid'));
+      confirmar.addEventListener('input', () => confirmar.classList.remove('is-invalid'));

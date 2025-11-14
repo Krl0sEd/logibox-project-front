@@ -1,9 +1,9 @@
- const steps = document.querySelectorAll('.step');
+const steps = document.querySelectorAll('.step');
 const form_steps = document.querySelectorAll('.form_step');
 let current_step = parseInt(localStorage.getItem('current_step')) || 0;
 
 // Variável para armazenar hash da senha
-let senhaHashGlobal = '';
+let senha_hash_global = '';
 
 // Modal
 const feedback_modal = new bootstrap.Modal(document.getElementById('feedback_modal'));
@@ -94,13 +94,13 @@ document.querySelectorAll('.limpar').forEach(btn=>{
 });
 
 // 🔒 Função para gerar hash SHA-256
-async function hashSHA256(text) {
+async function hash_sha_256(text) {
   const encoder = new TextEncoder();
   const data = encoder.encode(text);
-  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-  return hashHex;
+  const hash_buffer = await crypto.subtle.digest('SHA-256', data);
+  const hash_array = Array.from(new Uint8Array(hash_buffer));
+  const hash_hex = hash_array.map(b => b.toString(16).padStart(2, '0')).join('');
+  return hash_hex;
 }
 
 // Validação passo
@@ -132,8 +132,8 @@ async function validate_step(step){
 
   // Criptografar a senha apenas para envio, sem alterar input visível
   if (step === form_steps.length - 1) {
-    const senhaInput = document.querySelector('[data-key="senha"]');
-    senhaHashGlobal = await hashSHA256(senhaInput.value);
+    const senha_input = document.querySelector('[data-key="senha"]');
+    senha_hash_global = await hash_sha_256(senha_input.value);
   }
 
   return true;
@@ -194,7 +194,7 @@ document.getElementById('multi_step_form').addEventListener('submit', async e=>{
       const key = i.dataset.key;
       if(key === 'repetir_senha') return; // não enviar
       if(key === 'senha') {
-        payload[key] = senhaHashGlobal;
+        payload[key] = senha_hash_global;
       } else {
         payload[key] = i.value;
       }
@@ -209,8 +209,8 @@ document.getElementById('multi_step_form').addEventListener('submit', async e=>{
     .then(response => response.json())
     .then(data => {
       if (data.success) {
-        modalTitle.textContent = 'Cadastro realizado!';
-        modalMessage.textContent = 'Seu cadastro foi concluído com sucesso.';
+        modal_title.textContent = 'Cadastro realizado!';
+        modal_message.textContent = 'Seu cadastro foi concluído com sucesso.';
         modal.show();
 
         setTimeout(() => {
@@ -230,16 +230,16 @@ document.getElementById('multi_step_form').addEventListener('submit', async e=>{
 // Função para toggle password
 document.querySelectorAll('.toggle-password').forEach(button => {
   button.addEventListener('click', function() {
-    const targetId = this.getAttribute('data-target');
-    const passwordInput = document.getElementById(targetId);
+    const target_id = this.getAttribute('data-target');
+    const password_input = document.getElementById(target_id);
     const icon = this.querySelector('i');
     
-    if (passwordInput.type === 'password') {
-      passwordInput.type = 'text';
+    if (password_input.type === 'password') {
+      password_input.type = 'text';
       icon.classList.remove('bi-eye');
       icon.classList.add('bi-eye-slash');
     } else {
-      passwordInput.type = 'password';
+      password_input.type = 'password';
       icon.classList.remove('bi-eye-slash');
       icon.classList.add('bi-eye');
     }

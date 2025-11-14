@@ -1,55 +1,53 @@
-const form = document.getElementById('recoverForm');
-const email = document.getElementById('email');
-const feedbackModal = new bootstrap.Modal(document.getElementById('feedback_modal'));
-const modalTitle = document.getElementById('modal_title');
-const modalMessage = document.getElementById('modal_message');
-const modalHeader = document.querySelector('.modal-header');
-const modalBtn = document.querySelector('#feedback_modal .modal-footer button');
+document.addEventListener("DOMContentLoaded", () => {
 
-form.addEventListener('submit', (e) => {
-  e.preventDefault(); // REMOVE quando o PHP estiver pronto
+        const form = document.getElementById('recoverForm');
+        const email = document.getElementById('email');
 
-  if (!email.value.trim()) {
-    email.classList.add('is-invalid');
-    email.focus();
-    return;
-  }
+        const feedback_modal = new bootstrap.Modal(document.getElementById('feedback_modal'));
+        const modal_title = document.getElementById('modal_title');
+        const modal_message = document.getElementById('modal_message');
+        const modal_header = document.querySelector('#feedback_modal .modal-header');
+        const modal_btn = document.querySelector('#feedback_modal .modal-footer .btn');
 
-  email.classList.remove('is-invalid');
+        form.addEventListener('submit', (e) => {
+          e.preventDefault(); // REMOVER quando conectar ao PHP
 
-  // --- SIMULAÇÃO TEMPORÁRIA (para testar sem PHP) ---
-  const emailValido = (email.value === "teste@exemplo.com");
-  // ---------------------------------------------------
+          // === VALIDAÇÃO PERSONALIZADA ===
+          if (!email.value.trim()) {
+            modal_header.className = "modal-header bg-danger text-white";
+            modal_btn.className = "btn btn-danger";
+            modal_title.textContent = "⚠ Campo vazio";
+            modal_message.innerHTML = "Digite seu e-mail antes de continuar.";
 
-  // RESET de estilos do modal
-  modalHeader.classList.remove("bg-danger", "bg-success");
-  modalBtn.classList.remove("btn-danger", "btn-success");
+            feedback_modal.show();
+            return;
+          }
 
-  if (emailValido) {
-    modalTitle.textContent = "✔ Link enviado!";
-    modalMessage.innerHTML = "Enviamos um link de redefinição para o seu e-mail.";
+          // SIMULAÇÃO TEMPORÁRIA
+          const email_valido = (email.value === "teste@exemplo.com");
 
-    modalHeader.classList.add("bg-success");
-    modalBtn.classList.add("btn-success");
+          if (email_valido) {
+            modal_header.className = "modal-header bg-success text-white";
+            modal_btn.className = "btn btn-success";
 
-    feedbackModal.show();
+            modal_title.textContent = "✔ Link enviado!";
+            modal_message.innerHTML = "Enviamos um link de redefinição para o seu e-mail.";
 
-    // redirecionar após fechar
-    document.getElementById('feedback_modal').addEventListener('hidden.bs.modal', () => {
-      window.location.href = "login.html";
-    });
+            feedback_modal.show();
 
-  } else {
-    modalTitle.textContent = "✖ E-mail não encontrado!";
-    modalMessage.innerHTML = "Verifique o endereço digitado e tente novamente.";
+            document.getElementById('feedback_modal')
+              .addEventListener('hidden.bs.modal', () => {
+                window.location.href = "login.html";
+              }, { once: true });
 
-    modalHeader.classList.add("bg-danger");
-    modalBtn.classList.add("btn-danger");
+          } else {
+            modal_header.className = "modal-header bg-danger text-white";
+            modal_btn.className = "btn btn-danger";
 
-    feedbackModal.show();
-  }
-});
+            modal_title.textContent = "✖ E-mail não encontrado!";
+            modal_message.innerHTML = "Verifique o endereço digitado e tente novamente.";
 
-email.addEventListener('input', () => {
-  email.classList.remove('is-invalid');
-});
+            feedback_modal.show();
+          }
+        });
+      });

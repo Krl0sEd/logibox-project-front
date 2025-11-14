@@ -1,4 +1,5 @@
-     :root{
+/* ================= VARIÁVEIS ================= */
+:root{
         --font-family-base: "Lato", sans-serif;
         --bg: #f3f2f1;
         --card-bg: #ffffff;
@@ -7,9 +8,7 @@
         --muted: #6b6b6b;
       }
 
-      html,body{
-        height:100%;
-      }
+      html,body{ height:100%; }
 
       body{
         margin:0;
@@ -85,15 +84,9 @@
       }
       .btn-accent:active{ transform:translateY(1px); background:var(--accent-dark); }
 
-      .form-area{
-        width:480px;
-        margin:0 auto;
-      }
-
+      .form-area{ width:480px; margin:0 auto; }
       @media (max-width:576px){ .form-area{ width:100%; } }
 
       .small-note{ font-size:12px; color:var(--muted); text-align:center; margin-top:14px; }
 
       .input-shadow{ box-shadow: 0 2px 0 rgba(0,0,0,0.02) inset; }
-
-      .recover-wrapper{ border-radius:16px; }
