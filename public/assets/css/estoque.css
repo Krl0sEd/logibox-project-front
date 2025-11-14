@@ -773,8 +773,8 @@ main {
      text-align: left;
 }
 
-.menu_opcoes li:hover {
-     color: var(--text-hierarchy-2);
+.botao_acao:hover {
+     color: var(--logo-primary);
 }
 
 .botao_acao {
