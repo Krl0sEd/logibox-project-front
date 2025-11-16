@@ -1,6 +1,6 @@
-/* ================= VARIABLES ================= */
-
-/* ================= VARIABLES ================= */
+/* =========================================================
+                          VARIÁVEIS
+========================================================= */
 
 :root {
      /* === Fontes === */
@@ -10,7 +10,7 @@
      --logo-primary: #ad0000;
      --logo-secondary: #4c180c;
      --logo-hover: #ca00007e;
-     --logo-active: #ca000071;
+     --logo-active: #ca00003d;
 
      --text-highcontrast: #070707;
      --text-main: #161616;
@@ -40,6 +40,7 @@
      --text-hierarchy-2: #a7a7a7;
      --text-disabled: #7b7b7b;
      --text-disabled-contrast: #5e5e5e;
+     --text-oposite: #080808;
 
      --component-separator: #2b2b2b;
      --component-dark-1: #9b9b9b;
@@ -53,8 +54,9 @@
      --component-bg-2: #2a2a2a;
      --component-bg-dashboard: #1c1c1c;
 }
-/* =================== FONT SIZES ====================*/
-
+/* =========================================================
+                     TAMANHO DE FONTE
+========================================================= */
 body.font-small {
      --fs-xs: clamp(12px, 1.3vw, 13.5px);
      --fs-sm: clamp(13px, 1.4vw, 14.5px);
@@ -86,14 +88,15 @@ body.font-large {
 /* =================== TABLE CONTAINER ====================*/
 
 .content_geral {
-     /* remover depois */
      display: flex;
-     justify-content: center;
-     align-items: center;
+     flex-direction: column; /* Deixa o conteúdo empilhado (texto em cima, tabela embaixo) */
+     align-items: center; /* Centraliza horizontalmente */
      min-height: 100vh;
      padding: 20px;
      box-sizing: border-box;
+     width: 100%;
 }
+
 
 .container_tabela {
      position: relative;
@@ -105,17 +108,20 @@ body.font-large {
      background-color: var(--component-bg-1);
      box-shadow: 2px 1px 20px var(--component-shadow);
      border-radius: 14px;
-     overflow: hidden;
-}
+    overflow-x: hidden;
+    }
 
-/* =================== ÁREA DE AÇÕES ====================*/
-
+/* =========================================================
+                      ÁREA DE AÇÕES
+========================================================= */
 .acoes_tabela {
      display: flex;
      justify-content: center;
-     gap: 30px;
+     gap: 20px;
      padding: 14px 0 18px 0;
      border-bottom: 2px solid var(--component-separator);
+     width: 100%; /* ADICIONAR ESTA LINHA */
+     box-sizing: border-box; 
 }
 
 /* Input de pesquisa */
@@ -124,12 +130,12 @@ body.font-large {
 
 .input_padrao {
      border: 1px solid var(--component-dark-1);
-     border-radius: 16px;
+     border-radius: 20px;
      color: var(--text-main);
      padding: 10px 12px;
      outline: none;
      box-sizing: border-box;
-     background-color: var(--component-bg-dashboard);
+     background-color: transparent;
      padding-left: 40px;
      max-width: 100%;
      width: 300px;
@@ -159,7 +165,7 @@ body.font-large {
 .botao_acao_tabela {
      background-color: transparent;
      border: none;
-     color: var(--text-hierarchy-1);
+     color: var(--text-highcontrast);
      border-radius: 100%;
      width: 40px;
      height: 40px;
@@ -174,18 +180,19 @@ body.font-large {
      background-color: var(--component-separator);
 }
 
-
-/* =================== TABLE CELL ====================*/
+/* =========================================================
+                      TABLE CELL
+========================================================= */
 
 .envoltura_tabela {
      overflow-x: auto;
-     overflow-y: visible;
+     overflow-y: auto;
      width: 100%;
      margin-top: 20px;
      scroll-behavior: smooth;
      border-radius: 10px;
+     color: var(--text-highcontrast);
 }
-
 
 .table_conteudo {
      border-collapse: collapse;
@@ -213,28 +220,26 @@ body.font-large {
      max-width: 230px;
 }
 
-/* =================== TABLE OPTIONS MENU ====================*/
-
-.container_opcoes {
-  position: relative; 
-}
+/* =========================================================
+                      TABLE OPTIONS MENU
+========================================================= */
 
 .botao_opcoes {
      background-color: transparent;
      border: none;
      font-size: var(--fs-lg);
+     color: var(--text-highcontrast);
 }
 
 .menu_opcoes {
-  position: fixed; 
-  display: none;
-  background-color: var(--component-bg-2);
-  border-radius: 6px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  padding: 10px;
-  z-index: 9999;
-  min-width: 150px;
+     background-color: var(--component-bg-2);
+     border-radius: 5px;
+     display: none;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+     position: absolute;
+     padding: 15px 10px;
 }
+
 
 .menu_opcoes ul {
      padding: 5px;
@@ -245,77 +250,82 @@ body.font-large {
      padding: 8px 5px 8px;
      color: var(--text-main);
      transition: 0.3s ease;
-     transition: all 0.3s ease;
      text-align: left;
 }
 
-.menu_opcoes li :hover {
+.menu_opcoes li:hover {
      color: var(--text-hierarchy-2);
 }
 
 .botao_acao {
      background-color: transparent;
      border: none;
+     color: var(--text-highcontrast);
+}
+
+.botao_acao i {
+     padding-right: 7px;
 }
 
 .menu_opcoes.ativo {
      display: block;
 }
 
-/* =================== MEDIA QUERY ====================*/
+.botao_acao:hover {
+     color: var(--logo-primary); 
+}
+
+.botao_acao:hover i {
+     color: var(--logo-primary); 
+}
+
+/* =========================================================
+                   MEDIA QUERY - TABLE
+========================================================= */
 
 @media (max-width: 750px) {
+    .acoes_tabela {
+        gap: 8px;
+    }
 
-     .table-actions {
-          gap: 8px;
-     }
+    .input_pesquisa {
+        max-width: 90%;
+    }
 
-     .input_pesquisa {
-          max-width: 90%;
-          /* ajusta melhor no mobile */
-     }
+    .table_conteudo {
+        min-width: 500px;
+    }
 
-     .table_conteudo {
-          min-width: 500px;
-     }
+    .envoltura_tabela {
+        overflow-x: auto;
+    }
 
-     .table_wrapper {
-          overflow-x: auto;
-     }
-
-     .input_padrao {
-          width: auto;
-     }
-
-}
-
-@media (max-width: 488px) {
-     .acoes_tabela {
-          gap: 10px;
-     }
-     
-     .input_padrao {
-          width: 180px;
-     }
-
-    .table_conteudo td {
-     text-overflow: ellipsis;
-     max-width: 50x;
-     }
-}
-
-@media (max-width: 362px) {
-   .botao_acao_tabela i {
-     font-size: 20px;
-     }
-}
-
-
-@media (max-width: 338px) {
     .input_padrao {
-          width: 140px;
-     }
+        width: 100%;
+        max-width: 100%;
+    }
+}
 
- 
-     
+@media (max-width: 450px) {
+    .acoes_tabela {
+        gap: 1px;
+    }
+
+    .botao_acao_tabela i {
+        font-size: 18px;
+    }
+
+    .input_pesquisa {
+        padding-left: 10px;
+    }
+
+    .input_pesquisa i {
+        left: 20px;
+        font-size: 15px;
+    }
+
+    .table_conteudo th,
+    .table_conteudo td {
+        padding: 0px 10px;
+    }
 }
