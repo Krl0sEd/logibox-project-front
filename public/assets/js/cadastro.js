@@ -22,7 +22,7 @@ document.addEventListener('input', e=>{
   if(!el) return;
   if(el.dataset.key==='cpf') el.value = el.value.replace(/\D/g,'').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2');
   if(el.dataset.key==='cep') el.value = el.value.replace(/\D/g,'').replace(/(\d{5})(\d)/,'$1-$2');
-  if(el.dataset.key === 'telefone') {
+  if(el.dataset.key === 'telefone_celular') {
     let val = el.value.replace(/\D/g,'');
     if(val.startsWith("55")) val = val.slice(2);
     if(val.length > 11) val = val.slice(0,11);
@@ -113,12 +113,12 @@ async function validate_step(step){
     if(key==='nome' && value.length<3) { show_modal('Erro', 'Preencha o nome completo corretamente.'); return false; }
     if(key==='nome_materno' && value.length<3) { show_modal('Erro', 'Preencha o nome materno corretamente.'); return false; }
     if(key==='email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) { show_modal('Erro', 'E-mail inválido.'); return false; }
-    if(key==='telefone' && value.replace(/\D/g,'').length<10) { show_modal('Erro', 'Telefone inválido.'); return false; }
-    if(key==='data_nasc' && value==='') { show_modal('Erro', 'Data de nascimento inválida.'); return false; }
+    if(key==='telefone_celular' && value.replace(/\D/g,'').length<10) { show_modal('Erro', 'Telefone inválido.'); return false; }
+    if(key==='data_nascimento' && value==='') { show_modal('Erro', 'Data de nascimento inválida.'); return false; }
     if(key==='sexo' && value==='') { show_modal('Erro', 'Selecione o sexo.'); return false; }
     if(key==='cpf' && !validate_cpf(value)) { show_modal('Erro', 'CPF inválido.'); return false; }
     if(key==='cep' && value.replace(/\D/g,'').length!==8) { show_modal('Erro', 'CEP inválido.'); return false; }
-    if(['estado','cidade','bairro','rua','numero'].includes(key) && value==='') { show_modal('Erro', `Preencha o campo ${key}.`); return false; }
+    if(['estado','cidade','bairro','rua','numero_rua'].includes(key) && value==='') { show_modal('Erro', `Preencha o campo ${key}.`); return false; }
 
     // LOGIN — exatamente 6 caracteres alfabéticos
     if(key==='login' && !/^[A-Za-z]{6}$/.test(value)) { show_modal('Erro', 'Login deve conter exatamente 6 letras (somente caracteres alfabéticos).'); return false; }
@@ -183,47 +183,47 @@ function show_step(){
 }
 show_step();
 
-// Submit final -> envia via application/x-www-form-urlencoded (igual ao login)
-document.getElementById('multi_step_form').addEventListener('submit', async e=>{
+// Submit final -> agora envia JSON corretamente
+document.getElementById('multi_step_form').addEventListener('submit', async e => {
   e.preventDefault();
+
   if(await validate_step(current_step)){
-    // Monta os dados para envio (substitui senha por hash, não envia repetir_senha)
+
     const inputs = document.querySelectorAll('[data-key]');
     const payload = {};
-    inputs.forEach(i=>{
+
+    inputs.forEach(i => {
       const key = i.dataset.key;
-      if(key === 'repetir_senha') return; // não enviar
-      if(key === 'senha') {
-        payload[key] = senha_hash_global;
-      } else {
-        payload[key] = i.value;
-      }
+      if (key === 'repetir_senha') return;
+
+      if (key === 'senha') payload[key] = senha_hash_global;
+      else payload[key] = i.value;
     });
 
-    // Envio igual ao login: application/x-www-form-urlencoded
-    fetch('cadastro.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(payload)
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.success) {
-        modal_title.textContent = 'Cadastro realizado!';
-        modal_message.textContent = 'Seu cadastro foi concluído com sucesso.';
-        modal.show();
+    try{
+      const response = await fetch("http://136.248.93.91/usuario.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await response.json();
+
+      if (data.sucesso) {
+        show_modal("Sucesso!", data.sucesso, true);
 
         setTimeout(() => {
-          window.location.href = 'login.html';  
-        }, 2000); // Redireciona após 2 segundos
+          window.location.href = "login.html";
+        }, 2000);
+
       } else {
-        show_modal('Erro', data.message || 'Não foi possível concluir o cadastro.');
+        show_modal("Erro", data.error || "Não foi possível concluir o cadastro.");
       }
-    })
-    .catch(error => {
-      show_modal('Erro de conexão', 'Não foi possível conectar ao servidor.');
-      console.error('Erro no envio:', error);
-    });
+
+    } catch(error){
+      console.error("Erro:", error);
+      show_modal("Erro", "Não foi possível conectar ao servidor.");
+    }
   }
 });
 
