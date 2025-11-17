@@ -2,9 +2,6 @@ const steps = document.querySelectorAll('.step');
 const form_steps = document.querySelectorAll('.form_step');
 let current_step = parseInt(localStorage.getItem('current_step')) || 0;
 
-// Variável para armazenar hash da senha
-let senha_hash_global = '';
-
 // Modal
 const feedback_modal = new bootstrap.Modal(document.getElementById('feedback_modal'));
 function show_modal(title, message, success=false){
@@ -93,15 +90,6 @@ document.querySelectorAll('.limpar').forEach(btn=>{
   });
 });
 
-// 🔒 Função para gerar hash SHA-256
-async function hash_sha_256(text) {
-  const encoder = new TextEncoder();
-  const data = encoder.encode(text);
-  const hash_buffer = await crypto.subtle.digest('SHA-256', data);
-  const hash_array = Array.from(new Uint8Array(hash_buffer));
-  const hash_hex = hash_array.map(b => b.toString(16).padStart(2, '0')).join('');
-  return hash_hex;
-}
 
 // Validação passo
 async function validate_step(step){
@@ -128,12 +116,6 @@ async function validate_step(step){
 
     // Confirmar senha
     if(key==='repetir_senha' && value!==document.querySelector('[data-key="senha"]').value) { show_modal('Erro', 'As senhas não conferem.'); return false; }
-  }
-
-  // Criptografar a senha apenas para envio, sem alterar input visível
-  if (step === form_steps.length - 1) {
-    const senha_input = document.querySelector('[data-key="senha"]');
-    senha_hash_global = await hash_sha_256(senha_input.value);
   }
 
   return true;
@@ -196,12 +178,12 @@ document.getElementById('multi_step_form').addEventListener('submit', async e =>
       const key = i.dataset.key;
       if (key === 'repetir_senha') return;
 
-      if (key === 'senha') payload[key] = senha_hash_global;
+      if (key === 'senha') payload[key] = i.value;
       else payload[key] = i.value;
     });
 
     try{
-      const response = await fetch("http://136.248.93.91/usuario.php", {
+      const response = await fetch("http://163.176.193.115/usuario.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
