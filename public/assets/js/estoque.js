@@ -175,42 +175,42 @@ document.addEventListener("DOMContentLoaded", () => {
     btn_cancelar_modal.addEventListener("click", fecharAlert);
     btn_submenu.addEventListener("click", abrirAlert);
 
+/* ========================================
+   MENUS DE OPÇÕES - USANDO MENU GLOBAL
+======================================== */
 
-    /* ========================================
-             BOTÃO OPÇÕES / MENUS
-    ======================================== */
+const buttons = document.querySelectorAll(".botao_opcoes");
+const menuUnico = document.getElementById("menuUnico");
+let produtoAtual = null;
 
-    const buttons = document.querySelectorAll('.botao_opcoes');
-
-    function closeAllMenus() {
-        document.querySelectorAll('.menu_opcoes.ativo').forEach(m => m.classList.remove('ativo'));
-        buttons.forEach(b => b.setAttribute('aria-expanded', 'false'));
-    }
-
-    buttons.forEach(button => {
-        const container = button.closest('.container_opcoes');
-        if (!container) return;
-        const menu = container.querySelector('.menu_opcoes');
-        if (!menu) return;
-
-        menu.addEventListener('click', e => e.stopPropagation());
-
-        button.addEventListener('click', e => {
-            e.stopPropagation();
-            const isOpen = menu.classList.contains('ativo');
-
-            closeAllMenus();
-
-            if (!isOpen) {
-                menu.classList.add('ativo');
-                button.setAttribute('aria-expanded', 'true');
-            } else {
-                menu.classList.remove('ativo');
-                button.setAttribute('aria-expanded', 'false');
-            }
-        });
+buttons.forEach(btn => {
+    btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        
+        // Posicionar menu abaixo do botão clicado
+        const rect = btn.getBoundingClientRect();
+        menuUnico.style.top = `${rect.top + window.scrollY + 2}px`;
+        menuUnico.style.left = `${rect.left + window.scrollX}px`;
+        menuUnico.style.display = 'block';
+        
+        // Guardar qual produto foi clicado
+        produtoAtual = btn.getAttribute('data-id');
     });
+});
 
-    document.addEventListener('click', closeAllMenus);
+// Fechar menu ao clicar fora
+document.addEventListener("click", () => {
+     menuUnico.style.display = 'none';
+});
 
+     // Eventos dos botões do menu
+     menuUnico.querySelectorAll('.botao_acao').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+               e.stopPropagation();
+               const acao = btn.getAttribute('data-acao');
+
+               alert(`${acao} produto ${produtoAtual}`);
+               menuUnico.style.display = 'none';
+          });
+     });
 });

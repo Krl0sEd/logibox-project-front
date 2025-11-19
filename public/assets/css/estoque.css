@@ -96,8 +96,8 @@ body.font-large {
 
 body {
      box-sizing: border-box;
-     overflow-x: hidden;
-     overflow-y: auto;
+     overflow-x: visible;
+     overflow-y: visible;
      font-family: var(--font-family-base);
      padding: 0;
      margin: 0;
@@ -588,7 +588,7 @@ main {
 
 
 /* =========================================================
-                SEÇÃO DE HISTÓRICO (MODELO PADRÃO)
+                         MAIN
 ========================================================= */
 
 .main_content {
@@ -633,7 +633,7 @@ main {
      min-height: 100vh;
      padding: 20px;
      box-sizing: border-box;
-          width: 100%;
+     width: 100%;
 }
 .container_tabela {
      position: relative;
@@ -645,7 +645,7 @@ main {
      background-color: var(--component-bg-1);
      box-shadow: 2px 1px 20px var(--component-shadow);
      border-radius: 14px;
-     overflow-x: hidden;
+     overflow: visible;
 }
 
 /* =========================================================
@@ -660,6 +660,7 @@ main {
      border-bottom: 2px solid var(--component-separator);
      width: 100%; /* ADICIONAR ESTA LINHA */
      box-sizing: border-box; 
+     overflow: hidden;
 }
 
 /* Input de pesquisa */
@@ -719,7 +720,7 @@ main {
 
 .envoltura_tabela {
      overflow-x: auto;
-     overflow-y: auto;
+     overflow-y:visible;
      width: 100%;
      margin-top: 20px;
      scroll-behavior: smooth;
@@ -756,20 +757,35 @@ main {
                       TABLE OPTIONS MENU
 ========================================================= */
 
+.container_opcoes {
+     position: relative;
+}
+
 .botao_opcoes {
      background-color: transparent;
      border: none;
      font-size: var(--fs-lg);
      color: var(--text-highcontrast);
+     position: relative;
+}
+
+.menu_container {
+    position: absolute;
+    z-index: 999999;
+    overflow: visible;
+    display: none;
 }
 
 .menu_opcoes {
      background-color: var(--component-bg-2);
-     border-radius: 5px;
-     display: none;
-     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-     position: absolute;
-     padding: 15px 10px;
+     border-radius: 8px;
+     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+     position: fixed;
+     padding: 10px 0; 
+     z-index: 10000;
+     min-width: 150px; 
+     max-width: 180px;
+     border: 1px solid var(--component-separator);
 }
 
 .menu_opcoes ul {
