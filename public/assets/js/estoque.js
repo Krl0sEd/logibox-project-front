@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
     btn_submenu.addEventListener("click", abrirAlert);
 
 /* ========================================
-   MENUS DE OPÇÕES - USANDO MENU GLOBAL
+                MENUS DE OPÇÕES 
 ======================================== */
 
 const buttons = document.querySelectorAll(".botao_opcoes");
