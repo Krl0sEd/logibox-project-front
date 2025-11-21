@@ -245,6 +245,35 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+
+    /* ========================================
+                ORDENAR POR NOME
+    ======================================== */
+
+    document.querySelector(".btn_filtrar").addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const ordenar = document.querySelector('input[name="ordenar"]:checked')?.value;
+        if (!ordenar) return;
+
+        const linhas = [...document.querySelectorAll("tbody tr")];
+        const tbody = document.querySelector("tbody");
+
+        const ordenado = linhas.sort((a, b) => {
+            const nomeA = a.children[1].textContent.trim().toLowerCase();
+            const nomeB = b.children[1].textContent.trim().toLowerCase();
+
+            return ordenar === "asc"
+                ? nomeA.localeCompare(nomeB)
+                : nomeB.localeCompare(nomeA);
+        });
+
+        ordenado.forEach(l => tbody.appendChild(l));
+
+        popupFiltro.style.display = "none";
+    });
+
+
     /* ========================================
                     PESQUISA NA TABELA
     ========================================*/
