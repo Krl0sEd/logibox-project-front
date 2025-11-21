@@ -26,6 +26,7 @@
      --component-dark-main: #393938;
      --component-blue: #5b6073;
      --component-disabled: #d9d7d5;
+     --component-shadow: #1a1a1a48;
      --component-bg-main: #f3f5f7;
      --component-bg-1: #fffefa;
      --component-bg-2: #f9f6f4;
@@ -553,6 +554,7 @@ main {
      min-height: 100vh;
      padding: 20px;
      box-sizing: border-box;
+     width: 100%;
 }
 
 .container_tabela {
@@ -562,8 +564,11 @@ main {
      max-width: 900px;
      min-height: 700px;
      height: auto;
-     background-color: var(--component-bg-1);
+     background-color: var(--component-bg-1);   
+     box-shadow: 2px 1px 20px var(--component-shadow);
      border-radius: 14px;
+     overflow: visible;
+     
 }
 
 /* =========================================================
@@ -573,9 +578,12 @@ main {
 .acoes_tabela {
      display: flex;
      justify-content: center;
-     gap: 30px;
+         gap: 20px;
      padding: 14px 0 18px 0;
      border-bottom: 2px solid var(--component-separator);
+      width: 100%; 
+     box-sizing: border-box; 
+     overflow: hidden;
 }
 
 /* Input de pesquisa */
@@ -589,7 +597,7 @@ main {
      background-color: transparent;
      padding-left: 40px;
      max-width: 100%;
-     width: 450px;
+      width: 300px;
      font-size: var(--fs-sm);
 }
 
@@ -635,7 +643,7 @@ main {
 
 .envoltura_tabela {
      overflow-x: auto;
-     overflow-y: auto;
+      overflow-y:visible;
      width: 100%;
      margin-top: 20px;
      scroll-behavior: smooth;
@@ -653,7 +661,7 @@ main {
 
 .table_conteudo th,
 .table_conteudo td {
-     padding: 5px 50px 0px 0px;
+        padding: 5px 30px;
      text-align: center;
      white-space: nowrap;
 }
@@ -814,7 +822,7 @@ main {
     background-color: var(--component-bg-2);
     border-radius: 5px;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 8px var(--component-shadow);
     width: 180px;
     color: var(--text-main);
 }
