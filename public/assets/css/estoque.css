@@ -1213,6 +1213,10 @@ main {
     .dashboard_container {
         padding: 12px 8px;
     }
+
+    .page_header p {
+     font-size: var(--fs-md);
+    }
 }
 
 /* =========================================================
@@ -1260,10 +1264,6 @@ main {
         font-size: 15px;
     }
 
-    .table_conteudo th,
-    .table_conteudo td {
-        padding: 0px 5px;
-    }
 }
 
 /* =========================================================
