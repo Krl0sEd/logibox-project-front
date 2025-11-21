@@ -54,7 +54,7 @@
 
 
                     <div class="header_user_img">
-                        <img src="../../../public/assets/img/userImg.png" alt="Imagem do usuario">
+                        <img src="../assets/img/userImg.png" alt="Imagem do usuario">
                     </div>
                     <div class="header_user_text">
                         <span class="header_username">Nome Sobrenome</span>
@@ -230,23 +230,48 @@
                     </button>
 
                     
-                        <div class="popup_filtro" id="popupFiltro">
-                            <form method="GET" action="http://136.248.93.91/usuario.php">
-                                <b>Sexo:</b><br>
-                                <input type="radio" name="sexo" value="masculino"> Masculino<br>
-                                <input type="radio" name="sexo" value="feminino"> Feminino<br><br>
+                           <div class="popup_filtro" id="popupFiltro">
+                         <form method="GET" action="http://136.248.93.91/usuario.php">
+                              <b>Categoria:</b><br><br>
 
-                                <b>Tipo de usuário:</b><br>
-                                <input type="radio" name="tipoUsuario" value="usuario"> Usuário<br>
-                                <input type="radio" name="tipoUsuario" value="administrador"> Administrador<br><br>
+                              <div class="check-group">
+                                   <label>
+                                        <input type="checkbox" name="categoria" value="alimenticios">
+                                        Alimentícios
+                                   </label>
 
-                                <b>Ordenar por:</b><br>
-                                <input type="radio" name="ordenar" value="asc"> A-Z<br>
-                                <input type="radio" name="ordenar" value="desc"> Z-A<br><br>
+                                   <label>
+                                        <input type="checkbox" name="categoria" value="higiene">
+                                        Higiene
+                                   </label>
 
-                                <button type="submit" class="btn_filtrar">Aplicar filtros</button>
-                            </form>
-                        </div>
+                                   <label>
+                                        <input type="checkbox" name="categoria" value="eletronicos">
+                                        Eletrônicos
+                                   </label>
+
+                                   <label>
+                                        <input type="checkbox" name="categoria" value="bebidas">
+                                        Bebidas
+                                   </label>
+
+                                   <label>
+                                        <input type="checkbox" name="categoria" value="papelaria">
+                                        Papelaria
+                                   </label>
+                              </div>
+
+                              <b>Valor</b><br>
+                              <input type="radio" name="valorProduto" value="caro"> Mais caro<br>
+                              <input type="radio" name="valorProduto" value="barato"> Mais barato<br><br>
+
+                              <b>Ordenar por:</b><br>
+                              <input type="radio" name="ordenar" value="asc"> A-Z<br>
+                              <input type="radio" name="ordenar" value="desc"> Z-A<br><br>
+
+                              <button type="submit" class="btn_filtrar">Aplicar filtros</button>
+                         </form>
+                    </div>
 
                     <button class="botao_acao_tabela" id="download-button" title="Baixar" aria-label="Baixar tabela">
                          <i class="bi bi-download"></i>
@@ -267,55 +292,8 @@
                               </tr>
                          </thead>
 
-                         <tbody>
-                              <tr
-                              data-id=""
-                              data-nome=""
-                              data-categoria=""
-                              data-quantidade=""
-                              data-preco="">
-                                   <td>idProduto</td>
-                                   <td>produtoName</td>
-                                   <td>produtoCatType</td>
-                                   <td>produtoQuant</td>
-                                   <td>produtoPreco</td>
-                                   <td>
-                                        <div class="container_opcoes">
-                                             <button class="botao_opcoes" id="options_button_1"
-                                                  aria-label="Abrir opções do produto">
-                                                  <i class="bi bi-three-dots"></i>
-                                             </button>
-
-                                            
-                                        </div>
-                                   </td>
-                              </tr>
-                              <tr
-                              data-id=""
-                              data-nome=""
-                              data-categoria=""
-                              data-quantidade=""
-                              data-preco="">
-                                   <td>idProduto</td>
-                                   <td>produtoName</td>
-                                   <td>produtoCatType</td>
-                                   <td>produtoQuant</td>
-                                   <td>produtoPreco</td>
-                                   <td>
-                                        <div class="container_opcoes">
-                                             <button class="botao_opcoes" id="options_button_1"
-                                                  aria-label="Abrir opções do produto">
-                                                  <i class="bi bi-three-dots"></i>
-                                             </button>
-                                        </div>
-                                   </td>
-                              </tr>
-                              <tr
-                              data-id=""
-                              data-nome=""
-                              data-categoria=""
-                              data-quantidade=""
-                              data-preco="">
+                        <tbody>
+                              <tr>
                                    <td>idProduto</td>
                                    <td>produtoName</td>
                                    <td>produtoCatType</td>
