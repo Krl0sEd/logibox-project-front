@@ -609,6 +609,10 @@ main {
 
 .page_header {
      margin: 20px;
+     display: flex;
+     max-width: 100%;
+     justify-content: space-around;
+     align-items: center;
 }
 
 .page_header h1 {
@@ -944,44 +948,109 @@ main {
                        BOTÕES USADOS
 ========================================================= */
 
-.botao_cancelar {
-     background-color: var(--text-highcontrast);
-     color: var(--text-oposite);
-     padding: 5px 40px;
-     border: none;
-     font-size: var(--fs-sm);
-     border-radius: 6px;
-     cursor: pointer;
-     display: inline-flex;
-     white-space: nowrap;
-     align-items: center;
-     gap: 7px;
-     transition: all 0.3s ease;
+.botao,
+.botao_criar,
+.botao_salvar,
+.botao_limpar,
+.botao_excluir,
+.botao_editar,
+.botao_visualizar,
+.botao_cancelar,
+.botao_delete {
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    gap: 7px;
+    transition: all 0.3s ease;
 }
 
-.botao_cancelar:hover {
-     background-color: var(--logo-primary);
+/* Botões principais com fundo vermelho (mantidos) */
+.botao,
+.botao_criar,
+.botao_salvar {
+    background-color: var(--logo-primary);
+    color: #ffffff;
+    border: none;
+    font-size: 18px;
+}
+
+.botao {
+    padding: 13px 30px;
+}
+
+.botao_criar,
+.botao_salvar {
+    padding: 11px 20px;
+}
+
+.botao_criar i {
+    font-size: 25px;
+}
+
+.botao:hover,
+.botao_criar:hover,
+.botao_salvar:hover {
+    background-color: var(--logo-hover);
+}
+
+/* Botões com borda e fundo TRANSPARENTE */
+.botao_limpar {
+    color: var(--text-hierarchy-1);
+    padding: 5px 17px;
+    border: 1px solid var(--text-hierarchy-1);
+    font-size: 16px;
+    background-color: transparent;
+}
+
+.botao_excluir,
+.botao_editar,
+.botao_visualizar {
+    color: var(--logo-primary);
+    padding: 11px 20px;
+    border: 1px solid var(--logo-primary);
+    font-size: 16px;
+    background-color: transparent;
 }
 
 .botao_delete {
-     color: var(--text-main);
-     border: 1px solid var(--component-dark-main);
-     padding: 1px 40px;
-     font-size: var(--fs-sm);
-     background-color: transparent;
-     border-radius: 6px;
-     cursor: pointer;
-     display: inline-flex;
-     align-items: center;
-     gap: 7px;
-     transition: all 0.3s ease;
+    color: var(--text-hierarchy-1);
+    border: 1px solid var(--text-hierarchy-1);
+    padding: 11px 20px;
+    font-size: 16px;
+    background-color: transparent;
+}
+
+.botao_cancelar {
+    background-color: var(--component-dark-main);
+    color: #ffffff;
+    padding: 11px 20px;
+    border: none;
+    font-size: 18px;
+}
+
+/* Hover */
+.botao_limpar:hover {
+    background-color: var(--component-bg-2);
+    border-color: var(--component-dark-2);
+}
+
+.botao_excluir:hover,
+.botao_editar:hover,
+.botao_visualizar:hover {
+    background-color: var(--logo-active);
 }
 
 .botao_delete:hover {
-     color: var(--logo-primary);
-     border-color: var(--logo-primary);
-     background-color: transparent;
+    color: var(--component-dark-2);
+    border-color: var(--component-dark-2);
 }
+
+.botao_cancelar:hover {
+    background-color: var(--component-dark-1);
+}
+
 
 
 /* =========================================================
@@ -1324,3 +1393,4 @@ main {
                transform: scale(1);
           }
      }
+}
