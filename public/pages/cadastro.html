@@ -45,6 +45,9 @@
                                         class="form-control"
                                         placeholder="Ex: Paula Silva Ferreira"
                                         data-key="nome"
+                                        data-step="0"
+                                        maxlength="80"
+                                        minlength="15"
                                         />
                                 </div>
                                 <div class="col">
@@ -56,6 +59,9 @@
                                         class="form-control"
                                         placeholder="Ex: Ana Souza Ferreira"
                                         data-key="nome_materno"
+                                        data-step="0"
+                                        maxlength="80"
+                                        minlength="15"
                                         />
                                 </div>
                             </div>
@@ -69,6 +75,7 @@
                                         class="form-control"
                                         placeholder="exemplo@email.com"
                                         data-key="email"
+                                        data-step="0"
                                         />
                                 </div>
                                 <div class="col">
@@ -81,6 +88,7 @@
                                         class="form-control"
                                         placeholder="(+55) XX XXXXX-XXXX"
                                         data-key="telefone_celular"
+                                        data-step="0"
                                         />
                                 </div>
                             </div>
@@ -93,11 +101,12 @@
                                         type="date"
                                         class="form-control"
                                         data-key="data_nascimento"
+                                        data-step="0"
                                         />
                                 </div>
                                 <div class="col">
                                     <label for="sexo">Sexo</label>
-                                    <select id="sexo" name="sexo" class="form-select" data-key="sexo">
+                                    <select id="sexo" name="sexo" class="form-select" data-key="sexo" data-step="0">
                                         <option value="" disabled selected>Selecione...</option>
                                         <option value="Feminino">Feminino</option>
                                         <option value="Masculino">Masculino</option>
@@ -106,15 +115,17 @@
                                 </div>
                                 <div class="col">
                                     <label for="cpf">CPF</label>
-                                    <input
-                                        id="cpf"
-                                        name="cpf"
-                                        type="text"
-                                        inputmode="numeric"
-                                        class="form-control"
-                                        placeholder="000.000.000-00"
-                                        data-key="cpf"
-                                        />
+                                      <input
+                                          id="cpf"
+                                          name="cpf"
+                                          type="text"
+                                          inputmode="numeric"
+                                          class="form-control"
+                                          placeholder="000.000.000-00"
+                                          data-key="cpf"
+                                          data-step="0"
+                                          maxlength="14"
+                                      />
                                 </div>
                             </div>
                             <div class="text-end">
@@ -139,6 +150,7 @@
                                         class="form-control"
                                         placeholder="00000-000"
                                         data-key="cep"
+                                        data-step="1"
                                         />
                                 </div>
                                 <div class="col">
@@ -185,6 +197,7 @@
                                         class="form-control"
                                         placeholder="Cidade"
                                         data-key="cidade"
+                                        data-step="1"
                                         />
                                 </div>
                                 <div class="col">
@@ -196,6 +209,7 @@
                                         class="form-control"
                                         placeholder="Bairro"
                                         data-key="bairro"
+                                        data-step="1"
                                         />
                                 </div>
                             </div>
@@ -209,6 +223,7 @@
                                         class="form-control"
                                         placeholder="Número"
                                         data-key="numero_rua"
+                                        data-step="1"
                                         />
                                 </div>
                                 <div class="col">
@@ -220,6 +235,7 @@
                                         class="form-control"
                                         placeholder="Rua"
                                         data-key="rua"
+                                        data-step="1"
                                         />
                                 </div>
                             </div>
@@ -232,6 +248,7 @@
                                     class="form-control"
                                     placeholder="Complemento"
                                     data-key="complemento"
+                                    data-step="1"
                                     />
                             </div>
                             <div class="text-end">
@@ -248,26 +265,32 @@
                         <div class="form_step" data-step="2">
                             <div class="mb-2">
                                 <label for="login">Login</label>
-                                <input
-                                    id="login"
-                                    name="login"
-                                    type="text"
-                                    class="form-control"
-                                    placeholder="6 letras"
-                                    data-key="login"
-                                    />
+                                  <input
+                                      id="login"
+                                      name="login"
+                                      type="text"
+                                      class="form-control"
+                                      placeholder="6 letras"
+                                      data-key="login"
+                                      data-step="2"
+                                      minlength="6"
+                                      maxlength="6"
+                                  />
                             </div>
                             <div class="password-input-group">
                                 <label for="senha">Senha</label>
-                                <input
-                                    id="senha"
-                                    name="senha"
-                                    type="password"
-                                    class="form-control"
-                                    placeholder="8 letras"
-                                    data-key="senha"
-                                    autocomplete="new-password"
-                                    />
+                                  <input
+                                      id="senha"
+                                      name="senha"
+                                      type="password"
+                                      class="form-control"
+                                      placeholder="8 letras"
+                                      data-key="senha"
+                                      data-step="2"
+                                      autocomplete="new-password"
+                                      minlength="8"
+                                      maxlength="8"
+                                  />
                                 <button
                                     type="button"
                                     class="toggle-password mt-3"
@@ -279,14 +302,17 @@
                             </div>
                             <div class="password-input-group">
                                 <label for="repetir_senha">Repetir senha</label>
-                                <input
-                                    id="repetir_senha"
-                                    type="password"
-                                    class="form-control"
-                                    placeholder="Repita a senha"
-                                    data-key="repetir_senha"
-                                    autocomplete="new-password"
-                                    />
+                                  <input
+                                      id="repetir_senha"
+                                      type="password"
+                                      class="form-control"
+                                      placeholder="Repita a senha"
+                                      data-key="repetir_senha"
+                                      data-step="2"
+                                      autocomplete="new-password"
+                                      minlength="8"
+                                      maxlength="8"
+                                  />
                                 <button
                                     type="button"
                                     class="toggle-password mt-3"
