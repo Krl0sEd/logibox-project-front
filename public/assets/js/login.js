@@ -1,9 +1,3 @@
-import { verificarLogin } from '../assets/js/utils/auth.js';
-
-if (verificarLogin()) {
-    window.location.href = '../pages/dashboard.html';
-}
-
 // Alternar visibilidade da senha
     document.querySelectorAll('.toggle-password').forEach(button => {
       button.addEventListener('click', function() {
@@ -49,39 +43,36 @@ if (verificarLogin()) {
         return;
       }
 
-      // Envio dos dados para o PHP
-        fetch('login.php', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams({ 
-            login: login_input, 
-            senha: senha_input 
-          })
-        })
-        .then(response => response.json())
-        .then(data => {
-    if (data.success) {
+      // Envio dos dados para o PHP (AGORA ENVIA JSON)
+  fetch('http://163.176.193.115/login.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      login: login_input,
+      senha: senha_input
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.sucesso) {
       modal_title.textContent = 'Login bem-sucedido!';
-      modal_message.textContent = data.message || 'Bem-vindo à Logibox.';
+      modal_message.textContent = 'Bem-vindo à Logibox.';
       modal.show();
 
-      // Redirecionar após sucesso (aguarda 800ms só para o usuário ver o modal)
       setTimeout(() => {
-        window.location.href = '../pages/twofa.html';
+        window.location.href = '../pages/dashboard.html';
       }, 800);
 
     } else {
       modal_title.textContent = 'Erro ao entrar';
-      modal_message.textContent = data.message || 'Login ou senha incorretos.';
+      modal_message.textContent = data.error || 'Login ou senha incorretos.';
       modal.show();
     }
   })
-
-        .catch(error => {
-          modal_title.textContent = 'Erro de conexão';
-          modal_message.textContent = 'Não foi possível conectar ao servidor.';
-          modal.show();
-          console.error('Erro:', error);
-        });
-      });
-      
+  .catch(error => {
+    modal_title.textContent = 'Erro de conexão';
+    modal_message.textContent = 'Não foi possível conectar ao servidor.';
+    modal.show();
+    console.error('Erro:', error);
+  });
+});

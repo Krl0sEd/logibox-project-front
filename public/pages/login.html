@@ -23,15 +23,15 @@
           <p>Simplifique o controle de entregas e acesse suas informações com praticidade e segurança.</p>
         </div>
 
-        <form method="POST" action="login.php" id="login_form">
+        <form id="login_form">
           <div class="login-group">
             <label for="login">Login</label>
-            <input type="text" id="login" class="form-control login-input" placeholder="Digite seu login" autocomplete="username">
+            <input type="text" id="login" name="login" class="form-control login-input" placeholder="Digite seu login" autocomplete="username">
           </div>
 
           <div class="login-group password-input-group">
             <label for="senha">Senha</label>
-            <input type="password" id="senha" class="form-control login-input" placeholder="Digite sua senha" autocomplete="current-password">
+            <input type="password" id="senha" name="senha" class="form-control login-input" placeholder="Digite sua senha" autocomplete="current-password">
             <button type="button" class="toggle-password mt-3" data-target="senha" aria-label="Mostrar ou ocultar senha">
               <i class="bi bi-eye"></i>
             </button>

@@ -352,13 +352,13 @@ document.getElementById("multi_step_form").addEventListener("submit", async (e) 
     });
 
     try{
-        const res = await fetch("http://163.176.193.115/usuario.php", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload)
-        });
+      const response = await fetch("http://163.176.193.115/cadastro.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
 
-        const data = await res.json();
+      const data = await response.json();
 
         if(data.sucesso){
             show_modal("Sucesso!", data.sucesso, true);
