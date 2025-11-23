@@ -91,44 +91,40 @@ document.addEventListener("DOMContentLoaded", () => {
     
     
     /* =========================================================
-                         ALERTS E MODAIS
+                              ALERTS
     ========================================================= */
     
-//     // CORREÇÃO: Selecionar elementos DENTRO do DOMContentLoaded
-//     const alert_modelo = document.getElementById("alert2"); // Use o ID correto
-//     const btn_cancelar_modal = document.querySelector(".botao_cancelar"); // "Sim, sair"
-//     const btn_fechar_modal = document.querySelector(".fechar_modal");
-//     const btn_submenu = document.querySelector(".btn_submenu"); // Botão "Sair" do submenu
+document.addEventListener("DOMContentLoaded", () => {
     
-//     //Função abrir alert de confirmação de logout
-//     function abrirAlert() {
-//         console.log("Abrindo alert...");
-//         alert_modelo.classList.add("aberto");
-//         backdrop.classList.add("on");
-//     }
+    const btnSair = document.getElementById("btn_sair");
+    if (!btnSair) return;
 
-//     function fecharAlert() {
-//         console.log("Fechando alert...");
-//         alert_modelo.classList.remove("aberto");
-//         backdrop.classList.remove("on");
-//     }
-    
-//     // CORREÇÃO: Adicionar event listeners apenas se os elementos existirem
-//     if (btn_fechar_modal) {
-//         btn_fechar_modal.addEventListener("click", fecharAlert);
-//     }
-    
-//     if (btn_cancelar_modal) {
-//         btn_cancelar_modal.addEventListener("click", fecharAlert);
-//     }
-    
-//     if (btn_submenu) {
-//         btn_submenu.addEventListener("click", abrirAlert);
-//     }
-    
-//     // CORREÇÃO: Também fechar ao clicar no backdrop
-//     if (backdrop) {
-//         backdrop.addEventListener("click", fecharAlert);
-//     }
+    btnSair.addEventListener("click", () => {
+        abrirAlert("alert2"); // ALERTA: TEM CERTEZA QUE QUER SAIR?
+    });
+
+    // Botão "Sim, sair"
+    const btnConfirmarSair = document.querySelector('#alert2 .botao_cancelar');
+    if (btnConfirmarSair) {
+        btnConfirmarSair.addEventListener('click', () => {
+            mostrarToast(
+                "Sessão encerrada!",
+                "Você foi desconectado com sucesso.",
+                "sucesso"
+            );
+            fecharAlert('alert2');
+            // Aqui você pode colocar um redirecionamento se quiser:
+            // window.location.href = "login.html";
+        });
+    }
+
+    // Botão "Cancelar"
+    const btnCancelarSair = document.querySelector('#alert2 .botao_delete');
+    if (btnCancelarSair) {
+        btnCancelarSair.addEventListener('click', () => {
+            fecharAlert('alert2');
+        });
+    }
+});
 
 });

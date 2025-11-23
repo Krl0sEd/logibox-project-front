@@ -65,7 +65,7 @@
                     </div>
                     <div class="submenu_userinfo">
                          <div class="submenu_area">
-                              <button class="btn_submenu">
+                              <button class="btn_submenu" id="btn_sair">
                                    <i class="bi bi-box-arrow-left"></i>
                                    <span>Sair</span>
                               </button>
@@ -322,20 +322,20 @@
 
      </div>
 
-<!-- Toast -->
-          <div class="toast_modelo" id="toast_unico">
-               <button class="btn_fechar_toast">
-                    <i class="bi bi-x"></i>
-               </button>
-          
-               <div class="toast_content">
-                    <i id="toast_icone" class="bi icone_alerta"></i>
-                    <div class="texto_alerta">
-                         <h4 id="toast_titulo"></h4>
-                         <p id="toast_texto"></p>
-                    </div>
+     <!-- Toast -->
+     <div class="toast_modelo" id="toast_unico">
+          <button class="btn_fechar_toast">
+               <i class="bi bi-x"></i>
+          </button>
+
+          <div class="toast_content">
+               <i id="toast_icone" class="bi icone_alerta"></i>
+               <div class="texto_alerta">
+                    <h4 id="toast_titulo"></h4>
+                    <p id="toast_texto"></p>
                </div>
           </div>
+     </div>
 
      <!-- Submenu da tabela  -->
      <div class="menu_opcoes" id="menuUnico">
@@ -351,344 +351,361 @@
 
      <!-- MODAL -->
 
-   <!-- Criar produto -->
-<div id="modalOverlay" class="hidden">
-     <div id="modalCreate" class="modalBase">
-          <div class="contentModal">
-               <button class="closeButton">
-                    <i class="bi bi-x-lg"></i>
-               </button>
+     <!-- Criar produto -->
+     <div id="modalOverlay" class="hidden">
+          <div id="modalCreate" class="modalBase">
+               <div class="contentModal">
+                    <button class="closeButton">
+                         <i class="bi bi-x-lg"></i>
+                    </button>
 
-               <div class="modalHeader">
-                    <h1>Criar produto</h1>
-               </div>
+                    <div class="modalHeader">
+                         <h1>Criar produto</h1>
+                    </div>
 
-               <div class="modalForm">
-                    <form action="#" method="#" id="formCreateProduto">
-                         <div class="formInfo">
+                    <div class="modalForm">
+                         <form action="#" method="#" id="formCreateProduto">
+                              <div class="formInfo">
 
-                              <div class="formColumn">
+                                   <div class="formColumn">
 
-                                   <div class="formGroup">
-                                        <label class="labelInput" for="create_nome_produto">Nome do produto</label>
-                                        <input type="text" class="input_padrao"
-                                             placeholder="Texto" id="create_nome_produto" name="create_nome_produto" maxlength="25">
-                                   </div>
-
-                                   <div class="formGroup">
-                                        <label class="labelInput" for="create_descricao_produto">Descrição</label>
-                                        <textarea class="input_textarea"
-                                             placeholder="Escreva a descrição do produto" rows="4"
-                                             id="create_descricao_produto" name="create_descricao_produto" maxlength="255"></textarea>
-                                   </div>
-
-                              </div>
-
-                              <div class="formColumn">
-
-                                   <div class="formGroup">
-                                        <label class="labelInput" for="create_categoria_produto">Categoria</label>
-                                        <div class="input_seletor">
-                                             <select id="create_categoria_produto" name="create_categoria_produto"
-                                                  class="seletor">
-                                                  <option value="" disabled selected hidden>Categoria</option>
-                                                  <option value="eletronicos">Eletrônicos</option>
-                                                  <option value="vestuario">Vestuário</option>
-                                                  <option value="saude">Saúde</option>
-                                                  <option value="limpeza">Limpeza</option>
-                                                  <option value="alimento">Alimento</option>
-                                             </select>
-                                             <i class="bi bi-chevron-down"></i>
+                                        <div class="formGroup">
+                                             <label class="labelInput" for="create_nome_produto">Nome do produto</label>
+                                             <input type="text" class="input_padrao" placeholder="Texto"
+                                                  id="create_nome_produto" name="create_nome_produto" maxlength="25">
                                         </div>
 
-                                        <div class="flexInput">
-                                             <div class="formGroup">
-                                                  <label class="labelInput" for="create_quantidade_produto">Quantidade</label>
-                                                  <input type="text" class="input_pequeno" min="1" max="999" maxlength="4" id="create_quantidade_produto"
-                                                       name="create_quantidade_produto" placeholder="Digite a quantidade">
+                                        <div class="formGroup">
+                                             <label class="labelInput" for="create_descricao_produto">Descrição</label>
+                                             <textarea class="input_textarea"
+                                                  placeholder="Escreva a descrição do produto" rows="4"
+                                                  id="create_descricao_produto" name="create_descricao_produto"
+                                                  maxlength="255"></textarea>
+                                        </div>
+
+                                   </div>
+
+                                   <div class="formColumn">
+
+                                        <div class="formGroup">
+                                             <label class="labelInput" for="create_categoria_produto">Categoria</label>
+                                             <div class="input_seletor">
+                                                  <select id="create_categoria_produto" name="create_categoria_produto"
+                                                       class="seletor">
+                                                       <option value="" disabled selected hidden>Categoria</option>
+                                                       <option value="eletronicos">Eletrônicos</option>
+                                                       <option value="vestuario">Vestuário</option>
+                                                       <option value="saude">Saúde</option>
+                                                       <option value="limpeza">Limpeza</option>
+                                                       <option value="alimento">Alimento</option>
+                                                  </select>
+                                                  <i class="bi bi-chevron-down"></i>
                                              </div>
 
-                                             <div class="formGroup">
-                                                  <label class="labelInput" for="create_precouni_produto">Preço unitário</label>
-                                                  <div class="input_moeda">
-                                                       <input type="text" class="input_pequeno" placeholder="0,00"
-                                                            id="create_precouni_produto" name="create_precouni_produto" maxlength="9">
-                                                       <span class="simbolo_moeda">R$</span>
+                                             <div class="flexInput">
+                                                  <div class="formGroup">
+                                                       <label class="labelInput"
+                                                            for="create_quantidade_produto">Quantidade</label>
+                                                       <input type="text" class="input_pequeno" min="1" max="999"
+                                                            maxlength="4" id="create_quantidade_produto"
+                                                            name="create_quantidade_produto"
+                                                            placeholder="Digite a quantidade">
+                                                  </div>
+
+                                                  <div class="formGroup">
+                                                       <label class="labelInput" for="create_precouni_produto">Preço
+                                                            unitário</label>
+                                                       <div class="input_moeda">
+                                                            <input type="text" class="input_pequeno" placeholder="0,00"
+                                                                 id="create_precouni_produto"
+                                                                 name="create_precouni_produto" maxlength="9">
+                                                            <span class="simbolo_moeda">R$</span>
+                                                       </div>
                                                   </div>
                                              </div>
                                         </div>
+
                                    </div>
-
                               </div>
-                         </div>
 
-                         <div class="formButtons">
-                              <button class="botao_criar" id="btnSalvarCreate"><i class="bi bi-plus"></i> Criar item</button>
-                              <button type="reset" class="botao_limpar"><i class="bi bi-trash-fill"></i> Limpar</button>
-                         </div>
-                    </form>
+                              <div class="formButtons">
+                                   <button class="botao_criar" id="btnSalvarCreate"><i class="bi bi-plus"></i> Criar
+                                        item</button>
+                                   <button type="reset" class="botao_limpar"><i class="bi bi-trash-fill"></i>
+                                        Limpar</button>
+                              </div>
+                         </form>
+                    </div>
+
                </div>
-
-          </div>
-     </div>
-
-     <!-- Editar produto -->
-         <!-- Editar produto -->
-<div id="modalEdit" class="modalBase">
-     <div class="contentModal">
-          <button class="closeButton">
-               <i class="bi bi-x-lg"></i>
-          </button>
-
-          <div class="modalHeader">
-               <div class="headerLeft">
-                    <h1>Editar <span id="edit_selectProductName">productName</span></h1>
-                    <p class="modalId" id="edit_id">#0000</p>
-               </div>
-
-               <p class="headerName">
-                    Criado por: <span class="modalHeaderUser" id="edit_userName">nomeUsuario</span>
-               </p>
           </div>
 
-          <div class="modalForm">
-               <form action="#" method="POST" id="formEditProduto">
-                    <div class="formInfo">
+          <!-- Editar produto -->
+          <!-- Editar produto -->
+          <div id="modalEdit" class="modalBase">
+               <div class="contentModal">
+                    <button class="closeButton">
+                         <i class="bi bi-x-lg"></i>
+                    </button>
 
-                         <div class="formColumn">
-
-                              <div class="formGroup">
-                                   <label class="labelInput" for="edit_nome_produto">Nome do produto</label>
-                                   <input type="text" class="input_padrao"
-                                        placeholder="Texto" id="edit_nome_produto" name="edit_nome_produto">
-                              </div>
-
-                              <div class="formGroup">
-                                   <label class="labelInput" for="edit_descricao_produto">Descrição</label>
-                                   <textarea class="input_textarea"
-                                        placeholder="Escreva a descrição do produto" rows="4"
-                                        id="edit_descricao_produto" name="edit_descricao_produto"></textarea>
-                              </div>
-
+                    <div class="modalHeader">
+                         <div class="headerLeft">
+                              <h1>Editar <span id="edit_selectProductName">productName</span></h1>
+                              <p class="modalId" id="edit_id">#0000</p>
                          </div>
 
-                         <div class="formColumn">
+                         <p class="headerName">
+                              Criado por: <span class="modalHeaderUser" id="edit_userName">nomeUsuario</span>
+                         </p>
+                    </div>
 
-                              <div class="formGroup">
-                                   <label class="labelInput" for="edit_categoria_produto">Categoria</label>
-                                   <div class="input_seletor">
-                                        <select id="edit_categoria_produto" name="edit_categoria_produto"
-                                             class="seletor">
-                                             <option value="" disabled selected hidden>Categoria</option>
-                                             <option value="eletronicos">Eletrônicos</option>
-                                             <option value="vestuario">Vestuário</option>
-                                             <option value="saude">Saúde</option>
-                                             <option value="limpeza">Limpeza</option>
-                                             <option value="alimento">Alimento</option>
-                                        </select>
-                                        <i class="bi bi-chevron-down"></i>
-                                   </div>
+                    <div class="modalForm">
+                         <form action="#" method="#" id="formEditProduto">
+                              <div class="formInfo">
 
-                                   <div class="flexInput">
+                                   <div class="formColumn">
+
                                         <div class="formGroup">
-                                             <label class="labelInput" for="edit_quantidade_produto">Quantidade</label>
-                                             <input type="number" class="input_pequeno" maxlength="5"
-                                                  placeholder="Digite a quantidade" id="edit_quantidade_produto"
-                                                  name="edit_quantidade_produto">
+                                             <label class="labelInput" for="edit_nome_produto">Nome do produto</label>
+                                             <input type="text" class="input_padrao" placeholder="Texto"
+                                                  id="edit_nome_produto" name="edit_nome_produto">
                                         </div>
 
                                         <div class="formGroup">
-                                             <label class="labelInput" for="edit_precouni_produto">Preço unitário</label>
-                                             <div class="input_moeda">
-                                                  <input type="number" class="input_pequeno" placeholder="0,00"
-                                                       id="edit_precouni_produto" name="edit_precouni_produto">
-                                                  <span class="simbolo_moeda">R$</span>
+                                             <label class="labelInput" for="edit_descricao_produto">Descrição</label>
+                                             <textarea class="input_textarea"
+                                                  placeholder="Escreva a descrição do produto" rows="4"
+                                                  id="edit_descricao_produto" name="edit_descricao_produto"></textarea>
+                                        </div>
+
+                                   </div>
+
+                                   <div class="formColumn">
+
+                                        <div class="formGroup">
+                                             <label class="labelInput" for="edit_categoria_produto">Categoria</label>
+                                             <div class="input_seletor">
+                                                  <select id="edit_categoria_produto" name="edit_categoria_produto"
+                                                       class="seletor">
+                                                       <option value="" disabled selected hidden>Categoria</option>
+                                                       <option value="alimento">Alimento</option>
+                                                       <option value="higiene">Higiene</option>
+                                                       <option value="eletronicos">Eletrônicos</option>
+                                                       <option value="bebidas">Bebidas</option>
+                                                       <option value="papelaria">Papelaria</option>
+                                                  </select>
+                                                  <i class="bi bi-chevron-down"></i>
                                              </div>
-                                        </div>
-                                   </div>
 
-                              </div>
+                                             <div class="flexInput">
+                                                  <div class="formGroup">
+                                                       <label class="labelInput"
+                                                            for="edit_quantidade_produto">Quantidade</label>
+                                                       <input type="number" class="input_pequeno" maxlength="5"
+                                                            placeholder="Digite a quantidade"
+                                                            id="edit_quantidade_produto" name="edit_quantidade_produto">
+                                                  </div>
 
-                         </div>
-
-                    </div>
-
-                    <div class="formButtons">
-                         <button class="botao_visualizar"><i class="bi bi-eye-fill"></i> Visualizar</button>
-                         <button class="botao_salvar"><i class="bi bi-floppy-fill"></i> Salvar</button>
-                         <button class="botao_excluir"><i class="bi bi-trash-fill"></i> Excluir</button>
-                         <button type="reset" class="botao_limpar"><i class="bi bi-trash-fill"></i> Limpar</button>
-                    </div>
-               </form>
-          </div>
-
-     </div>
-</div>
-
-
-    <!-- Visualizar produto -->
-<div id="modalView" class="modalBase">
-     <div class="contentModal">
-          <button class="closeButton">
-               <i class="bi bi-x-lg"></i>
-          </button>
-
-          <div class="modalHeader">
-               <div class="headerLeft">
-                    <h1>Ver <span id="view_selectProductName">productName</span></h1>
-                    <p class="modalId" id="view_id">#0000</p>
-               </div>
-
-               <p class="headerName">
-                    Criado por: <span class="modalHeaderUser" id="view_userName">nomeUsuario</span>
-               </p>
-          </div>
-
-          <div class="modalForm">
-               <form action="#" method="POST" id="formViewProduto">
-                    
-                    <div class="formInfo">
-
-                         <div class="formColumn">
-
-                              <div class="formGroup">
-                                   <label class="labelInput" for="view_nome_produto">Nome do produto</label>
-                                   <input type="text" class="input_padrao"
-                                        placeholder="Texto" id="view_nome_produto" disabled>
-                              </div>
-
-                              <div class="formGroup">
-                                   <label class="labelInput" for="view_descricao_produto">Descrição</label>
-                                   <textarea class="input_textarea" rows="4"
-                                        placeholder="Escreva a descrição do produto"
-                                        id="view_descricao_produto" disabled></textarea>
-                              </div>
-
-                         </div>
-
-                         <div class="formColumn">
-
-                              <div class="formGroup">
-                                   <label class="labelInput" for="view_categoria_produto">Categoria</label>
-                                   <div class="input_seletor">
-                                        <select id="view_categoria_produto" class="seletor" disabled>
-                                             <option value="" disabled selected hidden>Categoria</option>
-                                             <option value="eletronicos">Eletrônicos</option>
-                                             <option value="vestuario">Vestuário</option>
-                                             <option value="saude">Saúde</option>
-                                             <option value="limpeza">Limpeza</option>
-                                             <option value="alimento">Alimento</option>
-                                        </select>
-                                        <i class="bi bi-chevron-down"></i>
-                                   </div>
-
-                                   <div class="flexInput">
-                                        <div class="formGroup">
-                                             <label class="labelInput" for="view_quantidade_produto">Quantidade</label>
-                                             <input type="number" class="input_pequeno"
-                                                  id="view_quantidade_produto" disabled>
-                                        </div>
-
-                                        <div class="formGroup">
-                                             <label class="labelInput" for="view_precouni_produto">Preço unitário</label>
-                                             <div class="input_moeda">
-                                                  <input type="number" class="input_pequeno"
-                                                       id="view_precouni_produto" disabled>
-                                                  <span class="simbolo_moeda">R$</span>
+                                                  <div class="formGroup">
+                                                       <label class="labelInput" for="edit_precouni_produto">Preço
+                                                            unitário</label>
+                                                       <div class="input_moeda">
+                                                            <input type="number" class="input_pequeno"
+                                                                 placeholder="0,00" id="edit_precouni_produto"
+                                                                 name="edit_precouni_produto">
+                                                            <span class="simbolo_moeda">R$</span>
+                                                       </div>
+                                                  </div>
                                              </div>
+
                                         </div>
+
                                    </div>
 
                               </div>
 
+                              <div class="formButtons">
+                                   <button class="botao_visualizar"><i class="bi bi-eye-fill"></i> Visualizar</button>
+                                   <button class="botao_salvar"><i class="bi bi-floppy-fill"></i> Salvar</button>
+                                   <button class="botao_excluir"><i class="bi bi-trash-fill"></i> Excluir</button>
+                                   <button type="reset" class="botao_limpar"><i class="bi bi-trash-fill"></i>
+                                        Limpar</button>
+                              </div>
+                         </form>
+                    </div>
+
+               </div>
+          </div>
+
+
+          <!-- Visualizar produto -->
+          <div id="modalView" class="modalBase">
+               <div class="contentModal">
+                    <button class="closeButton">
+                         <i class="bi bi-x-lg"></i>
+                    </button>
+
+                    <div class="modalHeader">
+                         <div class="headerLeft">
+                              <h1>Ver <span id="view_selectProductName">productName</span></h1>
+                              <p class="modalId" id="view_id">#0000</p>
                          </div>
 
+                         <p class="headerName">
+                              Criado por: <span class="modalHeaderUser" id="view_userName">nomeUsuario</span>
+                         </p>
                     </div>
 
-                    <div class="formButtons">
-                         <button class="botao_excluir"><i class="bi bi-trash-fill"></i> Excluir</button>
-                         <button class="botao_editar"><i class="bi bi-pencil-fill"></i> Editar</button>
+                    <div class="modalForm">
+                         <form action="#" method="POST" id="formViewProduto">
+
+                              <div class="formInfo">
+
+                                   <div class="formColumn">
+
+                                        <div class="formGroup">
+                                             <label class="labelInput" for="view_nome_produto">Nome do produto</label>
+                                             <input type="text" class="input_padrao" placeholder="Texto"
+                                                  id="view_nome_produto" disabled>
+                                        </div>
+
+                                        <div class="formGroup">
+                                             <label class="labelInput" for="view_descricao_produto">Descrição</label>
+                                             <textarea class="input_textarea" rows="4"
+                                                  placeholder="Escreva a descrição do produto"
+                                                  id="view_descricao_produto" disabled></textarea>
+                                        </div>
+
+                                   </div>
+
+                                   <div class="formColumn">
+
+                                        <div class="formGroup">
+                                             <label class="labelInput" for="view_categoria_produto">Categoria</label>
+                                             <div class="input_seletor">
+                                                  <select id="view_categoria_produto" class="seletor" disabled>
+                                                       <option value="" disabled selected hidden>Categoria</option>
+                                                       <option value="alimento">Alimento</option>
+                                                       <option value="higiene">Higiene</option>
+                                                       <option value="eletronicos">Eletrônicos</option>
+                                                       <option value="bebidas">Bebidas</option>
+                                                       <option value="papelaria">Papelaria</option>
+                                                  </select>
+                                                  <i class="bi bi-chevron-down"></i>
+                                             </div>
+
+                                             <div class="flexInput">
+                                                  <div class="formGroup">
+                                                       <label class="labelInput"
+                                                            for="view_quantidade_produto">Quantidade</label>
+                                                       <input type="number" class="input_pequeno"
+                                                            id="view_quantidade_produto" disabled>
+                                                  </div>
+
+                                                  <div class="formGroup">
+                                                       <label class="labelInput" for="view_precouni_produto">Preço
+                                                            unitário</label>
+                                                       <div class="input_moeda">
+                                                            <input type="number" class="input_pequeno"
+                                                                 id="view_precouni_produto" disabled>
+                                                            <span class="simbolo_moeda">R$</span>
+                                                       </div>
+                                                  </div>
+                                             </div>
+
+                                        </div>
+
+                                   </div>
+
+                              </div>
+
+                              <div class="formButtons">
+                                   <button class="botao_excluir"><i class="bi bi-trash-fill"></i> Excluir</button>
+                                   <button class="botao_editar"><i class="bi bi-pencil-fill"></i> Editar</button>
+                              </div>
+
+                         </form>
                     </div>
 
-               </form>
+               </div>
           </div>
 
-     </div>
-</div>
 
 
+          <!-- ALERTS -->
 
-     <!-- ALERTS -->
-
-     <!-- Alert ao tentar fechar modal sem salvar-->
-     <div class="alert_modelo" id="alert0">
-          <div class="conteudo_alert">
-               <span class="fechar_modal">&times;</span>
-               <div class="icone_modal">
-                     <div class="icone_modal_fill">
-                    <i class="bi bi-exclamation-circle-fill"></i>
+          <!-- Alert ao tentar fechar modal sem salvar-->
+          <div class="alert_modelo" id="alert0">
+               <div class="conteudo_alert">
+                    <span class="fechar_modal">&times;</span>
+                    <div class="icone_modal">
+                         <div class="icone_modal_fill">
+                              <i class="bi bi-exclamation-circle-fill"></i>
+                         </div>
+                    </div>
+                    <h2>Tem certeza?</h2>
+                    <p>Deseja realmente sair sem salvar? Você perderá todas as modificações.</p>
+                    <div class="alert_botoes">
+                         <button class="botao_cancelar">Sim, sair</button>
+                         <button class="botao_delete">Cancelar</button>
                     </div>
                </div>
-               <h2>Tem certeza?</h2>
-               <p>Deseja realmente sair sem salvar? Você perderá todas as modificações.</p>
-               <div class="botoes_modal">
-                    <button class="botao_cancelar">Sim, sair</button>
-                    <button class="botao_delete">Cancelar</button>
-               </div>
           </div>
-     </div>
 
-     <!-- Ao tentar deletar um produto/usuário -->
-     <div class="alert_modelo" id="alert1">
-          <div class="conteudo_alert">
-               <span class="fechar_modal">&times;</span>
-               <div class="icone_modal">
-                     <div class="icone_modal_fill">
-                    <i class="bi bi-trash-fill"></i>
+          <!-- Ao tentar deletar um produto/usuário -->
+          <div class="alert_modelo" id="alert1">
+               <div class="conteudo_alert">
+                    <span class="fechar_modal">&times;</span>
+                    <div class="icone_modal">
+                         <div class="icone_modal_fill">
+                              <i class="bi bi-trash-fill"></i>
+                         </div>
+                    </div>
+                    <h2>Deletar placeHolder</h2>
+                    <p>Deseja realmente deletar esse placeHolder? Essa ação é irreversível.</p>
+                    <div class="alert_botoes">
+                         <button class="botao_cancelar">Sim, deletar</button>
+                         <button class="botao_delete">Cancelar</button>
                     </div>
                </div>
-               <h2>Deletar placeHolder</h2>
-               <p>Deseja realmente deletar esse placeHolder? Essa ação é irreversível.</p>
-               <div class="botoes_modal">
-                    <button class="botao_cancelar">Sim, deletar</button>
-                    <button class="botao_delete">Cancelar</button>
-               </div>
           </div>
-     </div>
 
-     <!-- Alert globais -->
-     <div class="alert_modelo" id="alert2">
-          <div class="conteudo_alert">
-               <button class="fechar_modal">
-                    <span class="fechar_modal_icone">&times;</span>
-               </button>
-               <div class="icone_modal">
-                    <div class="icone_modal_fill">
-                         <i class="bi bi-box-arrow-left"></i>
+          <!-- Alert globais -->
+          <div class="alert_modelo" id="alert2">
+               <div class="conteudo_alert">
+                    <button class="fechar_modal">
+                         <span class="fechar_modal_icone">&times;</span>
+                    </button>
+
+                    <div class="icone_modal">
+                         <div class="icone_modal_fill">
+                              <i class="bi bi-box-arrow-left"></i>
+                         </div>
+                    </div>
+
+                    <h2>Encerrar sessão</h2>
+                    <p>Tem certeza que deseja sair da sua conta? Essa ação desconectará você imediatamente.</p>
+                    <div class="alert_botoes">
+                         <button class="botao_cancelar">Sim, sair</button>
+                         <button class="botao_delete">Cancelar</button>
                     </div>
                </div>
-               <h2>Encerrar sessão</h2>
-               <p>Tem certeza que deseja sair da sua conta? Essa ação desconectará você imediatamente.</p>
-               <div class="botoes_modal">
-                    <button class="botao_cancelar">Sim, sair</button>
-                    <button class="botao_delete">Cancelar</button>
-               </div>
           </div>
-     </div>
-     
-     <div id="backdrop" class="backdrop"></div> <!-- adiciona um backdrop para o sidebar em telas pequenas -->
-     
-     
-     
-             
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-          crossorigin="anonymous"></script>
-     <script src="../assets/js/estoque.js"></script>
-     <script src="../assets/js/utils/acessibilidade.js"></script>
-     <script src="../assets/js/utils/layout.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+          <div id="backdrop" class="backdrop"></div> <!-- adiciona um backdrop para o sidebar em telas pequenas -->
+
+
+
+
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+               integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+               crossorigin="anonymous"></script>
+
+          <script src="../assets/js/estoque.js"></script>
+          <script src="../assets/js/utils/acessibilidade.js"></script>
+          <script src="../assets/js/utils/layout.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </body>
 
 </html>

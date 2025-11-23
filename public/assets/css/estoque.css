@@ -687,11 +687,30 @@ main {
      font-size: var(--fs-sm);
 }
 
+/* Input de pesquisa */
+.input_padrao {
+     border: 1px solid var(--component-dark-1);
+     border-radius: 20px;
+     color: var(--text-main);
+     padding: 10px 12px;
+     outline: none;
+     box-sizing: border-box;
+     background-color: transparent;
+     padding-left: 40px;
+     max-width: 100%;
+     width: 300px;
+     font-size: var(--fs-sm);
+}
+
 .input_pesquisa {
      position: relative;
      display: inline-block;
      padding-left: 2.2em;
      cursor: pointer;
+}
+
+.input_pesquisa #pesquisa {
+     border-radius: 20px;
 }
 
 .input_pesquisa i {
@@ -848,7 +867,7 @@ main {
      height: 100%;
      background-color: #08080871;
      z-index: 999;
-     display:none;
+     display: none;
      justify-content: center;
      align-items: center;
      overflow: hidden;
@@ -867,7 +886,7 @@ main {
      overflow-y: auto;
      border-radius: 10px;
      box-shadow: 0px 0px 15px 5px var(--component-shadow);
-      animation: aparecer 0.3s ease forwards;
+     animation: aparecer 0.3s ease forwards;
 }
 
 .contentModal {
@@ -963,11 +982,11 @@ main {
      color: var(--text-main);
 }
 
-   .formButtons {
-          display: flex;
-          justify-content: space-around;
-          align-items: center;
-     }
+.formButtons {
+     display: flex;
+     justify-content: space-around;
+     align-items: center;
+}
 
 
 /* ================= INPUTS CONFIG ================= */
@@ -1150,7 +1169,7 @@ main {
      margin: 10px 0 0;
 }
 
-.botoes_modal {
+.alert_botoes {
      margin-top: 20px;
      display: flex;
      justify-content: center;
@@ -1158,7 +1177,7 @@ main {
 }
 
 /* Ícones específicos por alert */
-#alert0 .icone_modal_fill{
+#alert0 .icone_modal_fill {
      color: rgb(255, 205, 48);
      margin-left: 10px;
 }
@@ -1169,7 +1188,7 @@ main {
 }
 
 #alert0 .conteudo_alert i {
-      color: rgb(255, 205, 48);
+     color: rgb(255, 205, 48);
 }
 
 #alert1 .conteudo_alert i {
@@ -1189,67 +1208,77 @@ main {
      background-color: rgba(28, 73, 255, 0.349);
      margin-left: 10px;
 }
+
 /* Toast base */
 .toast_modelo {
-    position: fixed;
-    left: 50%;
-    top: 20px;
-    transform: translateX(-50%) translateY(20px);
-    background-color: var(--component-bg-1);
-    border-radius: 10px;
-    padding: 12px 16px;
-    box-shadow: 0 4px 8px var(--component-shadow);
-    width: 450px;
-    z-index: 999999;
-    opacity: 0;
-    transition: all 0.4s ease;
-    font-family: var(--font-family-base);
+     position: fixed;
+     left: 50%;
+     top: 20px;
+     transform: translateX(-50%) translateY(20px);
+     background-color: var(--component-bg-1);
+     border-radius: 10px;
+     padding: 12px 16px;
+     box-shadow: 0 4px 8px var(--component-shadow);
+     width: 450px;
+     z-index: 999999;
+     opacity: 0;
+     transition: all 0.4s ease;
+     font-family: var(--font-family-base);
 }
 
 /* Conteúdo */
 .toast_content {
-    display: flex;
-    gap: 12px;
+     display: flex;
+     gap: 12px;
 }
 
 /* Animação */
 .toast_modelo.show {
-    opacity: 1;
+     opacity: 1;
 }
 
 /* Ícone */
+
 .icone_alerta {
-    font-size: 36px;
-    padding: 2px 10px;
-    border-radius: 50%;
-    align-items: center;
+     font-size: 36px;
+     padding: 8px;
+     /* Padding uniforme */
+     border-radius: 50%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     min-width: 52px;
+     /* Largura mínima fixa */
+     height: 52px;
+     /* Altura fixa */
+     box-sizing: border-box;
 }
 
 /* Botão fechar */
 .btn_fechar_toast {
-    background: none;
-    border: none;
-    position: absolute;
-    left: 93%;
-    top: 10%;
+     background: none;
+     border: none;
+     position: absolute;
+     left: 93%;
+     top: 10%;
 }
 
 .btn_fechar_toast i {
-    color: var(--text-highcontrast);
+     color: var(--text-highcontrast);
 }
 
 /* Texto */
 .texto_alerta h4 {
-    margin: 0 0 4px 0;
-    font-size: var(--fs-md);
-    font-weight: bold;
-    color: var(--text-highcontrast);
+     margin: 0 0 4px 0;
+     font-size: var(--fs-md);
+     font-weight: bold;
+     color: var(--text-highcontrast);
 }
 
 .texto_alerta p {
-    margin: 0;
-    font-size: var(--fs-sm);
-    color: var(--text-hierarchy-2);
+     margin: 0;
+     font-size: var(--fs-sm);
+     color: var(--text-hierarchy-2);
 }
 
 /* ==========================================
@@ -1258,20 +1287,22 @@ main {
 
 /* SUCESSO */
 .toast_sucesso {
-    border-top: solid 4px #28a745;
+     border-top: solid 4px #28a745;
 }
+
 .toast_sucesso .icone_alerta {
-    color: #28a745;
-    background-color: #28a7451a;
+     color: #28a745;
+     background-color: #28a7451a;
 }
 
 /* ERRO */
 .toast_erro {
-    border-top: solid 4px #dc3545;
+     border-top: solid 4px #dc3545;
 }
+
 .toast_erro .icone_alerta {
-    color: #dc3545;
-    background-color: #fa23233d;
+     color: #dc3545;
+     background-color: #fa23233d;
 }
 
 /* =========================================================
@@ -1287,99 +1318,99 @@ main {
 .botao_visualizar,
 .botao_cancelar,
 .botao_delete {
-    border-radius: 6px;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    line-height: 1;
-    gap: 7px;
-    transition: all 0.3s ease;
+     border-radius: 6px;
+     cursor: pointer;
+     display: inline-flex;
+     align-items: center;
+     line-height: 1;
+     gap: 7px;
+     transition: all 0.3s ease;
 }
 
 /* Botões principais com fundo vermelho (mantidos) */
 .botao,
 .botao_criar,
 .botao_salvar {
-    background-color: var(--logo-primary);
-    color: #ffffff;
-    border: none;
-    font-size: 18px;
-    white-space: nowrap;
+     background-color: var(--logo-primary);
+     color: #ffffff;
+     border: none;
+     font-size: 18px;
+     white-space: nowrap;
 }
 
 .botao {
-    padding: 13px 30px;
+     padding: 13px 30px;
 }
 
 .botao_criar,
 .botao_salvar {
-    padding: 11px 20px;
+     padding: 11px 20px;
 }
 
 .botao_criar i {
-    font-size: 25px;
+     font-size: 25px;
 }
 
 .botao:hover,
 .botao_criar:hover,
 .botao_salvar:hover {
-    background-color: var(--logo-hover);
+     background-color: var(--logo-hover);
 }
 
 /* Botões com borda e fundo TRANSPARENTE */
 .botao_limpar {
-    color: var(--text-hierarchy-1);
-    padding: 5px 17px;
-    border: 1px solid var(--text-hierarchy-1);
-    font-size: 16px;
-    background-color: transparent;
+     color: var(--text-hierarchy-1);
+     padding: 5px 17px;
+     border: 1px solid var(--text-hierarchy-1);
+     font-size: 16px;
+     background-color: transparent;
 }
 
 .botao_excluir,
 .botao_editar,
 .botao_visualizar {
-    color: var(--logo-primary);
-    padding: 11px 20px;
-    border: 1px solid var(--logo-primary);
-    font-size: 16px;
-    background-color: transparent;
+     color: var(--logo-primary);
+     padding: 11px 20px;
+     border: 1px solid var(--logo-primary);
+     font-size: 16px;
+     background-color: transparent;
 }
 
 .botao_delete {
-    color: var(--text-hierarchy-1);
-    border: 1px solid var(--text-hierarchy-1);
-    padding: 11px 20px;
-    font-size: 16px;
-    background-color: transparent;
+     color: var(--text-hierarchy-1);
+     border: 1px solid var(--text-hierarchy-1);
+     padding: 11px 20px;
+     font-size: 16px;
+     background-color: transparent;
 }
 
 .botao_cancelar {
-    background-color: var(--component-dark-main);
-    color: var(--text-oposite);
-    padding: 11px 20px;
-    border: none;
-    font-size: 18px;
+     background-color: var(--component-dark-main);
+     color: var(--text-oposite);
+     padding: 11px 20px;
+     border: none;
+     font-size: 18px;
 }
 
 /* Hover */
 .botao_limpar:hover {
-    background-color: var(--component-bg-2);
-    border-color: var(--component-dark-2);
+     background-color: var(--component-bg-2);
+     border-color: var(--component-dark-2);
 }
 
 .botao_excluir:hover,
 .botao_editar:hover,
 .botao_visualizar:hover {
-    background-color: var(--logo-active);
+     background-color: var(--logo-active);
 }
 
 .botao_delete:hover {
-    color: var(--component-dark-2);
-    border-color: var(--component-dark-2);
+     color: var(--component-dark-2);
+     border-color: var(--component-dark-2);
 }
 
 .botao_cancelar:hover {
-    background-color: var(--component-dark-1);
+     background-color: var(--component-dark-1);
 }
 
 
