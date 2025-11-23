@@ -835,8 +835,241 @@ main {
      color: var(--logo-primary);
 }
 
+
 /* =========================================================
-                       ALERT / MODAL
+                    MODAL CONTAINER
+========================================================= */
+
+#modalOverlay {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background-color: #08080871;
+     z-index: 999;
+     display:none;
+     justify-content: center;
+     align-items: center;
+     overflow: hidden;
+}
+
+#modalOverlay.on {
+     display: flex;
+}
+
+.modalBase {
+     background-color: var(--component-bg-1);
+     max-width: 1000px;
+     max-height: 95vh;
+     margin: 50px 20px 30px 20px;
+     display: none;
+     overflow-y: auto;
+     border-radius: 10px;
+     box-shadow: 0px 0px 15px 5px var(--component-shadow);
+      animation: aparecer 0.3s ease forwards;
+}
+
+.contentModal {
+     padding: 20px;
+     width: 100%;
+}
+
+
+/* ================= HEADER ================= */
+
+.modalHeader {
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     align-items: center;
+     padding: 12px 1px;
+     gap: 10px;
+     border-bottom: 1px solid var(--component-dark-1);
+}
+
+.headerLeft {
+     display: flex;
+     align-items: center;
+     gap: 10px;
+}
+
+.modalHeader h1 {
+     margin-left: 20px;
+     font-size: var(--fs-xl);
+     font-weight: 600;
+     color: var(--text-main);
+}
+
+.modalHeader p {
+     color: var(--text-hierarchy-2);
+     margin-right: 10px;
+     font-size: var(--fs-sm);
+}
+
+.closeButton {
+     background-color: transparent;
+     border: none;
+     font-size: 25px;
+     color: var(--component-dark-main);
+}
+
+.closeButton:hover {
+     color: var(--logo-primary);
+     cursor: pointer;
+     transition: 0.3s;
+}
+
+/* ================= FORM ================= */
+.modalForm {
+     margin: 70px 40px 30px 40px;
+     display: flex;
+     justify-content: center;
+}
+
+.formInfo {
+     display: flex;
+     flex-wrap: wrap;
+     gap: 24px;
+     width: 100%;
+     max-width: 900px;
+}
+
+.formGroup {
+     display: flex;
+     flex-direction: column;
+     gap: 6px;
+     margin-bottom: 20px;
+}
+
+
+/* Organização dos inputs */
+
+.formColumn {
+     display: flex;
+     flex-direction: column;
+     flex: 1;
+}
+
+.flexInput {
+     display: flex;
+     gap: 20px;
+     align-items: flex-end;
+     margin-top: 10%;
+}
+
+.labelInput {
+     font-size: 16px;
+     color: var(--text-main);
+}
+
+   .formButtons {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+     }
+
+
+/* ================= INPUTS CONFIG ================= */
+
+.input_padrao,
+.input_textarea,
+.input_pequeno,
+.seletor {
+     border: 1px solid var(--component-dark-1);
+     border-radius: 6px;
+     font-size: 16px;
+     color: var(--text-main);
+     padding: 10px 12px;
+     outline: none;
+     box-sizing: border-box;
+     background-color: var(--component-bg-1);
+}
+
+.input_padrao,
+.input_textarea {
+     width: 100%;
+     max-width: 300px;
+     color: var(--text-disabled);
+}
+
+.input_pequeno {
+     width: 100%;
+}
+
+.input_padrao::placeholder,
+.input_textarea::placeholder {
+     font-size: var(--fs-sm);
+}
+
+/* Inputs com ícones */
+
+.input_seletor {
+     position: relative;
+     display: flex;
+     align-items: center;
+     width: 100%;
+}
+
+.input_moeda {
+     position: relative;
+     display: flex;
+     align-items: center;
+}
+
+.input_moeda span {
+     position: absolute;
+     left: 10px;
+     color: var(--text-main);
+}
+
+.input_moeda input {
+     padding-left: 35px;
+}
+
+/* Padding relativo ao ícone */
+.input_senha .input_padrao {
+     padding-right: 2.2em;
+}
+
+.input_padrao {
+     padding-left: 2.2em;
+}
+
+.input_seletor .seletor {
+     width: 100%;
+     padding-right: 2.2em;
+     -webkit-appearance: none;
+     -moz-appearance: none;
+     appearance: none;
+}
+
+/* Ícones posicionados */
+.input_senha i,
+.input_seletor i {
+     position: absolute;
+     top: 50%;
+     transform: translateY(-50%);
+     font-size: 1em;
+     cursor: pointer;
+}
+
+/* ícones dos inputs */
+.input_senha i {
+     right: 12px;
+     pointer-events: auto;
+}
+
+.input_seletor i {
+     right: 12px;
+     pointer-events: none;
+}
+
+
+
+
+/* =========================================================
+                              ALERT 
 ========================================================= */
 
 .alert_modelo {
@@ -848,7 +1081,7 @@ main {
      background: rgba(0, 0, 0, 0.5);
      z-index: 999;
      opacity: 1;
-     transition: opacity 0.3s ease;
+     transition: aparecer 0.3s ease;
 }
 
 .alert_modelo.aberto {
@@ -900,7 +1133,6 @@ main {
 }
 
 .conteudo_alert .icone_modal_fill {
-     background-color: rgba(28, 73, 255, 0.349);
      padding: 10px 20px;
      border-radius: 50px;
 }
@@ -926,8 +1158,18 @@ main {
 }
 
 /* Ícones específicos por alert */
-.conteudo_alert i {
+#alert0 .icone_modal_fill{
      color: rgb(255, 205, 48);
+     margin-left: 10px;
+}
+
+#alert0 .icone_modal_fill {
+     background-color: rgba(255, 217, 0, 0.2);
+     margin-left: 10px;
+}
+
+#alert0 .conteudo_alert i {
+      color: rgb(255, 205, 48);
 }
 
 #alert1 .conteudo_alert i {
@@ -943,6 +1185,94 @@ main {
      color: rgb(28, 74, 255);
 }
 
+#alert2 .icone_modal_fill {
+     background-color: rgba(28, 73, 255, 0.349);
+     margin-left: 10px;
+}
+/* Toast base */
+.toast_modelo {
+    position: fixed;
+    left: 50%;
+    top: 20px;
+    transform: translateX(-50%) translateY(20px);
+    background-color: var(--component-bg-1);
+    border-radius: 10px;
+    padding: 12px 16px;
+    box-shadow: 0 4px 8px var(--component-shadow);
+    width: 450px;
+    z-index: 999999;
+    opacity: 0;
+    transition: all 0.4s ease;
+    font-family: var(--font-family-base);
+}
+
+/* Conteúdo */
+.toast_content {
+    display: flex;
+    gap: 12px;
+}
+
+/* Animação */
+.toast_modelo.show {
+    opacity: 1;
+}
+
+/* Ícone */
+.icone_alerta {
+    font-size: 36px;
+    padding: 2px 10px;
+    border-radius: 50%;
+    align-items: center;
+}
+
+/* Botão fechar */
+.btn_fechar_toast {
+    background: none;
+    border: none;
+    position: absolute;
+    left: 93%;
+    top: 10%;
+}
+
+.btn_fechar_toast i {
+    color: var(--text-highcontrast);
+}
+
+/* Texto */
+.texto_alerta h4 {
+    margin: 0 0 4px 0;
+    font-size: var(--fs-md);
+    font-weight: bold;
+    color: var(--text-highcontrast);
+}
+
+.texto_alerta p {
+    margin: 0;
+    font-size: var(--fs-sm);
+    color: var(--text-hierarchy-2);
+}
+
+/* ==========================================
+   APARÊNCIAS DOS TIPOS DE TOAST
+========================================== */
+
+/* SUCESSO */
+.toast_sucesso {
+    border-top: solid 4px #28a745;
+}
+.toast_sucesso .icone_alerta {
+    color: #28a745;
+    background-color: #28a7451a;
+}
+
+/* ERRO */
+.toast_erro {
+    border-top: solid 4px #dc3545;
+}
+.toast_erro .icone_alerta {
+    color: #dc3545;
+    background-color: #fa23233d;
+}
 
 /* =========================================================
                        BOTÕES USADOS
@@ -974,6 +1304,7 @@ main {
     color: #ffffff;
     border: none;
     font-size: 18px;
+    white-space: nowrap;
 }
 
 .botao {
@@ -1024,7 +1355,7 @@ main {
 
 .botao_cancelar {
     background-color: var(--component-dark-main);
-    color: #ffffff;
+    color: var(--text-oposite);
     padding: 11px 20px;
     border: none;
     font-size: 18px;
@@ -1050,7 +1381,6 @@ main {
 .botao_cancelar:hover {
     background-color: var(--component-dark-1);
 }
-
 
 
 /* =========================================================
@@ -1275,6 +1605,11 @@ main {
           overflow: hidden;
           text-overflow: ellipsis;
      }
+
+     .page_header .botao_criar {
+          padding: 8px 12px;
+          font-size: var(--fs-sm);
+     }
 }
 
 /* =========================================================
@@ -1377,20 +1712,106 @@ main {
      .table_conteudo td {
           padding: 5px 15px;
      }
+}
 
-     /* =========================================================
+/* =========================================================
+                   MEDIA QUERY - MODAL
+========================================================= */
+@media (max-width: 930px) {
+     .formContainer {
+          gap: 20px;
+     }
+}
+
+@media (max-width: 768px) {
+     .formContainer {
+          flex-direction: column;
+     }
+
+     #content {
+          padding: 10px;
+     }
+
+     .formInfo {
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+     }
+
+     .input_moeda input {
+          padding-left: 30px;
+     }
+
+     .formGroup {
+          width: 100%;
+     }
+
+     .formButtons {
+          padding-bottom: 35px;
+          flex-wrap: wrap;
+          gap: 25px;
+          max-width: 90%;
+     }
+
+     .input_textarea {
+          position: relative;
+          display: flex;
+          align-items: center;
+          width: 100%;
+     }
+}
+
+@media (max-width: 600px) {
+     .formButtons {
+          flex-direction: column;
+     }
+
+     .botao_excluir,
+     .botao_salvar,
+     .botao_limpar,
+     .botao_visualizar {
+          width: 100%;
+          max-width: 250px;
+          justify-content: center;
+     }
+
+     .modalHeader {
+          padding: 0px;
+          flex-direction: column;
+          justify-content: center;
+     }
+
+     .modalHeader h1 {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          width: 300px;
+     }
+}
+
+@media (max-width: 478px) {
+
+     .modalHeader h1 {
+          font-size: var(--fs-lg);
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          width: 200px;
+     }
+}
+
+/* =========================================================
                        ANIMAÇÕES
 ========================================================= */
 
-     @keyframes aparecer {
-          from {
-               opacity: 0;
-               transform: scale(0.8);
-          }
+@keyframes aparecer {
+     from {
+          opacity: 0;
+          transform: scale(0.8);
+     }
 
-          to {
-               opacity: 1;
-               transform: scale(1);
-          }
+     to {
+          opacity: 1;
+          transform: scale(1);
      }
 }

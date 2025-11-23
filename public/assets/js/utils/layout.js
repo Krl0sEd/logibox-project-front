@@ -94,47 +94,41 @@ document.addEventListener("DOMContentLoaded", () => {
                          ALERTS E MODAIS
     ========================================================= */
     
-    // CORREÇÃO: Selecionar elementos DENTRO do DOMContentLoaded
-    const alert_modelo = document.getElementById("alert2"); // Use o ID correto
-    const btn_cancelar_modal = document.querySelector(".botao_cancelar"); // "Sim, sair"
-    const btn_fechar_modal = document.querySelector(".fechar_modal");
-    const btn_submenu = document.querySelector(".btn_submenu"); // Botão "Sair" do submenu
+//     // CORREÇÃO: Selecionar elementos DENTRO do DOMContentLoaded
+//     const alert_modelo = document.getElementById("alert2"); // Use o ID correto
+//     const btn_cancelar_modal = document.querySelector(".botao_cancelar"); // "Sim, sair"
+//     const btn_fechar_modal = document.querySelector(".fechar_modal");
+//     const btn_submenu = document.querySelector(".btn_submenu"); // Botão "Sair" do submenu
     
-    // DEBUG: Verificar se os elementos foram encontrados
-    console.log("Alert modelo:", alert_modelo);
-    console.log("Botão submenu:", btn_submenu);
-    console.log("Botão cancelar:", btn_cancelar_modal);
-    console.log("Botão fechar:", btn_fechar_modal);
-    
-    //Função abrir alert de confirmação de logout
-    function abrirAlert() {
-        console.log("Abrindo alert...");
-        alert_modelo.classList.add("aberto");
-        backdrop.classList.add("on");
-    }
+//     //Função abrir alert de confirmação de logout
+//     function abrirAlert() {
+//         console.log("Abrindo alert...");
+//         alert_modelo.classList.add("aberto");
+//         backdrop.classList.add("on");
+//     }
 
-    function fecharAlert() {
-        console.log("Fechando alert...");
-        alert_modelo.classList.remove("aberto");
-        backdrop.classList.remove("on");
-    }
+//     function fecharAlert() {
+//         console.log("Fechando alert...");
+//         alert_modelo.classList.remove("aberto");
+//         backdrop.classList.remove("on");
+//     }
     
-    // CORREÇÃO: Adicionar event listeners apenas se os elementos existirem
-    if (btn_fechar_modal) {
-        btn_fechar_modal.addEventListener("click", fecharAlert);
-    }
+//     // CORREÇÃO: Adicionar event listeners apenas se os elementos existirem
+//     if (btn_fechar_modal) {
+//         btn_fechar_modal.addEventListener("click", fecharAlert);
+//     }
     
-    if (btn_cancelar_modal) {
-        btn_cancelar_modal.addEventListener("click", fecharAlert);
-    }
+//     if (btn_cancelar_modal) {
+//         btn_cancelar_modal.addEventListener("click", fecharAlert);
+//     }
     
-    if (btn_submenu) {
-        btn_submenu.addEventListener("click", abrirAlert);
-    }
+//     if (btn_submenu) {
+//         btn_submenu.addEventListener("click", abrirAlert);
+//     }
     
-    // CORREÇÃO: Também fechar ao clicar no backdrop
-    if (backdrop) {
-        backdrop.addEventListener("click", fecharAlert);
-    }
+//     // CORREÇÃO: Também fechar ao clicar no backdrop
+//     if (backdrop) {
+//         backdrop.addEventListener("click", fecharAlert);
+//     }
 
 });
