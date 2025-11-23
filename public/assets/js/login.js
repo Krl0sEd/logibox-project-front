@@ -84,3 +84,4 @@ if (verificarLogin()) {
           console.error('Erro:', error);
         });
       });
+      
