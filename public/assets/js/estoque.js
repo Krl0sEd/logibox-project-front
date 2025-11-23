@@ -1,4 +1,13 @@
+import { initAuth, logout } from '../assets/js/utils/auth.js';
+
 document.addEventListener("DOMContentLoaded", () => {
+    initAuth(); // verifica se o usuário tá logado e controla a sidebar
+
+    // Botão de logout
+    const btnLogout = document.getElementById('btn-logout');
+    if (btnLogout) {
+        btnLogout.addEventListener('click', logout);
+    }
 
     /* ========================================
                     PESQUISA NA TABELA
