@@ -55,6 +55,10 @@
   .then(response => response.json())
   .then(data => {
     if (data.sucesso) {
+      localStorage.setItem("user", JSON.stringify({
+    nome: usuario.nome,
+    tipo: usuario.tipo
+}));
       modal_title.textContent = 'Login bem-sucedido!';
       modal_message.textContent = 'Bem-vindo à Logibox.';
       modal.show();
