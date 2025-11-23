@@ -1,3 +1,5 @@
+import { initAuth, logout } from '../assets/js/utils/auth.js';
+
 document.addEventListener("DOMContentLoaded", () => {
      /* ========================================
                      VARIÁVEIS GLOBAIS
