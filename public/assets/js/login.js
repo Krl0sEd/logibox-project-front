@@ -1,4 +1,8 @@
-import { salvarUsuarioLocalStorage } from '../assets/js/utils/auth.js';
+import { verificarLogin } from '../assets/js/utils/auth.js';
+
+if (verificarLogin()) {
+    window.location.href = '../pages/dashboard.html';
+}
 
 // Alternar visibilidade da senha
     document.querySelectorAll('.toggle-password').forEach(button => {

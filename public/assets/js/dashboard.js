@@ -1,4 +1,12 @@
+import { initAuth, logout } from '../assets/js/utils/auth.js';
+
 document.addEventListener("DOMContentLoaded", () => {
+    initAuth();
+
+    const btnLogout = document.getElementById('btn-logout');
+    if (btnLogout) {
+        btnLogout.addEventListener('click', logout);
+    }
 
      /* ========================================
                          Gráficos
