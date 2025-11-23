@@ -1,6 +1,14 @@
-import { initAuth, logout } from '../assets/js/utils/auth.js';
-
 document.addEventListener("DOMContentLoaded", () => {
+
+
+     /* ========================================
+                         AUTH
+     ========================================*/
+     if (window.auth && window.auth.initAuth) {
+          window.auth.initAuth();
+     }
+
+
      /* ========================================
                      VARIÁVEIS GLOBAIS
      ========================================*/
@@ -701,7 +709,7 @@ document.addEventListener("DOMContentLoaded", () => {
           });
 
           if (temAlgoDigitado) {
-               mostrarToast(  
+               mostrarToast(
                     "Campos limpos!",
                     "Todos os campos foram resetados com sucesso.",
                     "sucesso"
@@ -723,11 +731,17 @@ document.addEventListener("DOMContentLoaded", () => {
           abrirAlert("alert1");
      });
 
+
      /* ================================
          CONFIGURAÇÃO DOS BOTÕES DE ALERT
      ================================*/
      document.getElementById("btn_sair").addEventListener("click", () => {
-          abrirAlert("alert2");
+          if (window.auth && window.auth.logout) {
+               abrirAlert("alert2");
+          } else {
+               // Fallback caso o auth não carregue
+               abrirAlert("alert2");
+          }
      });
 
      // Alert1 - Excluir
@@ -767,19 +781,13 @@ document.addEventListener("DOMContentLoaded", () => {
                "sucesso"
           );
           fecharAlert('alert2');
-          fecharModal();
-     });
 
-     document.querySelector('#alert2 .botao_delete').addEventListener('click', function () {
-          fecharAlert('alert2');
-     });
-
-     document.querySelectorAll('.fechar_modal').forEach(btn => {
-          btn.addEventListener('click', function () {
-               const alert = this.closest('.alert_modelo');
-               if (alert) {
-                    fecharAlert(alert.id);
-               }
-          });
+          if (window.auth && window.auth.logout) {
+               setTimeout(() => {
+                    window.auth.logout();
+               }, 500);
+          } else {
+               fecharModal();
+          }
      });
 });

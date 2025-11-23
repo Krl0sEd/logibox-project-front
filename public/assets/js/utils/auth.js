@@ -1,7 +1,7 @@
 // ========================
 // SALVAR USUÁRIO NO LOCALSTORAGE
 // ========================
-export function salvarUsuarioLocalStorage(usuario) {
+function salvarUsuarioLocalStorage(usuario) {
   // usuário = { id, nome, tipo }
   localStorage.setItem('usuario', JSON.stringify(usuario));
 }
@@ -9,7 +9,7 @@ export function salvarUsuarioLocalStorage(usuario) {
 // ========================
 // VERIFICAR SE USUÁRIO ESTÁ LOGADO
 // ========================
-export function verificarLogin() {
+function verificarLogin() {
   const usuario = JSON.parse(localStorage.getItem('usuario'));
   return usuario !== null;
 }
@@ -17,7 +17,7 @@ export function verificarLogin() {
 // ========================
 // RETORNAR TIPO DO USUÁRIO
 // ========================
-export function verificarTipo() {
+function verificarTipo() {
   const usuario = JSON.parse(localStorage.getItem('usuario'));
   return usuario ? usuario.tipo : null;
 }
@@ -26,7 +26,7 @@ export function verificarTipo() {
 // BUSCAR DADOS DO USUÁRIO PELO ID
 // Por enquanto simula fetch do back
 // ========================
-export async function buscarDadosUsuario(id) {
+async function buscarDadosUsuario(id) {
   // Simulação de retorno do back
   // Substitua pelo fetch real quando tiver endpoint
   const mockDB = [
@@ -43,7 +43,7 @@ export async function buscarDadosUsuario(id) {
 // ========================
 // CONTROLAR SIDEBAR BASEADO NO TIPO
 // ========================
-export function controlarSidebar() {
+function controlarSidebar() {
   const tipo = verificarTipo();
   if (!tipo) return;
 
@@ -71,7 +71,7 @@ export function controlarSidebar() {
 // ========================
 // LOGOUT
 // ========================
-export function logout() {
+function logout() {
   localStorage.removeItem('usuario');
   window.location.href = '../pages/login.html'; // ajuste o caminho conforme necessário
 }
@@ -79,7 +79,7 @@ export function logout() {
 // ========================
 // INICIALIZAÇÃO AUTOMÁTICA
 // ========================
-export function initAuth() {
+function initAuth() {
   if (!verificarLogin()) {
     // redireciona para login se não estiver logado
     window.location.href = '../pages/login.html';
@@ -87,3 +87,16 @@ export function initAuth() {
     controlarSidebar();
   }
 }
+
+// ========================
+// EXPORTAÇÃO PARA USO GLOBAL
+// ========================
+window.auth = {
+  salvarUsuarioLocalStorage,
+  verificarLogin,
+  verificarTipo,
+  buscarDadosUsuario,
+  controlarSidebar,
+  logout,
+  initAuth
+};
