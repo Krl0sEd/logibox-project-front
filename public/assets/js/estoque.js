@@ -737,14 +737,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
    /* ================================
     CONFIGURAÇÃO DOS BOTÕES DE ALERT
-===============================*/
+================================*/
 
 // Alert1 - Excluir produto
+// AGORA: .botao_cancelar (Sim, deletar) EXECUTA a ação
 document.querySelector('#alert1 .botao_cancelar').addEventListener('click', function () {
-    fecharAlert('alert1');
-});
-
-document.querySelector('#alert1 .botao_delete').addEventListener('click', function () {
     mostrarToast(
         "Item excluído!",
         "O item foi excluído com sucesso.",
@@ -754,12 +751,15 @@ document.querySelector('#alert1 .botao_delete').addEventListener('click', functi
     fecharModal();
 });
 
-// Alert0 - Descartar alterações
-document.querySelector('#alert0 .botao_cancelar').addEventListener('click', function () {
-    fecharAlert('alert0');
+// .botao_delete (Cancelar) AGORA só fecha o alert
+document.querySelector('#alert1 .botao_delete').addEventListener('click', function () {
+    fecharAlert('alert1');
 });
 
-document.querySelector('#alert0 .botao_delete').addEventListener('click', function () {
+
+// Alert0 - Descartar alterações
+// AGORA: .botao_cancelar (Sim, sair) EXECUTA a ação
+document.querySelector('#alert0 .botao_cancelar').addEventListener('click', function () {
     const modalAberto = document.querySelector('.modalBase[style*="display: block"]');
     if (modalAberto) {
         limparAlteracoes(modalAberto.id);
@@ -768,18 +768,14 @@ document.querySelector('#alert0 .botao_delete').addEventListener('click', functi
     fecharAlert('alert0');
 });
 
-// BOTÕES FECHAR_ALERT PARA TODOS OS ALERTS
-document.querySelectorAll('#fechar_alert').forEach(btn => {
-    btn.addEventListener('click', function() {
-        const alert = this.closest('.alert_modelo');
-        if (alert) {
-            fecharAlert(alert.id);
-        }
-    });
+// .botao_delete (Cancelar) AGORA só fecha o alert
+document.querySelector('#alert0 .botao_delete').addEventListener('click', function () {
+    fecharAlert('alert0');
 });
 
-// Ou se você tem múltiplos alerts com IDs diferentes:
-document.querySelectorAll('.fechar_alert').forEach(btn => {
+
+// BOTÕES FECHAR_ALERT PARA TODOS OS ALERTS
+document.querySelectorAll('#fechar_alert').forEach(btn => {
     btn.addEventListener('click', function() {
         const alert = this.closest('.alert_modelo');
         if (alert) {
