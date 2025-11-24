@@ -1,20 +1,17 @@
-import { initAuth, logout } from '../assets/js/utils/auth.js';
-
 document.addEventListener("DOMContentLoaded", () => {
-    initAuth();
 
-    // PEGAR USUÁRIO DO LOCALSTORAGE E EXIBIR NA TELA
-const user = JSON.parse(localStorage.getItem("user"));
+//     // PEGAR USUÁRIO DO LOCALSTORAGE E EXIBIR NA TELA
+// const user = JSON.parse(localStorage.getItem("user"));
 
-if (user) {
-        document.querySelector(".header_username").textContent = user.nome;
-        document.querySelector(".header_usertype").textContent = user.tipo;
-    }
+// if (user) {
+//         document.querySelector(".header_username").textContent = user.nome;
+//         document.querySelector(".header_usertype").textContent = user.tipo;
+//     }
 
-    const btnLogout = document.getElementById('btn-logout');
-    if (btnLogout) {
-        btnLogout.addEventListener('click', logout);
-    }
+//     const btnLogout = document.getElementById('btn-logout');
+//     if (btnLogout) {
+//         btnLogout.addEventListener('click', logout);
+//     }
 
      /* ========================================
                          Gráficos
@@ -96,4 +93,3 @@ if (user) {
 
 
 });
-
