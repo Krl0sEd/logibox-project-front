@@ -13,6 +13,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
         rel="stylesheet">
+         <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon/favicon.png">
     <link rel="stylesheet" href="../assets/css/usuarios.css">
 </head>
 
@@ -296,6 +297,7 @@
         </main>
 
     </div>
+
       <!-- Toast -->
      <div class="toast_modelo" id="toast_unico">
           <button class="btn_fechar_toast">
@@ -336,14 +338,190 @@
      <!-- Submenu da tabela  -->
      <div class="menu_opcoes" id="menuUnico">
           <ul>
-               <li><button class="botao_acao" id="btn_editar" data-acao="editar"><i class="bi bi-pencil-fill"></i>
-                         Editar</button></li>
                <li><button class="botao_acao" id="btn_visualizar" data-acao="visualizar"><i class="bi bi-eye-fill"></i>
                          Visualizar</button></li>
                <li><button class="botao_acao" id="btn_excluir" data-acao="excluir"><i class="bi bi-trash-fill"></i>
                          Excluir</button></li>
           </ul>
      </div>
+
+     <!-- MODAL -->
+<div id="modalOverlay" class="hidden">
+    
+    <!-- Ver usuario -->
+    <div id="modalView" class="modalBase">
+        <div class="contentModal">
+            <button class="closeButton">
+                <i class="bi bi-x-lg"></i>
+            </button>
+
+            <div class="modalHeader">
+                <div class="headerLeft">
+                    <h1>Ver <span id="view_selectUserName">userName</span></h1>
+                    <p class="modalId" id="view_id">#0000</p>
+                </div>
+
+                <p class="headerName">
+                    Criado por: <span class="modalHeaderUser" id="view_userName">nomeUsuario</span>
+                </p>
+            </div>
+
+            <div class="modalForm">
+                <form action="#" method="POST" id="formViewUser">
+                    
+                    <div class="formInfo">
+                        <div class="formColumn">
+                            <div class="formGroup">
+                                <label class="labelInput" for="nome_user">Nome completo</label>
+                                <input type="text" class="input_padrao" placeholder="Texto" id="nome_user" disabled>
+                            </div>
+
+                            <div class="formGroup">
+                                <label class="labelInput" for="nome_mae">Nome materno</label>
+                                <input type="text" class="input_padrao" placeholder="Texto" id="nome_mae" disabled>
+                            </div>
+
+                            <div class="formGroup">
+                                <label class="labelInput" for="email">Email</label>
+                                <input type="email" class="input_padrao" id="email" name="email" placeholder="nome@dominio.com" disabled>
+                            </div>
+
+                            <div class="formGroup">
+                                <label class="labelInput" for="data_nascimento">Data de nascimento</label>
+                                <input type="text" class="input_padrao" maxlength="10" placeholder="XX/XX/XXXX" id="data_nascimento" name="data_nascimento" disabled>
+                            </div>
+
+                            <div class="formGroup">
+                                <label class="labelInput" for="opcao_sexo">Sexo</label>
+                                <div class="input_seletor">
+                                    <select id="opcao_sexo" name="opcao_sexo" class="seletor" disabled>
+                                        <option value="" disabled selected hidden>Sexo</option>
+                                        <option value="M">Masculino</option>
+                                        <option value="F">Feminino</option>
+                                    </select>
+                                    <i class="bi bi-chevron-down"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="formColumn">
+                            <div class="formGroup">
+                                <label class="labelInput" for="cpf">CPF</label>
+                                <input type="text" class="input_padrao" maxlength="14" placeholder="000.000.000-00" id="cpf" name="cpf" disabled>
+                            </div>
+
+                            <div class="formGroup">
+                                <label class="labelInput" for="celular">Celular</label>
+                                <input type="text" class="input_padrao" maxlength="17" placeholder="+55 (00) 00000-0000" id="celular" name="celular" disabled>
+                            </div>
+
+                            <div class="formGroup">
+                                <label class="labelInput" for="cep">CEP</label>
+                                <input type="text" class="input_padrao" maxlength="9" placeholder="00000-000" id="cep" name="cep" disabled>
+                            </div>
+
+                            <div class="formGroup">
+                                <label class="labelInput" for="rua">Rua</label>
+                                <input type="text" class="input_padrao" placeholder="Rua" id="rua" name="rua" disabled>
+                            </div>
+
+                            <div class="formGroup">
+                                <label class="labelInput" for="complemento">Complemento</label>
+                                <input type="text" class="input_padrao" placeholder="Complemento" id="complemento" name="complemento" disabled>
+                            </div>
+
+                            <div class="flexInput">
+                                <div class="formGroup">
+                                    <label class="labelInput" for="numero_rua">Nº</label>
+                                    <input type="text" class="input_pequeno" placeholder="Nº" id="numero_rua" disabled>
+                                </div>
+
+                                <div class="formGroup">
+                                    <label class="labelInput" for="bairro">Bairro</label>
+                                    <input type="text" class="input_pequeno" placeholder="Bairro" id="bairro" name="bairro" disabled>
+                                </div>
+                            </div>
+
+                            <div class="flexInput">
+                                <div class="formGroup">
+                                    <label class="labelInput" for="cidade">Cidade</label>
+                                    <input type="text" class="input_pequeno" placeholder="Cidade" id="cidade" name="cidade" disabled>
+                                </div>
+
+                                <div class="formGroup">
+                                    <label class="labelInput" for="opcao_estado">Estado</label>
+                                    <div class="input_seletor">
+                                        <select id="opcao_estado" name="opcao_estado" class="seletor" disabled>
+                                            <option value="" disabled selected hidden>Estado</option>
+                                            <option value="AC">Acre</option>
+                                            <option value="AL">Alagoas</option>
+                                            <option value="AP">Amapá</option>
+                                            <option value="AM">Amazonas</option>
+                                            <option value="BA">Bahia</option>
+                                            <option value="CE">Ceará</option>
+                                            <option value="DF">Distrito Federal</option>
+                                            <option value="ES">Espírito Santo</option>
+                                            <option value="GO">Goiás</option>
+                                            <option value="MA">Maranhão</option>
+                                            <option value="MT">Mato Grosso</option>
+                                            <option value="MS">Mato Grosso do Sul</option>
+                                            <option value="MG">Minas Gerais</option>
+                                            <option value="PA">Pará</option>
+                                            <option value="PB">Paraíba</option>
+                                            <option value="PR">Paraná</option>
+                                            <option value="PE">Pernambuco</option>
+                                            <option value="PI">Piauí</option>
+                                            <option value="RJ">Rio de Janeiro</option>
+                                            <option value="RN">Rio Grande do Norte</option>
+                                            <option value="RS">Rio Grande do Sul</option>
+                                            <option value="RO">Rondônia</option>
+                                            <option value="RR">Roraima</option>
+                                            <option value="SC">Santa Catarina</option>
+                                            <option value="SP">São Paulo</option>
+                                            <option value="SE">Sergipe</option>
+                                            <option value="TO">Tocantins</option>
+                                        </select>
+                                        <i class="bi bi-chevron-down"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="formButtons">
+                        <button class="botao_excluir"><i class="bi bi-trash-fill"></i> Excluir</button>
+                        <button class="botao_editar"><i class="bi bi-pencil-fill"></i> Editar</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ALERTS -->
+    <!-- Ao tentar deletar um produto/usuário -->
+    <div class="alert_modelo" id="alert1">
+        <div class="conteudo_alert">
+            <button class="fechar_modal" id="fechar_alert">
+                <span class="fechar_modal_icone">&times;</span>
+            </button>
+            <div class="icone_modal">
+                <div class="icone_modal_fill">
+                    <i class="bi bi-trash-fill"></i>
+                </div>
+            </div>
+            <h2>Deletar placeHolder</h2>
+            <p>Deseja realmente deletar esse placeHolder? Essa ação é irreversível.</p>
+            <div class="alert_botoes">
+                <button class="botao_cancelar">Cancelar</button>
+                <button class="botao_delete">Sim, deletar</button>
+            </div>
+        </div>
+    </div>
+</div>
+          
+          <div id="backdrop" class="backdrop"></div> <!-- adiciona um backdrop para o sidebar em telas pequenas -->
+
 
      <div id="backdrop" class="backdrop"></div> <!-- adiciona um backdrop para o sidebar em telas pequenas -->
 
