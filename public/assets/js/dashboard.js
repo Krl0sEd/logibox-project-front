@@ -54,11 +54,11 @@ document.addEventListener("DOMContentLoaded", () => {
                datasets: [{ 
                     data: [20, 10, 30, 17, 50],
                      backgroundColor: [
-                         '#FF6384',       // Rosa - Cosméticos
-                         '#36A2EB',       // Azul - Limpeza
-                         '#FFCE56',       // Amarelo - Alimentação
-                         '#4BC0C0',      // Verde-água - Eletrônico
-                          '#FF6384'   // Rosa - Cosméticos
+                         '#FF6384',       
+                         '#36A2EB',       
+                         '#FFCE56',       
+                         '#4BC0C0',      
+                         '#824bc0ff'   
                     ]
                }]
           },
