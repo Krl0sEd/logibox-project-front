@@ -292,7 +292,6 @@ main {
      color: var(--logo-primary);
 }
 
-/* Alert de sair da conta */
 
 
 /* =========================================================
@@ -899,14 +898,29 @@ main {
 
 /* ================= HEADER ================= */
 
+.closeButton {
+     background-color: transparent;
+     border: none;
+     font-size: 25px;
+     color: var(--component-dark-main);
+     margin: 15px ;
+}
+
+.closeButton:hover {
+     color: var(--logo-primary);
+     cursor: pointer;
+     transition: 0.3s;
+}
+
 .modalHeader {
      display: flex;
      flex-direction: row;
-     justify-content: space-between;
+     justify-content: left;
      align-items: center;
      padding: 12px 1px;
      gap: 10px;
      border-bottom: 1px solid var(--component-dark-1);
+     margin-left: 20px;
 }
 
 .headerLeft {
@@ -928,18 +942,6 @@ main {
      font-size: var(--fs-sm);
 }
 
-.closeButton {
-     background-color: transparent;
-     border: none;
-     font-size: 25px;
-     color: var(--component-dark-main);
-}
-
-.closeButton:hover {
-     color: var(--logo-primary);
-     cursor: pointer;
-     transition: 0.3s;
-}
 
 /* ================= FORM ================= */
 .modalForm {
@@ -954,6 +956,7 @@ main {
      gap: 24px;
      width: 100%;
      max-width: 900px;
+     justify-content: center;
 }
 
 .formGroup {
@@ -1100,7 +1103,7 @@ main {
      position: fixed;
      inset: 0;
      background: rgba(0, 0, 0, 0.5);
-     z-index: 999;
+     z-index: 9999;
      opacity: 1;
      transition: aparecer 0.3s ease;
 }
@@ -1123,7 +1126,7 @@ main {
      max-height: 300px;
      text-align: center;
      position: relative;
-     z-index: 1000;
+     z-index: 999999;
      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
      animation: aparecer 0.3s ease;
      font-family: var(--font-family-base);
@@ -1212,11 +1215,10 @@ main {
 }
 
 /* botões usados no alert */
-.alert_botoes .botao_cancelar {
-     background-color: var(--text-highcontrast);
+#alert .alert_botoes .botao_cancelar {
+     background-color: var(--component-dark-main);
      color: var(--text-oposite);
      padding: 10px 40px;
-     border: none;
      font-size: var(--fs-sm);
      border-radius: 6px;
      cursor: pointer;
@@ -1228,8 +1230,9 @@ main {
 }
 
 .alert_botoes .botao_cancelar:hover {
+      color: #ffff;
      background-color: var(--logo-primary);
-     color: white;
+
 }
 
 .alert_botoes .botao_delete {
@@ -1797,7 +1800,7 @@ main {
      }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
      .formContainer {
           flex-direction: column;
      }
@@ -1838,6 +1841,11 @@ main {
 @media (max-width: 600px) {
      .formButtons {
           flex-direction: column;
+          margin-top: 20px;
+     }
+
+     .formInfo {
+          gap: 5px;
      }
 
      .botao_excluir,
@@ -1853,6 +1861,8 @@ main {
           padding: 0px;
           flex-direction: column;
           justify-content: center;
+          align-items: center;
+          margin: 0 auto;
      }
 
      .modalHeader h1 {
