@@ -1,18 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-//     // PEGAR USUÁRIO DO LOCALSTORAGE E EXIBIR NA TELA
-// const user = JSON.parse(localStorage.getItem("user"));
-
-// if (user) {
-//         document.querySelector(".header_username").textContent = user.nome;
-//         document.querySelector(".header_usertype").textContent = user.tipo;
-//     }
-
-//     const btnLogout = document.getElementById('btn-logout');
-//     if (btnLogout) {
-//         btnLogout.addEventListener('click', logout);
-//     }
-
      /* ========================================
                          Gráficos
         ======================================== */
@@ -24,14 +11,15 @@ document.addEventListener("DOMContentLoaded", () => {
      new Chart (gCategoria, {
           type: 'pie',
           data: {
-               labels: ['Cosméticos', 'Limpeza', 'Alimentação', 'Eletrônicos'],
+               labels: ['Alimentícios', 'Higiene', 'Eletrônicos', 'Bebidas', 'Papelaria'],
                datasets: [{
-                    data: [12, 15, 2, 3],
+                    data: [12, 15, 2, 3, 5],
                     backgroundColor: [
-                         '#FF6384',       // Rosa - Cosméticos
-                         '#36A2EB',       // Azul - Limpeza
-                         '#FFCE56',       // Amarelo - Alimentação
-                         '#4BC0C0'        // Verde-água - Eletrônico
+                         '#FF6384',       // Rosa - Alimenticios
+                         '#36A2EB',       // Azul - Higiene
+                         '#4BC0C0',    // Verde-água - Eletrônico
+                         '#FFCE56',       // Amarelo - bebidas
+                         '#824bc0ff'        // Roxo - Papelaria
                     ],
                     borderColor: '#fff', 
                     borderWidth: 1
