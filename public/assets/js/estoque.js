@@ -400,6 +400,8 @@ document.addEventListener("DOMContentLoaded", () => {
      /* ================================
          CONTROLE DE ALTERAÇÕES NOS MODAIS
      ================================*/
+     const fechar_alert = document.getElementById('fechar_alert')
+
      function verificarAlteracoesModal(modalId) {
           const inputs = modalId === 'modalCreate' ? inputsCreate : inputsEdit;
           return Object.values(inputs).some(input =>
@@ -444,6 +446,7 @@ document.addEventListener("DOMContentLoaded", () => {
                }
           }
      });
+
 
      document.addEventListener('keydown', (e) => {
           if (e.key === 'Escape') {
@@ -732,37 +735,58 @@ document.addEventListener("DOMContentLoaded", () => {
      });
 
 
-     /* ================================
-         CONFIGURAÇÃO DOS BOTÕES DE ALERT
-     ================================*/
-     // Alert1 - Excluir
-     document.querySelector('#alert1 .botao_cancelar').addEventListener('click', function () {
-          mostrarToast(
-               "Item excluído!",
-               "O item foi excluído com sucesso.",
-               "sucesso"
-          );
-          fecharAlert('alert1');
-          fecharModal();
-     });
+   /* ================================
+    CONFIGURAÇÃO DOS BOTÕES DE ALERT
+===============================*/
 
-     document.querySelector('#alert1 .botao_delete').addEventListener('click', function () {
-          fecharAlert('alert1');
-     });
+// Alert1 - Excluir produto
+document.querySelector('#alert1 .botao_cancelar').addEventListener('click', function () {
+    fecharAlert('alert1');
+});
 
-     // Alert0 - Descartar alterações
-     document.querySelector('#alert0 .botao_cancelar').addEventListener('click', function () {
-          const modalAberto = document.querySelector('.modalBase[style*="display: block"]');
-          if (modalAberto) {
-               limparAlteracoes(modalAberto.id);
-               fecharModal();
-          }
-          fecharAlert('alert0');
-     });
+document.querySelector('#alert1 .botao_delete').addEventListener('click', function () {
+    mostrarToast(
+        "Item excluído!",
+        "O item foi excluído com sucesso.",
+        "sucesso"
+    );
+    fecharAlert('alert1');
+    fecharModal();
+});
 
-     document.querySelector('#alert0 .botao_delete').addEventListener('click', function () {
-          fecharAlert('alert0');
-     });
+// Alert0 - Descartar alterações
+document.querySelector('#alert0 .botao_cancelar').addEventListener('click', function () {
+    fecharAlert('alert0');
+});
+
+document.querySelector('#alert0 .botao_delete').addEventListener('click', function () {
+    const modalAberto = document.querySelector('.modalBase[style*="display: block"]');
+    if (modalAberto) {
+        limparAlteracoes(modalAberto.id);
+        fecharModal();
+    }
+    fecharAlert('alert0');
+});
+
+// BOTÕES FECHAR_ALERT PARA TODOS OS ALERTS
+document.querySelectorAll('#fechar_alert').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const alert = this.closest('.alert_modelo');
+        if (alert) {
+            fecharAlert(alert.id);
+        }
+    });
+});
+
+// Ou se você tem múltiplos alerts com IDs diferentes:
+document.querySelectorAll('.fechar_alert').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const alert = this.closest('.alert_modelo');
+        if (alert) {
+            fecharAlert(alert.id);
+        }
+    });
+});
 
    
 });
