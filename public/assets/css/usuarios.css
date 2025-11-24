@@ -1214,8 +1214,8 @@ main {
      margin-left: 10px;
 }
 
-/* botões usados no alert */
-#alert .alert_botoes .botao_cancelar {
+/* ALERT SAIR DA CONTA */
+#alert2 .botao_cancelar {
      background-color: var(--component-dark-main);
      color: var(--text-oposite);
      padding: 10px 40px;
@@ -1229,13 +1229,13 @@ main {
      transition: all 0.3s ease;
 }
 
-.alert_botoes .botao_cancelar:hover {
+#alert2  .botao_cancelar:hover {
       color: #ffff;
      background-color: var(--logo-primary);
 
 }
 
-.alert_botoes .botao_delete {
+#alert2 .botao_delete {
      color: var(--text-main);
      border: 1px solid var(--component-dark-main);
      padding: 1px 40px;
@@ -1249,7 +1249,51 @@ main {
      transition: all 0.3s ease;
 }
 
-.alert_botoes .botao_delete:hover {
+#alert2 .botao_delete:hover {
+     color: var(--logo-primary);
+     border-color: var(--logo-primary);
+     background-color: transparent;
+}
+
+
+/* ALERT GERAK */
+.alert_modelo .botao_delete {
+     background-color: var(--component-dark-main);
+     color: var(--text-oposite);
+     padding: 10px 40px;
+     font-size: var(--fs-sm);
+     border-radius: 6px;
+     cursor: pointer;
+     display: inline-flex;
+     white-space: nowrap;
+     align-items: center;
+     gap: 7px;
+     transition: all 0.3s ease;
+     border: none;
+}
+
+.alert_modelo   .botao_delete:hover {
+      color: #ffff;
+     background-color: var(--logo-primary);
+     border: none;
+
+}
+
+.alert_modelo  .botao_cancelar {
+     color: var(--text-main);
+     border: 1px solid var(--component-dark-main);
+     padding: 1px 40px;
+     font-size: var(--fs-sm);
+     background-color: transparent;
+     border-radius: 6px;
+     cursor: pointer;
+     display: inline-flex;
+     align-items: center;
+     gap: 7px;
+     transition: all 0.3s ease;
+}
+
+.alert_modelo  .botao_cancelar:hover {
      color: var(--logo-primary);
      border-color: var(--logo-primary);
      background-color: transparent;
