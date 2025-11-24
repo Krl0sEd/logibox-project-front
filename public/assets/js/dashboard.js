@@ -1,6 +1,100 @@
 document.addEventListener("DOMContentLoaded", () => {
 
      /* ========================================
+                Carregar dados do usuário
+     ======================================== */
+
+     const userData = localStorage.getItem("user");
+
+     if (!userData) {
+          window.location.href = "../pages/login.html";
+          return;
+     }
+
+     const usuario = JSON.parse(userData);
+
+     // Preenche "Bem vindo(a)" — span com id="userName"
+     const nameField = document.getElementById("userName");
+     if (nameField) {
+          nameField.innerText = usuario.nome || "Usuário";
+     }
+
+     // Preenche o nome no topo — span id="nomeCompleto"
+     const nomeTop = document.getElementById("nomeCompleto");
+     if (nomeTop) {
+          nomeTop.innerText = usuario.nome || "";
+     }
+
+     // Preenche o cargo — small id="cargoUser"
+     const cargo = document.getElementById("cargoUser");
+     if (cargo) {
+          cargo.innerText = usuario.tipo || "Usuário";
+     }
+
+// =============================================
+// BUSCAR TOTAL DE PRODUTOS USANDO estoque.php
+// =============================================
+
+fetch("http://163.176.193.115/estoque.php")
+    .then(response => response.json())
+    .then(data => {
+        console.log("Dados recebidos do estoque:", data);
+
+        const totalProdutosEl = document.getElementById("quant_produto");
+
+        // Se veio array, contamos os produtos
+        if (Array.isArray(data)) {
+            totalProdutosEl.innerText = data.length;
+        } else {
+            totalProdutosEl.innerText = "0";
+        }
+    })
+    .catch(error => {
+        console.error("Erro ao buscar produtos:", error);
+    });
+
+// =============================================
+// BUSCAR TOTAL DE USUÁRIO USANDO contador_usuarios.php (com animação)
+// =============================================
+
+    function animarNumero(element, target) {
+    let current = 0;
+    const speed = 200; 
+
+    const intervalo = setInterval(() => {
+        current++;
+        element.textContent = current;
+
+        if (current >= target) {
+            clearInterval(intervalo);
+        }
+    }, speed);
+}
+
+fetch("http://163.176.193.115/contador_usuario.php")
+    .then(r => r.json())
+    .then(data => {
+        const span = document.getElementById("quant_user");
+        animarNumero(span, Number(data.total_usuarios));
+    });
+
+    // =============================================
+// BUSCAR TOTAL DE AÇÕES DO LOG
+// =============================================
+
+function carregarTotalAcoes() {
+    fetch("http://163.176.193.115/contador_log.php")
+        .then(r => r.json())
+        .then(data => {
+            document.getElementById("quant_açoes").textContent = data.total_acoes;
+        })
+        .catch(err => console.error("Erro ao buscar ações:", err));
+}
+
+carregarTotalAcoes();
+
+
+     /* ========================================
                          Gráficos
         ======================================== */
 
