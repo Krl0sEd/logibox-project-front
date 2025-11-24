@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+     </script>
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>Dashboard</title>
@@ -213,51 +214,51 @@
           </div>
 
           <main>
-              <div class="dashboard_container">
-    <div class="dashboard_cabecalho">
-        <h1>Dashboard</h1>
-        <p>Bem vindo(a), <span class="usuario_nome">userName</span></p>
-    </div>
+               <div class="dashboard_container">
+                    <div class="dashboard_cabecalho">
+                         <h1>Dashboard</h1>
+                         <p>Bem vindo(a), <span class="usuario_nome">userName</span></p>
+                    </div>
 
-    <div class="dashboard_dados">
-        <div class="linha_dados">
-            <div class="bloco_dado">
-                <h2>Total de produtos</h2> <!-- Corrigi: era </p> -->
-                <p class="valor_dado" id="quant_produto">00</p>
-            </div>
-            <div class="bloco_dado">
-                <h2>Total de ações no log</h2> <!-- Corrigi: era </p> -->
-                <p class="valor_dado" id="quant_ações">00</p>
-            </div>
-            <div class="bloco_dado">
-                <h2>Total de usuários</h2>
-                <p class="valor_dado" id="quant_user">00</p>
-            </div>
-        </div>
-        
-        <div class="linha_graficos">
-            <div class="grafico_card">
-                <h2>Produtos por Categoria</h2>
-                <div class="grafico_area">
-                <canvas id="grafico_categoria"></canvas>
-                </div>
-            </div>
-            
-            <div class="grafico_card">
-                <h2>Produtos com maior valor em estoque</h2>
-                <div class="grafico_area">
-                <canvas id="grafico_valor"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                    <div class="dashboard_dados">
+                         <div class="linha_dados">
+                              <div class="bloco_dado">
+                                   <h2>Total de produtos</h2> <!-- Corrigi: era </p> -->
+                                   <p class="valor_dado" id="quant_produto">00</p>
+                              </div>
+                              <div class="bloco_dado">
+                                   <h2>Total de ações no log</h2> <!-- Corrigi: era </p> -->
+                                   <p class="valor_dado" id="quant_ações">00</p>
+                              </div>
+                              <div class="bloco_dado">
+                                   <h2>Total de usuários</h2>
+                                   <p class="valor_dado" id="quant_user">00</p>
+                              </div>
+                         </div>
+
+                         <div class="linha_graficos">
+                              <div class="grafico_card">
+                                   <h2>Produtos por Categoria</h2>
+                                   <div class="grafico_area">
+                                        <canvas id="grafico_categoria"></canvas>
+                                   </div>
+                              </div>
+
+                              <div class="grafico_card">
+                                   <h2>Produtos com maior valor em estoque</h2>
+                                   <div class="grafico_area">
+                                        <canvas id="grafico_valor"></canvas>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
           </main>
      </div>
 
 
      <!-- Toast-->
-       <div class="toast_modelo" id="toast_unico">
+     <div class="toast_modelo" id="toast_unico">
           <button class="btn_fechar_toast">
                <i class="bi bi-x"></i>
           </button>
@@ -272,11 +273,11 @@
      </div>
 
 
-<!-- <div id="modalOverlay" class="hidden"> -->
+     <!-- <div id="modalOverlay" class="hidden"> -->
      <!-- Alert globais -->
      <div class="alert_modelo" id="alert2">
           <div class="conteudo_alert">
-               <button class="fechar_modal">
+               <button class="fechar_modal" id="fechar_alert">
                     <span class="fechar_modal_icone">&times;</span>
                </button>
                <div class="icone_modal">
@@ -293,7 +294,7 @@
           </div>
      </div>
 
-</div>
+     </div>
      <div id="backdrop" class="backdrop"></div> <!-- adiciona um backdrop para o sidebar em telas pequenas -->
 
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
@@ -304,4 +305,5 @@
      <script src="../assets/js/utils/layout.js"></script>
      <script src="../assets/js/utils/acessibilidade.js"></script>
 </body>
+
 </html>

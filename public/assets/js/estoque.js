@@ -735,15 +735,6 @@ document.addEventListener("DOMContentLoaded", () => {
      /* ================================
          CONFIGURAÇÃO DOS BOTÕES DE ALERT
      ================================*/
-     document.getElementById("btn_sair").addEventListener("click", () => {
-          if (window.auth && window.auth.logout) {
-               abrirAlert("alert2");
-          } else {
-               // Fallback caso o auth não carregue
-               abrirAlert("alert2");
-          }
-     });
-
      // Alert1 - Excluir
      document.querySelector('#alert1 .botao_cancelar').addEventListener('click', function () {
           mostrarToast(
@@ -773,21 +764,5 @@ document.addEventListener("DOMContentLoaded", () => {
           fecharAlert('alert0');
      });
 
-     // Alert2 - Sair
-     document.querySelector('#alert2 .botao_cancelar').addEventListener('click', function () {
-          mostrarToast(
-               "Sessão encerrada!",
-               "Você foi desconectado com sucesso.",
-               "sucesso"
-          );
-          fecharAlert('alert2');
-
-          if (window.auth && window.auth.logout) {
-               setTimeout(() => {
-                    window.auth.logout();
-               }, 500);
-          } else {
-               fecharModal();
-          }
-     });
+   
 });

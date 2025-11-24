@@ -753,10 +753,8 @@ main {
      max-width: 230px;
 }
 
-
-
 /* =========================================================
-                       ALERT / MODAL
+                              ALERT 
 ========================================================= */
 
 .alert_modelo {
@@ -768,7 +766,7 @@ main {
      background: rgba(0, 0, 0, 0.5);
      z-index: 999;
      opacity: 1;
-     transition: opacity 0.3s ease;
+     transition: aparecer 0.3s ease;
 }
 
 .alert_modelo.aberto {
@@ -776,7 +774,8 @@ main {
 }
 
 .alert_modelo.fechar {
-     opacity: 0; /* veio do CSS de cima */
+     opacity: 0;
+     /* veio do CSS de cima */
 }
 
 .conteudo_alert {
@@ -819,7 +818,6 @@ main {
 }
 
 .conteudo_alert .icone_modal_fill {
-     background-color: rgba(28, 73, 255, 0.349);
      padding: 10px 20px;
      border-radius: 50px;
 }
@@ -837,7 +835,7 @@ main {
      margin: 10px 0 0;
 }
 
-.botoes_modal {
+.alert_botoes {
      margin-top: 20px;
      display: flex;
      justify-content: center;
@@ -845,7 +843,17 @@ main {
 }
 
 /* Ícones específicos por alert */
-.conteudo_alert i {
+#alert0 .icone_modal_fill {
+     color: rgb(255, 205, 48);
+     margin-left: 10px;
+}
+
+#alert0 .icone_modal_fill {
+     background-color: rgba(255, 217, 0, 0.2);
+     margin-left: 10px;
+}
+
+#alert0 .conteudo_alert i {
      color: rgb(255, 205, 48);
 }
 
@@ -854,14 +862,155 @@ main {
 }
 
 #alert1 .icone_modal_fill {
-    background-color: rgba(255, 0, 0, 0.2);
-    margin-left: 10px;
+     background-color: rgba(255, 0, 0, 0.2);
+     margin-left: 10px;
 }
 
 #alert2 .conteudo_alert i {
      color: rgb(28, 74, 255);
 }
 
+#alert2 .icone_modal_fill {
+     background-color: rgba(28, 73, 255, 0.349);
+     margin-left: 10px;
+}
+
+/* botões usados no alert */
+.alert_botoes .botao_cancelar {
+     background-color: var(--text-highcontrast);
+     color: var(--text-oposite);
+     padding: 5px 40px;
+     border: none;
+     font-size: var(--fs-sm);
+     border-radius: 6px;
+     cursor: pointer;
+     display: inline-flex;
+     white-space: nowrap;
+     align-items: center;
+     gap: 7px;
+     transition: all 0.3s ease;
+}
+
+.alert_botoes .botao_cancelar:hover {
+     background-color: var(--logo-primary);
+     color: white;
+}
+
+.alert_botoes .botao_delete {
+     color: var(--text-main);
+     border: 1px solid var(--component-dark-main);
+     padding: 1px 40px;
+     font-size: var(--fs-sm);
+     background-color: transparent;
+     border-radius: 6px;
+     cursor: pointer;
+     display: inline-flex;
+     align-items: center;
+     gap: 7px;
+     transition: all 0.3s ease;
+}
+
+.alert_botoes .botao_delete:hover {
+     color: var(--logo-primary);
+     border-color: var(--logo-primary);
+     background-color: transparent;
+}
+
+/* Toast base */
+.toast_modelo {
+     position: fixed;
+     left: 50%;
+     top: 20px;
+     transform: translateX(-50%) translateY(20px);
+     background-color: var(--component-bg-1);
+     border-radius: 10px;
+     padding: 12px 16px;
+     box-shadow: 0 4px 8px var(--component-shadow);
+     width: 450px;
+     z-index: 999999;
+     opacity: 0;
+     transition: all 0.4s ease;
+     font-family: var(--font-family-base);
+}
+
+/* Conteúdo */
+.toast_content {
+     display: flex;
+     gap: 12px;
+}
+
+/* Animação */
+.toast_modelo.show {
+     opacity: 1;
+}
+
+/* Ícone */
+
+.icone_alerta {
+     font-size: 36px;
+     padding: 8px;
+     /* Padding uniforme */
+     border-radius: 50%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     min-width: 52px;
+     /* Largura mínima fixa */
+     height: 52px;
+     /* Altura fixa */
+     box-sizing: border-box;
+}
+
+/* Botão fechar */
+.btn_fechar_toast {
+     background: none;
+     border: none;
+     position: absolute;
+     left: 93%;
+     top: 10%;
+}
+
+.btn_fechar_toast i {
+     color: var(--text-highcontrast);
+}
+
+/* Texto */
+.texto_alerta h4 {
+     margin: 0 0 4px 0;
+     font-size: var(--fs-md);
+     font-weight: bold;
+     color: var(--text-highcontrast);
+}
+
+.texto_alerta p {
+     margin: 0;
+     font-size: var(--fs-sm);
+     color: var(--text-hierarchy-2);
+}
+
+/* ==========================================
+   APARÊNCIAS DOS TIPOS DE TOAST
+========================================== */
+
+/* SUCESSO */
+.toast_sucesso {
+     border-top: solid 4px #28a745;
+}
+
+.toast_sucesso .icone_alerta {
+     color: #28a745;
+     background-color: #28a7451a;
+}
+
+/* ERRO */
+.toast_erro {
+     border-top: solid 4px #dc3545;
+}
+
+.toast_erro .icone_alerta {
+     color: #dc3545;
+     background-color: #fa23233d;
+}
 /* =========================================================
                        BOTÕES USADOS
 ========================================================= */

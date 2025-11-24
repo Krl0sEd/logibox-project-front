@@ -67,7 +67,7 @@
                 </div>
                 <div class="submenu_userinfo">
                     <div class="submenu_area">
-                        <button class="btn_submenu">
+                        <button  id="btn_sair" class="btn_submenu">
                             <i class="bi bi-box-arrow-left"></i>
                             <span>Sair</span>
                         </button>
@@ -296,25 +296,53 @@
         </main>
 
     </div>
+      <!-- Toast -->
+     <div class="toast_modelo" id="toast_unico">
+          <button class="btn_fechar_toast">
+               <i class="bi bi-x"></i>
+          </button>
 
-  <!-- Alert globais -->
-     <div class="alert_modelo" id="alert2">
-          <div class="conteudo_alert">
-               <button class="fechar_modal">
-                    <span class="fechar_modal_icone">&times;</span>
-               </button>
-               <div class="icone_modal">
-                    <div class="icone_modal_fill">
-                         <i class="bi bi-box-arrow-left"></i>
-                    </div>
-               </div>
-               <h2>Encerrar sessão</h2>
-               <p>Tem certeza que deseja sair da sua conta? Essa ação desconectará você imediatamente.</p>
-               <div class="botoes_modal">
-                    <button class="botao_cancelar">Sim, sair</button>
-                    <button class="botao_delete">Cancelar</button>
+          <div class="toast_content">
+               <i id="toast_icone" class="bi icone_alerta"></i>
+               <div class="texto_alerta">
+                    <h4 id="toast_titulo"></h4>
+                    <p id="toast_texto"></p>
                </div>
           </div>
+     </div>
+
+         <!-- Alert Sair da conta -->
+          <div class="alert_modelo" id="alert2">
+               <div class="conteudo_alert">
+                    <button class="fechar_modal" id="fechar_alert">
+                         <span class="fechar_modal_icone">&times;</span>
+                    </button>
+
+                    <div class="icone_modal">
+                         <div class="icone_modal_fill">
+                              <i class="bi bi-box-arrow-left"></i>
+                         </div>
+                    </div>
+
+                    <h2>Encerrar sessão</h2>
+                    <p>Tem certeza que deseja sair da sua conta? Essa ação desconectará você imediatamente.</p>
+                    <div class="alert_botoes">
+                         <button class="botao_cancelar">Sim, sair</button>
+                         <button class="botao_delete">Cancelar</button>
+                    </div>
+               </div>
+          </div>
+
+     <!-- Submenu da tabela  -->
+     <div class="menu_opcoes" id="menuUnico">
+          <ul>
+               <li><button class="botao_acao" id="btn_editar" data-acao="editar"><i class="bi bi-pencil-fill"></i>
+                         Editar</button></li>
+               <li><button class="botao_acao" id="btn_visualizar" data-acao="visualizar"><i class="bi bi-eye-fill"></i>
+                         Visualizar</button></li>
+               <li><button class="botao_acao" id="btn_excluir" data-acao="excluir"><i class="bi bi-trash-fill"></i>
+                         Excluir</button></li>
+          </ul>
      </div>
 
      <div id="backdrop" class="backdrop"></div> <!-- adiciona um backdrop para o sidebar em telas pequenas -->

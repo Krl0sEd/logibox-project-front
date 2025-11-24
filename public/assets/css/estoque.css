@@ -1209,6 +1209,47 @@ main {
      margin-left: 10px;
 }
 
+/* botões usados no alert */
+.alert_botoes .botao_cancelar {
+     background-color: var(--text-highcontrast);
+     color: var(--text-oposite);
+     padding: 10px 40px;
+     border: none;
+     font-size: var(--fs-sm);
+     border-radius: 6px;
+     cursor: pointer;
+     display: inline-flex;
+     white-space: nowrap;
+     align-items: center;
+     gap: 7px;
+     transition: all 0.3s ease;
+}
+
+.alert_botoes .botao_cancelar:hover {
+     background-color: var(--logo-primary);
+     color: white;
+}
+
+.alert_botoes .botao_delete {
+     color: var(--text-main);
+     border: 1px solid var(--component-dark-main);
+     padding: 1px 40px;
+     font-size: var(--fs-sm);
+     background-color: transparent;
+     border-radius: 6px;
+     cursor: pointer;
+     display: inline-flex;
+     align-items: center;
+     gap: 7px;
+     transition: all 0.3s ease;
+}
+
+.alert_botoes .botao_delete:hover {
+     color: var(--logo-primary);
+     border-color: var(--logo-primary);
+     background-color: transparent;
+}
+
 /* Toast base */
 .toast_modelo {
      position: fixed;

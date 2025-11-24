@@ -792,7 +792,7 @@ main {
 }
 
 /* =========================================================
-                       ALERT / MODAL
+                           ALERT
 ========================================================= */
 
 .alert_modelo {
@@ -886,7 +886,15 @@ main {
 }
 
 /* botões usados no alert */
-.botao_cancelar {
+
+.alert_botoes {
+     margin-top: 20px;
+     display: flex;
+     justify-content: center;
+     gap: 40px;
+}
+
+.alert_botoes .botao_cancelar {
      background-color: var(--text-highcontrast);
      color: var(--text-oposite);
      padding: 5px 40px;
@@ -901,14 +909,15 @@ main {
      transition: all 0.3s ease;
 }
 
-.botao_cancelar:hover {
+.alert_botoes .botao_cancelar:hover {
      background-color: var(--logo-primary);
+     color: white;
 }
 
-.botao_delete {
+.alert_botoes .botao_delete {
      color: var(--text-main);
      border: 1px solid var(--component-dark-main);
-     padding: 1px 40px;
+     padding: 5px 40px;
      font-size: var(--fs-sm);
      background-color: transparent;
      border-radius: 6px;
@@ -919,11 +928,12 @@ main {
      transition: all 0.3s ease;
 }
 
-.botao_delete:hover {
+.alert_botoes .botao_delete:hover {
      color: var(--logo-primary);
      border-color: var(--logo-primary);
      background-color: transparent;
 }
+
 
 
 /* =========================================================

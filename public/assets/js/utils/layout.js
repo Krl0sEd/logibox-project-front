@@ -130,6 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
      ========================================================= */
 
      const btnSair = document.getElementById("btn_sair");
+     const fechar_alert = document.getElementById("fechar_alert");
      const btnConfirmarSair = document.querySelector('#alert2 .botao_cancelar');
      const btnCancelarSair = document.querySelector('#alert2 .botao_delete');
 
@@ -179,6 +180,13 @@ document.addEventListener("DOMContentLoaded", () => {
           btnCancelarSair.addEventListener("click", () => {
                fecharAlert('alert2');
           });
+     }
+
+     //Fechar alert ao clicar no "X"
+     if (fechar_alert) {
+          fechar_alert.addEventListener("click", () => {
+               fecharAlert('alert2');
+          })
      }
 
 });
