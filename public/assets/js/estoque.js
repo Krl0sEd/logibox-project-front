@@ -54,42 +54,68 @@ document.addEventListener("DOMContentLoaded", () => {
      /* ========================================
                      PESQUISA NA TABELA
      ========================================*/
-     function limparDestaques(elemento) {
-          elemento.innerHTML = elemento.textContent;
+     function removerAcentos(texto) {
+          return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
      }
 
-     function destacarTexto(celula, termo) {
-          const textoOriginal = celula.textContent;
-          const regex = new RegExp(`(${termo})`, "gi");
-          celula.innerHTML = textoOriginal.replace(regex, `<span class="highlight">$1</span>`);
-     }
+     function pesquisarTabela() {
+          const termo = removerAcentos(document.getElementById("pesquisa").value.toLowerCase());
+          const linhas = document.querySelectorAll(".table_conteudo tbody tr");
 
-     function filtrarTabela() {
-          const termo = inputPesquisa.value.trim().toLowerCase();
-          const termos = termo.split(",").map(t => t.trim()).filter(t => t !== "");
+          // Remove highlights anteriores
+          document.querySelectorAll('.highlight').forEach(el => {
+               el.outerHTML = el.innerHTML;
+          });
 
-          linhasTabela.forEach(linha => {
-               const celulas = linha.querySelectorAll("td");
-               let corresponde = false;
+          linhas.forEach(linha => {
+               const textoLinha = removerAcentos(linha.textContent.toLowerCase());
+               const deveMostrar = textoLinha.includes(termo) || termo === "";
+               linha.style.display = deveMostrar ? "" : "none";
 
-               celulas.forEach(celula => {
-                    limparDestaques(celula);
+               // Adiciona highlight apenas se houver termo
+               if (deveMostrar && termo !== "") {
+                    const cells = linha.querySelectorAll('td');
+                    cells.forEach(cell => {
+                         const originalText = cell.innerHTML;
+                         const textoSemAcento = removerAcentos(cell.textContent.toLowerCase());
 
-                    if (termos.some(termo => celula.textContent.toLowerCase().includes(termo))) {
-                         corresponde = true;
-                         termos.forEach(termo => {
-                              if (celula.textContent.toLowerCase().includes(termo)) {
-                                   destacarTexto(celula, termo);
+                         if (textoSemAcento.includes(termo)) {
+                              // Encontra as posições onde o termo sem acento aparece
+                              const textoOriginal = cell.textContent;
+                              const regex = new RegExp(termo, 'gi');
+                              let match;
+                              const indices = [];
+
+                              // Encontra todas as ocorrências do termo (sem acento)
+                              while ((match = regex.exec(removerAcentos(textoOriginal.toLowerCase()))) !== null) {
+                                   indices.push(match.index);
                               }
-                         });
-                    }
-               });
 
-               linha.style.display = corresponde || termos.length === 0 ? "" : "none";
+                              // Reconstroi o HTML com highlights nas posições corretas
+                              let novoHTML = '';
+                              let lastIndex = 0;
+
+                              indices.forEach(index => {
+                                   // Pega o texto original (com acento) na posição encontrada
+                                   const start = index;
+                                   const end = index + termo.length;
+                                   const textoComAcento = textoOriginal.substring(start, end);
+
+                                   novoHTML += textoOriginal.substring(lastIndex, start);
+                                   novoHTML += `<span class="highlight">${textoComAcento}</span>`;
+                                   lastIndex = end;
+                              });
+
+                              novoHTML += textoOriginal.substring(lastIndex);
+                              cell.innerHTML = novoHTML;
+                         }
+                    });
+               }
           });
      }
 
-     inputPesquisa.addEventListener("input", filtrarTabela);
+     // Ativa a pesquisa
+     document.getElementById("pesquisa").addEventListener("input", pesquisarTabela);
 
      /* ========================================
                      FILTRO POPUP

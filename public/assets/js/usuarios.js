@@ -150,8 +150,8 @@ document.addEventListener("DOMContentLoaded", () => {
                const sexoLinha = linha.cells[4].textContent.toLowerCase().trim();
                const tipoLinha = linha.cells[2].textContent.toLowerCase()
                     .trim()
-                    .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // Remove acentos
-                    .replace('usuário', 'usuario') // Converte "usuário" para "usuario"
+                    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                    .replace('usuário', 'usuario')
                     .replace('administrador', 'administrador');
 
                let mostrar = true;
@@ -204,6 +204,25 @@ document.addEventListener("DOMContentLoaded", () => {
           if (!popupFiltro.contains(e.target) && e.target !== filterButton) {
                popupFiltro.style.display = "none";
           }
+     });
+
+     document.querySelectorAll('input[type="radio"]').forEach(radio => {
+          radio.addEventListener('click', function () {
+
+               // Se já estava marcado → desmarca
+               if (this.dataset.wasChecked === "true") {
+                    this.checked = false;
+                    this.dataset.wasChecked = "false";
+               } else {
+                    // Desmarca o atributo dos outros radios do mesmo grupo
+                    document.querySelectorAll(`input[name="${this.name}"]`).forEach(r => {
+                         r.dataset.wasChecked = "false";
+                    });
+
+                    // Marca este como selecionado
+                    this.dataset.wasChecked = "true";
+               }
+          });
      });
 
      /* ======================================== 
