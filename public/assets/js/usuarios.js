@@ -8,6 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
           window.auth.initAuth();
      }
 
+     /* ========================================
+               CONFIGURAÇÃO API
+     ========================================*/
+    const API_URL = "http://163.176.193.115/usuarios.php"; // IP da VM
+    let idUsuarioSelecionado = null; // Variável para controlar quem vamos deletar/ver
 
      /* ========================================
                      VARIÁVEIS GLOBAIS
@@ -30,6 +35,9 @@ document.addEventListener("DOMContentLoaded", () => {
           quantidade: document.getElementById("view_quantidade_produto"),
           preco: document.getElementById("view_precouni_produto")
      };
+
+     // Inicia o carregamento dos dados do banco
+     carregarUsuarios();
 
      /* ========================================
                      PESQUISA NA TABELA
@@ -260,10 +268,13 @@ document.addEventListener("DOMContentLoaded", () => {
                e.stopPropagation();
                const acao = btn.dataset.acao;
 
-               if (acao === "editar") abrirModal("modalEdit");
-               if (acao === "visualizar") abrirModal("modalView");
-               if (acao === "excluir") abrirAlert("alert1");
-
+               if (acao === "visualizar") {
+                    // CHAMA A NOVA FUNÇÃO
+                    window.visualizarUsuarioBanco(); 
+               }
+               if (acao === "excluir") {
+                    abrirAlert("alert1");
+               }
                menuOpcoes.style.display = "none";
           });
      });
@@ -456,15 +467,17 @@ document.querySelector('#alert1 .botao_cancelar').addEventListener('click', func
     fecharAlert('alert1');
 });
 
-document.querySelector('#alert1 .botao_delete').addEventListener('click', function () {
-    mostrarToast(
-        "Usuário excluído!",
-        "O usuário foi excluído com sucesso.",
-        "sucesso"
-    );
-    fecharAlert('alert1');
-    fecharModal();
-});
+const btnConfirmarDelete = document.querySelector('#alert1 .botao_delete');
+    if(btnConfirmarDelete) {
+        // Clonar remove listeners antigos para não duplicar eventos
+        const novoBtn = btnConfirmarDelete.cloneNode(true);
+        btnConfirmarDelete.parentNode.replaceChild(novoBtn, btnConfirmarDelete);
+
+        novoBtn.addEventListener('click', function () {
+            // CHAMA A NOVA FUNÇÃO DE DELETE
+            window.deletarUsuarioBanco();
+        });
+    }
 
 
 // BOTÕES FECHAR_ALERT PARA TODOS OS ALERTS
@@ -487,5 +500,151 @@ document.querySelectorAll('.fechar_alert').forEach(btn => {
     });
 });
 
+/* ========================================
+           FUNÇÕES DE INTEGRAÇÃO (BANCO DE DADOS)
+     ========================================*/
+
+    async function carregarUsuarios() {
+        const tabelaBody = document.querySelector(".table_conteudo tbody");
+        try {
+            tabelaBody.innerHTML = '<tr><td colspan="6" style="text-align:center">Carregando...</td></tr>';
+            
+            const response = await fetch(API_URL);
+            const usuarios = await response.json();
+
+            tabelaBody.innerHTML = ""; // Limpa o loading
+
+            if (usuarios.length === 0) {
+                tabelaBody.innerHTML = '<tr><td colspan="6" style="text-align:center">Nenhum usuário encontrado.</td></tr>';
+                return;
+            }
+
+            usuarios.forEach(user => {
+                criarLinhaTabela(user, tabelaBody);
+            });
+
+            // Atualiza o texto do cabeçalho (ex: "5 usuários cadastrados")
+            const contador = document.querySelector(".page_header p");
+            if(contador) contador.textContent = `${usuarios.length} usuários cadastrados.`;
+
+        } catch (error) {
+            console.error("Erro API:", error);
+            mostrarToast("Erro", "Falha ao conectar com o banco de dados.", "erro");
+        }
+    }
+
+    function criarLinhaTabela(user, tbody) {
+        const tr = document.createElement("tr");
+        tr.dataset.id = user.id_usuario; // ID do banco
+
+        // Converte o valor '1' ou '0' do admin para texto
+        const tipoUsuario = user.admin == 1 ? '<span style="color:var(--color-primary); font-weight:bold">Administrador</span>' : 'Usuário';
+
+        tr.innerHTML = `
+            <td>#${user.id_usuario}</td>
+            <td>${user.nome}</td>
+            <td>${tipoUsuario}</td>
+            <td>${user.cpf || '---'}</td>
+            <td>${user.sexo || '-'}</td>
+            <td>
+                <div class="container_opcoes">
+                    <button class="botao_opcoes" aria-label="Abrir opções">
+                        <i class="bi bi-three-dots"></i>
+                    </button>
+                </div>
+            </td>
+        `;
+
+        // Adiciona evento ao botão de opções desta linha específica
+        const btnOpcoes = tr.querySelector(".botao_opcoes");
+        btnOpcoes.addEventListener("click", (e) => {
+            e.stopPropagation();
+            // Função global que você já tem no código original, mas vamos garantir o ID
+            abrirMenuOpcoesDinamico(e, user.id_usuario);
+        });
+
+        tbody.appendChild(tr);
+    }
+
+    // Função auxiliar para abrir o menu (adaptada para pegar o ID correto)
+    function abrirMenuOpcoesDinamico(e, id) {
+        const rect = e.currentTarget.getBoundingClientRect();
+        menuOpcoes.style.top = (rect.bottom + window.scrollY) + "px";
+        menuOpcoes.style.left = (rect.left + window.scrollX - 50) + "px";
+        menuOpcoes.style.display = "block";
+        idUsuarioSelecionado = id; // Guarda o ID para usar no visualizar/excluir
+    }
+
+    // Função para Visualizar Detalhes (Preenche o Modal)
+    window.visualizarUsuarioBanco = async function() { // Chamado pelo botão do menu
+        if(!idUsuarioSelecionado) return;
+        
+        abrirModal("modalView");
+        document.getElementById("nome_user").value = "Buscando dados...";
+
+        try {
+            const response = await fetch(`${API_URL}?id=${idUsuarioSelecionado}`);
+            const user = await response.json();
+
+            // Preenche IDs baseados na sua print do banco
+            document.getElementById("view_id").textContent = `#${user.id_usuario}`;
+            document.getElementById("view_selectUserName").textContent = user.nome;
+            
+            document.getElementById("nome_user").value = user.nome || "";
+            document.getElementById("nome_mae").value = user.nome_materno || "";
+            document.getElementById("email").value = user.email || "";
+            
+            // Formata a data se vier do banco (ex: 1990-01-01 -> 01/01/1990)
+            let dataFormatada = user.data_nascimento || "";
+            if(dataFormatada.includes("-")) {
+                const [ano, mes, dia] = dataFormatada.split("-");
+                dataFormatada = `${dia}/${mes}/${ano}`;
+            }
+            document.getElementById("data_nascimento").value = dataFormatada;
+
+            document.getElementById("cpf").value = user.cpf || "";
+            document.getElementById("celular").value = user.telefone_celular || "";
+            document.getElementById("cep").value = user.cep || "";
+            document.getElementById("rua").value = user.rua || "";
+            document.getElementById("complemento").value = user.complemento || "";
+            document.getElementById("numero_rua").value = user.numero_rua || ""; 
+            document.getElementById("bairro").value = user.bairro || "";
+            document.getElementById("cidade").value = user.cidade || "";
+            
+            // Selects
+            document.getElementById("opcao_sexo").value = user.sexo === 'Masculino' ? 'M' : (user.sexo === 'Feminino' ? 'F' : '');
+            document.getElementById("opcao_estado").value = user.estado || "";
+
+        } catch (error) {
+            console.error(error);
+            document.getElementById("nome_user").value = "Erro ao carregar";
+        }
+    };
+
+    // Função para Deletar
+    window.deletarUsuarioBanco = async function() {
+        if(!idUsuarioSelecionado) return;
+
+        try {
+            const response = await fetch(API_URL, {
+                method: 'DELETE',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ id: idUsuarioSelecionado })
+            });
+            
+            const res = await response.json();
+            
+            if (res.sucesso) {
+                mostrarToast("Sucesso", "Usuário removido.", "sucesso");
+                carregarUsuarios(); // Atualiza tabela
+                fecharAlert("alert1");
+                fecharModal(); // Fecha modal de visualização se estiver aberto
+            } else {
+                mostrarToast("Erro", "Erro ao excluir: " + res.erro, "erro");
+            }
+        } catch (error) {
+            mostrarToast("Erro", "Falha de conexão.", "erro");
+        }
+    };
    
 });
