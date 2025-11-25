@@ -1,0 +1,53 @@
+
+/* Evitem em mexer nesse arquivo se não souberem o que estão fazendo */
+.loader_container {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 9999999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+  background-color: #2423238e; 
+  backdrop-filter: blur(2px);
+}
+
+.loader {
+  width: 5em;
+  height: 5em;
+  background: linear-gradient(-45deg, #db0202 0%, #4c1800 100% );
+  animation: spin 3s infinite;
+}
+
+.loader::before {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(-45deg, #ad0000 0%, #4c1800 100% );
+  transform: translate3d(0, 0, 0) scale(0.95);
+  filter: blur(20px);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(-45deg);
+  }
+
+  50% {
+    transform: rotate(-360deg);
+    border-radius: 50%;
+  }
+
+  100% {
+    transform: rotate(-45deg);
+  }
+}
+
+body.loading {
+  display: block !important;
+  overflow: hidden;
+}
