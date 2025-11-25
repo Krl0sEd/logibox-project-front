@@ -1,5 +1,35 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+          /* ========================================
+                Carregar dados do usuário
+     ======================================== */
+
+     const userData = localStorage.getItem("user");
+
+     if (!userData) {
+          window.location.href = "../pages/login.html";
+          return;
+     }
+
+     const usuario = JSON.parse(userData);
+
+     // Preenche "Bem vindo(a)" — span com id="userName"
+     const nameField = document.getElementById("userName");
+     if (nameField) {
+          nameField.innerText = usuario.nome || "Usuário";
+     }
+
+     // Preenche o nome no topo — span id="nomeCompleto"
+     const nomeTop = document.getElementById("nomeCompleto");
+     if (nomeTop) {
+          nomeTop.innerText = usuario.nome || "";
+     }
+
+     // Preenche o cargo — small id="cargoUser"
+     const cargo = document.getElementById("cargoUser");
+     if (cargo) {
+          cargo.innerText = usuario.tipo || "Usuário";
+     }
 
      /* ========================================
                          AUTH
@@ -646,5 +676,5 @@ document.querySelectorAll('.fechar_alert').forEach(btn => {
             mostrarToast("Erro", "Falha de conexão.", "erro");
         }
     };
-   
+
 });
