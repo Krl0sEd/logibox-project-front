@@ -59,7 +59,7 @@ document.getElementById('login_form').addEventListener('submit', function(event)
       modal.show();
 
       setTimeout(() => {
-        window.location.href = '../pages/dashboard.html';
+        window.location.href = '../pages/2fa.html';
       }, 600);
 
     } else {

@@ -1,96 +1,84 @@
-      const question_label = document.getElementById('question_label');
-      const form = document.getElementById('twofa_form');
-      const answer_input = document.getElementById('answer');
-      const confirm_btn = document.getElementById('confirm_btn');
+document.addEventListener("DOMContentLoaded", function () {
+    const questionLabel = document.getElementById("question_label");
+    const answerInput = document.getElementById("answer");
+    const form = document.getElementById("twofa_form");
 
-      const questions = [
-        "Qual o nome da sua mãe?",
-        "Qual a data do seu nascimento?",
-        "Qual o CEP do seu endereço?"
-      ];
+    const modal = new bootstrap.Modal(document.getElementById("feedback_modal"));
+    const modalTitle = document.getElementById("modal_title");
+    const modalMessage = document.getElementById("modal_message");
 
-      let current_question = questions[Math.floor(Math.random() * questions.length)];
-      question_label.textContent = current_question;
+    // 🔹 Carrega dados do usuário salvos no login
+    const user = JSON.parse(localStorage.getItem("user"));
 
-      const correct_answers = {
-        "Qual o nome da sua mãe?": "Ana Souza Ferreira",
-        "Qual a data do seu nascimento?": "01/03/2005",
-        "Qual o CEP do seu endereço?": "21040120"
-      };
+    if (!user) {
+        modalTitle.textContent = "Erro";
+        modalMessage.textContent = "Nenhum usuário encontrado. Faça login novamente.";
+        modal.show();
+        return;
+    }
 
-      let attempts = 0;
+    // 🔹 Lista de perguntas do seu sistema
+    const perguntas = [
+        { texto: "Qual o nome da sua mãe?", campo: "nome_materno" },
+        { texto: "Qual o seu CEP?", campo: "cep" },
+        { texto: "Qual sua data de nascimento? (AAAA-MM-DD)", campo: "data_nascimento" }
+    ];
 
-      form.addEventListener('submit', (e)=>{
+    // 🔹 Escolhe pergunta aleatória
+    const perguntaSorteada = perguntas[Math.floor(Math.random() * perguntas.length)];
+
+    // Exibe pergunta no HTML
+    questionLabel.textContent = perguntaSorteada.texto;
+
+    // ===========================================================
+    // 🔹 SUBMIT DO FORMULÁRIO
+    // ===========================================================
+    form.addEventListener("submit", function (e) {
         e.preventDefault();
 
-        const answer = answer_input.value.trim().toLowerCase();
+        const resposta = answerInput.value.trim();
 
-       
-        if(answer === ""){
-          show_popup("❗ Campo obrigatório", "Por favor, responda à pergunta.", "error");
-
-          confirm_btn.disabled = false;
-          confirm_btn.textContent = "Confirmar";
-          answer_input.focus();
-
-          return;
+        if (!resposta) {
+            modalTitle.textContent = "Erro";
+            modalMessage.textContent = "Digite sua resposta.";
+            modal.show();
+            return;
         }
 
-        confirm_btn.disabled = true;
-        confirm_btn.textContent = 'Verificando...';
+        // Enviar para o backend validar
+        fetch("http://163.176.193.115/2fa.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                login: user.login,
+                campo: perguntaSorteada.campo,
+                resposta: resposta
+            })
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log("RETORNO DO 2FA:", data);
 
-        setTimeout(()=>{
-          const correct = correct_answers[current_question].toLowerCase();
+                if (data.status === "aprovado") {
+                    modalTitle.textContent = "Verificação concluída!";
+                    modalMessage.textContent = "Identidade confirmada com sucesso.";
+                    modal.show();
 
-          if(answer === correct){
-            show_popup("✅ Resposta correta!", "Identidade confirmada com sucesso.", "success");
-            setTimeout(()=> window.location.href = "../login/login.html", 2000);
-          }
+                    setTimeout(() => {
+                        window.location.href = "../pages/dashboard.html";
+                    }, 900);
 
-          else {
-            attempts++;
-
-            if (attempts >= 3) {
-              show_popup("3 tentativas sem sucesso!", "Favor realizar Login novamente.", "error");
-              setTimeout(()=> window.location.href = "../login/login.html", 3000);
-            }
-
-            else {
-              show_popup("⚠️ Resposta incorreta!", `Você ainda tem ${3 - attempts} tentativa(s).`, "warning");
-              confirm_btn.disabled = false;
-              confirm_btn.textContent = 'Confirmar';
-              answer_input.value = "";
-              answer_input.focus();
-            }
-          }
-        }, 800);
-      });
-
-      function show_popup(title, message, type="error") {
-        const modal_title = document.getElementById("modal_title");
-        const modal_message = document.getElementById("modal_message");
-        const modal_header = document.getElementById("modal_header");
-        const modal_button = document.getElementById("modal_footer_btn");
-
-        modal_title.textContent = title;
-        modal_message.textContent = message;
-
-        modal_header.className = "modal-header";
-        modal_button.className = "btn";
-
-        if (type === "success") {
-          modal_header.classList.add("bg-success","text-white");
-          modal_button.classList.add("btn-success","text-white");
-        } 
-        else if (type === "warning") {
-          modal_header.classList.add("bg-warning","text-dark");
-          modal_button.classList.add("btn-warning","text-dark");
-        } 
-        else {
-          modal_header.classList.add("bg-danger","text-white");
-          modal_button.classList.add("btn-danger","text-white");
-        }
-
-        const feedback_modal = new bootstrap.Modal(document.getElementById("feedback_modal"));
-        feedback_modal.show();
-      }
+                } else {
+                    modalTitle.textContent = "Resposta incorreta!";
+                    modalMessage.textContent = data.error || "Tente novamente.";
+                    modal.show();
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                modalTitle.textContent = "Erro";
+                modalMessage.textContent = "Falha ao conectar com o servidor.";
+                modal.show();
+            });
+    });
+});
