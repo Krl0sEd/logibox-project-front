@@ -626,7 +626,7 @@ main {
 }
 
 /* Dados quantitativos */
-.linha_dados {
+#linha_dados {
      display: flex;
      gap: 20px;
      flex-wrap: wrap;

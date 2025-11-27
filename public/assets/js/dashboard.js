@@ -31,6 +31,20 @@ document.addEventListener("DOMContentLoaded", () => {
           cargo.innerText = usuario.tipo || "Usuário";
      }
 
+     // Apagar a primeira linha do gráfico E remover "usuário" e "histórico" do sidebar
+     const navUsuario = document.getElementById('menu-usuarios');
+     const navLog = document.getElementById('menu-log');
+     const linha_dados = document.getElementById('linha_dados');
+
+     isAdmin = usuario.tipo === 'Administrador';
+
+     if (isAdmin) {
+          navUsuario.style.display = "none";
+          navLog.style.display = "none";
+          linha_dados.style.display = "none";
+     };
+
+
      // =============================================
      // BUSCAR TOTAL DE PRODUTOS USANDO estoque.php
      // =============================================
