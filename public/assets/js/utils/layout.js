@@ -95,9 +95,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    /* ================================
-                     TOAST 
-     ================================*/
+     /* ================================
+                      TOAST 
+      ================================*/
      window.mostrarToast = function (titulo, texto, tipo = "sucesso") {
           const toast = document.getElementById("toast_unico");
           const tTitulo = document.getElementById("toast_titulo");

@@ -903,7 +903,7 @@ main {
      border: none;
      font-size: 25px;
      color: var(--component-dark-main);
-     margin: 15px ;
+     margin: 15px;
 }
 
 .closeButton:hover {
@@ -1229,8 +1229,8 @@ main {
      transition: all 0.3s ease;
 }
 
-#alert2  .botao_cancelar:hover {
-      color: #ffff;
+#alert2 .botao_cancelar:hover {
+     color: #ffff;
      background-color: var(--logo-primary);
 
 }
@@ -1272,14 +1272,14 @@ main {
      border: none;
 }
 
-.alert_modelo   .botao_delete:hover {
-      color: #ffff;
+.alert_modelo .botao_delete:hover {
+     color: #ffff;
      background-color: var(--logo-primary);
      border: none;
 
 }
 
-.alert_modelo  .botao_cancelar {
+.alert_modelo .botao_cancelar {
      color: var(--text-main);
      border: 1px solid var(--component-dark-main);
      padding: 1px 40px;
@@ -1293,7 +1293,7 @@ main {
      transition: all 0.3s ease;
 }
 
-.alert_modelo  .botao_cancelar:hover {
+.alert_modelo .botao_cancelar:hover {
      color: var(--logo-primary);
      border-color: var(--logo-primary);
      background-color: transparent;
