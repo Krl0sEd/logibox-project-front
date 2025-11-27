@@ -1,5 +1,35 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+     /* ========================================
+           Carregar dados do usuário
+======================================== */
+
+     const userData = localStorage.getItem("user");
+
+     if (!userData) {
+          window.location.href = "../pages/login.html";
+          return;
+     }
+
+     const usuario = JSON.parse(userData);
+
+     // Preenche "Bem vindo(a)" — span com id="userName"
+     const nameField = document.getElementById("userName");
+     if (nameField) {
+          nameField.innerText = usuario.nome || "Usuário";
+     }
+
+     // Preenche o nome no topo — span id="nomeCompleto"
+     const nomeTop = document.getElementById("nomeCompleto");
+     if (nomeTop) {
+          nomeTop.innerText = usuario.nome || "";
+     }
+
+     // Preenche o cargo — small id="cargoUser"
+     const cargo = document.getElementById("cargoUser");
+     if (cargo) {
+          cargo.innerText = usuario.tipo || "Usuário";
+     }
 
      /* ========================================
                          AUTH
@@ -8,10 +38,10 @@ document.addEventListener("DOMContentLoaded", () => {
           window.auth.initAuth();
      }
 
-
      /* ========================================
                      VARIÁVEIS GLOBAIS
      ========================================*/
+     const API_URL = 'http://163.176.193.115/estoque.php';
      const inputPesquisa = document.getElementById("pesquisa");
      const linhasTabela = document.querySelectorAll(".table_conteudo tbody tr");
      const filterButton = document.getElementById("filter-button");
@@ -25,6 +55,8 @@ document.addEventListener("DOMContentLoaded", () => {
           'modalCreate': false,
           'modalEdit': false
      };
+
+     carregarProdutos();
 
      // Configurações dos inputs dos modais
      const inputsCreate = {
@@ -280,23 +312,6 @@ document.addEventListener("DOMContentLoaded", () => {
           }
      });
 
-     /* ================================
-                 MENU DA TABELA
-     ================================*/
-     buttonsOpcoes.forEach(btn => {
-          btn.addEventListener("click", (e) => {
-               e.stopPropagation();
-
-               const rect = btn.getBoundingClientRect();
-               menuOpcoes.style.top = rect.bottom + window.scrollY + "px";
-               menuOpcoes.style.left = rect.left + window.scrollX + "px";
-               menuOpcoes.style.display = "block";
-
-               const linha = btn.closest("tr");
-               produtoSelecionado = linha.dataset.id;
-          });
-     });
-
      document.addEventListener("click", () => {
           menuOpcoes.style.display = "none";
      });
@@ -306,9 +321,27 @@ document.addEventListener("DOMContentLoaded", () => {
                e.stopPropagation();
                const acao = btn.dataset.acao;
 
-               if (acao === "editar") abrirModal("modalEdit");
-               if (acao === "visualizar") abrirModal("modalView");
-               if (acao === "excluir") abrirAlert("alert1");
+               if (acao === "editar") {
+                   // Agora chamamos a função que busca os dados e abre o modal
+                   carregarDadosEditar(produtoSelecionado); 
+               }
+
+               if (acao === "visualizar") {
+                   // CHAMA A NOVA FUNÇÃO
+                   carregarDadosVisualizar(produtoSelecionado);
+               }
+
+               if (acao === "excluir") {
+                    // UX: Atualiza o texto do modal com o nome do produto
+                    // Procura a linha da tabela que tem o ID selecionado
+                    const linha = document.querySelector(`tr[data-id="${produtoSelecionado}"]`);
+                    if (linha) {
+                         const nomeProduto = linha.cells[1].textContent; // A 2ª célula é o nome
+                         document.querySelector("#alert1 h2").textContent = `Deletar ${nomeProduto}?`;
+                         document.querySelector("#alert1 p").textContent = `Deseja realmente deletar ${nomeProduto}? Essa ação é irreversível.`;
+                    }
+                    abrirAlert("alert1");
+               }
 
                menuOpcoes.style.display = "none";
           });
@@ -609,38 +642,75 @@ document.addEventListener("DOMContentLoaded", () => {
           }
      });
 
-     document.getElementById("btnSalvarCreate").addEventListener("click", (e) => {
+     document.getElementById("btnSalvarCreate").addEventListener("click", async (e) => {
           e.preventDefault();
 
+          // Validações
           if (!validarQuantidade(inputsCreate.quantidade.value)) {
-               mostrarToast(
-                    "Quantidade inválida",
-                    "A quantidade deve ser maior que zero e conter apenas números (máx. 4 dígitos).",
-                    "erro"
-               );
+               mostrarToast("Quantidade inválida", "A quantidade deve ser maior que zero.", "erro");
                inputsCreate.quantidade.classList.add("erro_input");
                return;
           }
 
           const camposVazios = validarCamposObrigatorios(inputsCreate);
           if (camposVazios.length > 0) {
-               mostrarToast(
-                    "Campos obrigatórios",
-                    "Por favor, preencha todos os campos antes de continuar.",
-                    "erro"
-               );
+               mostrarToast("Campos obrigatórios", "Preencha todos os campos.", "erro");
                return;
           }
 
-          mostrarToast(
-               "Item criado!",
-               "O novo item foi cadastrado com sucesso.",
-               "sucesso"
-          );
+          // --- CORREÇÃO DE PREÇO ---
+          // Pega o valor digitado (ex: "1,00")
+          // Troca a vírgula por ponto para o padrão americano/banco de dados (ex: "1.00")
+          let precoFormatado = inputsCreate.preco.value.replace(',', '.');
+        
+          // Converte para número decimal
+          let precoFinal = parseFloat(precoFormatado);
 
-          limparAlteracoes('modalCreate');
-          fecharModal();
-          formCreate.reset();
+          // --- CORREÇÃO DE CATEGORIA ---
+          // Pegamos explicitamente o .value (o código minúsculo definido no HTML)
+          let categoriaSelecionada = inputsCreate.categoria.value;
+
+          // Data atual
+          const dataHoje = new Date().toISOString().split('T')[0];
+
+          const novoProduto = {
+               nome_produto: inputsCreate.nome.value,
+               descricao: inputsCreate.descricao.value,
+               categoria: categoriaSelecionada, 
+               preco_unitario: precoFinal,
+               quantidade_estoque: parseInt(inputsCreate.quantidade.value),
+               data_cadastro: dataHoje,
+               id_usuario: 24 // Para o usuario Joao Ninguem
+          };
+
+          try {
+               const btnSalvar = document.getElementById("btnSalvarCreate");
+               btnSalvar.innerHTML = '<i class="bi bi-hourglass-split"></i> Salvando...';
+               btnSalvar.disabled = true;
+
+               const response = await fetch(API_URL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(novoProduto)
+               });
+
+               if (response.ok) {
+                    mostrarToast("Sucesso!", "Produto cadastrado.", "sucesso");
+                    formCreate.reset();
+                    limparAlteracoes('modalCreate');
+                    fecharModal();
+                    carregarProdutos();
+               } else {
+                    throw new Error("Erro ao salvar produto.");
+               }
+          } catch (error) {
+               console.error(error);
+               mostrarToast("Erro", "Falha ao cadastrar.", "erro");
+          } finally {
+               const btnSalvar = document.getElementById("btnSalvarCreate");
+               btnSalvar.innerHTML = '<i class="bi bi-plus"></i> Criar item';
+               btnSalvar.disabled = false;
+          }
      });
 
      document.querySelector("#modalCreate .botao_limpar").addEventListener("click", (e) => {
@@ -681,37 +751,73 @@ document.addEventListener("DOMContentLoaded", () => {
           }
      });
 
-     document.querySelector("#modalEdit .botao_salvar").addEventListener("click", (e) => {
+     /* ========================================
+       AÇÃO DE SALVAR EDIÇÃO (ATUALIZAR)
+    ========================================*/
+     document.querySelector("#modalEdit .botao_salvar").addEventListener("click", async (e) => {
           e.preventDefault();
 
+          // Validações
           if (!validarQuantidade(inputsEdit.quantidade.value)) {
-               mostrarToast(
-                    "Quantidade inválida",
-                    "A quantidade deve ser maior que zero e conter apenas números (máx. 4 dígitos).",
-                    "erro"
-               );
+               mostrarToast("Quantidade inválida", "A quantidade deve ser numérica.", "erro");
                inputsEdit.quantidade.classList.add("erro_input");
                return;
           }
 
           const camposVazios = validarCamposObrigatorios(inputsEdit);
           if (camposVazios.length > 0) {
-               mostrarToast(
-                    "Campos obrigatórios",
-                    "Por favor, preencha todos os campos antes de salvar.",
-                    "erro"
-               );
+               mostrarToast("Campos vazios", "Preencha todos os dados.", "erro");
                return;
           }
 
-          limparAlteracoes('modalEdit');
-          fecharModal();
+          // --- CORREÇÃO DE PREÇO (EDIÇÃO) ---
+          // 1. Pega o valor (ex: "1,00")
+          // 2. Remove pontos de milhar se houver (ex: 1.000,00 -> 1000,00) - opcional, mas seguro
+          let precoFormatado = inputsEdit.preco.value.replace(/\./g, '');
+          // 3. Troca a vírgula decimal por ponto (ex: 1,00 -> 1.00)
+          precoFormatado = precoFormatado.replace(',', '.');
+        
+          let precoFinal = parseFloat(precoFormatado);
 
-          mostrarToast(
-               "Alterações salvas!",
-               "As modificações foram salvas com sucesso.",
-               "sucesso"
-          );
+          let categoriaSelecionada = inputsEdit.categoria.value;
+
+          const produtoAtualizado = {
+               id_produto: produtoSelecionado,
+               nome_produto: inputsEdit.nome.value,
+               descricao: inputsEdit.descricao.value,
+               categoria: categoriaSelecionada, 
+               preco_unitario: precoFinal, 
+               quantidade_estoque: parseInt(inputsEdit.quantidade.value)
+          };
+
+          try {
+               const btnSalvar = document.querySelector("#modalEdit .botao_salvar");
+               btnSalvar.innerHTML = '<i class="bi bi-hourglass-split"></i> Salvando...';
+               btnSalvar.disabled = true;
+
+               const response = await fetch(API_URL, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(produtoAtualizado)
+               });
+
+               if (response.ok) {
+                    mostrarToast("Atualizado!", "Produto editado com sucesso.", "sucesso");
+                    fecharModal();
+                    limparAlteracoes('modalEdit');
+                    carregarProdutos();
+               } else {
+                    const resultado = await response.json();
+                    throw new Error(resultado.error || "Erro ao atualizar");
+               }
+          } catch (error) {
+               console.error(error);
+               mostrarToast("Erro", "Falha ao editar.", "erro");
+          } finally {
+               const btnSalvar = document.querySelector("#modalEdit .botao_salvar");
+               btnSalvar.innerHTML = '<i class="bi bi-floppy-fill"></i> Salvar';
+               btnSalvar.disabled = false;
+          }
      });
 
      document.querySelector("#modalEdit .botao_visualizar").addEventListener("click", (e) => {
@@ -765,16 +871,42 @@ document.addEventListener("DOMContentLoaded", () => {
     CONFIGURAÇÃO DOS BOTÕES DE ALERT
 ================================*/
 
-// Alert1 - Excluir produto
-// AGORA: .botao_cancelar (Sim, deletar) EXECUTA a ação
-document.querySelector('#alert1 .botao_cancelar').addEventListener('click', function () {
-    mostrarToast(
-        "Item excluído!",
-        "O item foi excluído com sucesso.",
-        "sucesso"
-    );
-    fecharAlert('alert1');
-    fecharModal();
+// Alert1 - Excluir produto (CONFIRMAÇÃO)
+document.querySelector('#alert1 .botao_cancelar').addEventListener('click', async function () {
+     if (!produtoSelecionado) return;
+
+     try {
+          // Feedback visual no botão
+          const btnDeletar = this;
+          const textoOriginal = btnDeletar.innerHTML;
+          btnDeletar.innerHTML = "Excluindo...";
+          btnDeletar.disabled = true;
+
+          // Envia o comando DELETE para a API (passando o ID na URL)
+          const response = await fetch(`${API_URL}?id_produto=${produtoSelecionado}`, {
+               method: 'DELETE'
+          });
+
+          if (response.ok) {
+               mostrarToast("Excluído!", "O item foi removido com sucesso.", "sucesso");
+               fecharAlert('alert1');
+            
+               // Atualiza a tabela
+               carregarProdutos();
+          } else {
+               const resultado = await response.json();
+               throw new Error(resultado.error || "Erro ao excluir");
+          }
+
+     } catch (error) {
+          console.error("Erro ao deletar:", error);
+          mostrarToast("Erro", "Não foi possível excluir o item.", "erro");
+     } finally {
+          // Restaura o botão
+          const btnDeletar = document.querySelector('#alert1 .botao_cancelar');
+          btnDeletar.innerHTML = "Sim, deletar";
+          btnDeletar.disabled = false;
+     }
 });
 
 // .botao_delete (Cancelar) AGORA só fecha o alert
@@ -810,5 +942,182 @@ document.querySelectorAll('#fechar_alert').forEach(btn => {
     });
 });
 
+/* ========================================
+          CARREGAMENTO DE DADOS (NOVO)
+     ========================================*/
+    async function carregarProdutos() {
+        try {
+            // 1. Faz a requisição para o PHP
+            const response = await fetch(API_URL);
+            
+            // Verifica se a resposta foi ok
+            if (!response.ok) {
+                throw new Error('Erro na resposta da rede');
+            }
+
+            const produtos = await response.json();
+
+            // 2. Seleciona o corpo da tabela
+            const tbody = document.querySelector(".table_conteudo tbody");
+            tbody.innerHTML = ""; // Limpa os dados de exemplo estáticos
+
+            // 3. Atualiza o contador de produtos no cabeçalho
+            const contadorHeader = document.querySelector(".header_text p");
+            if (contadorHeader) {
+                contadorHeader.textContent = `${produtos.length} produtos cadastrados.`;
+            }
+
+            // 4. Se não houver produtos
+            if (produtos.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;">Nenhum produto encontrado.</td></tr>`;
+                return;
+            }
+
+            // 5. Cria as linhas da tabela
+            produtos.forEach(produto => {
+                const tr = document.createElement("tr");
+                tr.dataset.id = produto.id_produto; // Importante para editar/excluir depois
+
+                // Formata o preço para R$
+                const precoFormatado = parseFloat(produto.preco_unitario).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+                tr.innerHTML = `
+                    <td>${produto.id_produto}</td>
+                    <td>${produto.nome_produto}</td>
+                    <td style="text-transform: capitalize;">${produto.categoria}</td>
+                    <td>${produto.quantidade_estoque}</td>
+                    <td>${precoFormatado}</td>
+                    <td>
+                        <div class="container_opcoes">
+                            <button class="botao_opcoes" aria-label="Abrir opções do produto">
+                                <i class="bi bi-three-dots"></i>
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            // 6. Reativa os listeners do menu de opções (pois os botões foram recriados)
+            atualizarEventosMenu();
+
+        } catch (error) {
+            console.error("Erro ao carregar produtos:", error);
+            mostrarToast("Erro", "Não foi possível carregar o estoque.", "erro");
+        }
+    }
+
+    // Função auxiliar para reativar o menu nos novos botões
+    function atualizarEventosMenu() {
+        const novosBotoes = document.querySelectorAll(".botao_opcoes");
+        const menuOpcoes = document.getElementById("menuUnico");
+
+        novosBotoes.forEach(btn => {
+            btn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                
+                // Posiciona o menu
+                const rect = btn.getBoundingClientRect();
+                menuOpcoes.style.top = rect.bottom + window.scrollY + "px";
+                menuOpcoes.style.left = rect.left + window.scrollX + "px";
+                menuOpcoes.style.display = "block";
+
+                // Salva o ID do produto selecionado
+                const linha = btn.closest("tr");
+                produtoSelecionado = linha.dataset.id;
+                console.log("Produto ID selecionado:", produtoSelecionado); // Debug
+            });
+        });
+    }
    
+/* ========================================
+       FUNÇÃO PARA CARREGAR DADOS NO MODAL DE VISUALIZAÇÃO
+    ========================================*/
+    async function carregarDadosVisualizar(id) {
+        try {
+            // Abre o modal primeiro para dar feedback visual
+            abrirModal("modalView"); 
+
+            // Busca os dados específicos desse ID na API
+            const response = await fetch(`${API_URL}?id_produto=${id}`);
+            
+            if (!response.ok) throw new Error("Erro ao buscar detalhes do produto");
+
+            const produto = await response.json();
+
+            // Preenche os campos do modal Visualizar (inputsView)
+            inputsView.nome.value = produto.nome_produto;
+            inputsView.descricao.value = produto.descricao;
+            inputsView.categoria.value = produto.categoria; // Aqui o value minúsculo (ex: "saude") funciona perfeitamente com o select!
+            inputsView.quantidade.value = produto.quantidade_estoque;
+            
+            // Formata o preço para exibir (ex: 5.20 -> 5,20)
+            // Como o input é type="number" ou similar com máscara, dependendo do browser, 
+            // às vezes precisamos ajustar o formato.
+            // Se o teu input for texto com máscara:
+            inputsView.preco.value = parseFloat(produto.preco_unitario).toFixed(2).replace('.', ',');
+
+            // Preenche o cabeçalho do modal com ID e Nome
+            document.getElementById("view_id").textContent = `#${produto.id_produto}`;
+            document.getElementById("view_selectProductName").textContent = produto.nome_produto;
+            
+            // Opcional: Se quiseres mostrar o ID do usuário que criou (já que o PHP retorna id_usuario)
+            // document.getElementById("view_userName").textContent = produto.id_usuario; 
+
+        } catch (error) {
+            console.error("Erro ao visualizar:", error);
+            mostrarToast("Erro", "Não foi possível carregar os detalhes.", "erro");
+            fecharModal();
+        }
+    }
+
+/* ========================================
+       FUNÇÃO PARA CARREGAR DADOS NO MODAL DE EDIÇÃO
+    ========================================*/
+     async function carregarDadosEditar(id) {
+          try {
+               abrirModal("modalEdit");
+               inputsEdit.nome.value = "Carregando...";
+
+               const response = await fetch(`${API_URL}?id_produto=${id}`);
+               if (!response.ok) throw new Error("Erro ao buscar dados");
+
+               const produto = await response.json();
+
+               // Preenche ID e textos
+               document.getElementById("edit_id").textContent = `#${produto.id_produto}`;
+               document.getElementById("edit_selectProductName").textContent = produto.nome_produto;
+            
+               inputsEdit.nome.value = produto.nome_produto;
+               inputsEdit.descricao.value = produto.descricao;
+               inputsEdit.quantidade.value = produto.quantidade_estoque;
+
+               // CORREÇÃO 2 (CATEGORIA EM BRANCO): Lógica inteligente de seleção
+               // Tenta definir pelo valor exato (ex: "alimento")
+               inputsEdit.categoria.value = produto.categoria;
+            
+               // Se falhar (selectedIndex ficar -1) porque o banco tem "Alimento" e o HTML tem "alimento"
+               if (inputsEdit.categoria.selectedIndex === -1) {
+                    // Procura a opção pelo texto, ignorando maiúsculas/minúsculas
+                    for (let i = 0; i < inputsEdit.categoria.options.length; i++) {
+                         if (inputsEdit.categoria.options[i].text.toLowerCase() === produto.categoria.toLowerCase()) {
+                         inputsEdit.categoria.selectedIndex = i;
+                         break;
+                         }
+                    }
+               }
+
+               // CORREÇÃO PREÇO VISUAL: Formata para exibir no input com a máscara
+               let preco = parseFloat(produto.preco_unitario).toFixed(2); 
+               preco = preco.replace('.', ',');
+               if (preco.length < 5) preco = "0" + preco; // Garante 05,00 se necessário
+               inputsEdit.preco.value = preco;
+
+          } catch (error) {
+               console.error("Erro edição:", error);
+               mostrarToast("Erro", "Não foi possível carregar os dados.", "erro");
+               fecharModal();
+          }
+     }
+    
 });
