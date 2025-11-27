@@ -867,9 +867,9 @@ document.addEventListener("DOMContentLoaded", () => {
      });
 
 
-   /* ================================
-    CONFIGURAÇÃO DOS BOTÕES DE ALERT
-================================*/
+     /* ================================
+      CONFIGURAÇÃO DOS BOTÕES DE ALERT
+  ================================*/
 
 // Alert1 - Excluir produto (CONFIRMAÇÃO)
 document.querySelector('#alert1 .botao_cancelar').addEventListener('click', async function () {
@@ -909,38 +909,38 @@ document.querySelector('#alert1 .botao_cancelar').addEventListener('click', asyn
      }
 });
 
-// .botao_delete (Cancelar) AGORA só fecha o alert
-document.querySelector('#alert1 .botao_delete').addEventListener('click', function () {
-    fecharAlert('alert1');
-});
+     // .botao_delete (Cancelar) AGORA só fecha o alert
+     document.querySelector('#alert1 .botao_delete').addEventListener('click', function () {
+          fecharAlert('alert1');
+     });
 
 
-// Alert0 - Descartar alterações
-// AGORA: .botao_cancelar (Sim, sair) EXECUTA a ação
-document.querySelector('#alert0 .botao_cancelar').addEventListener('click', function () {
-    const modalAberto = document.querySelector('.modalBase[style*="display: block"]');
-    if (modalAberto) {
-        limparAlteracoes(modalAberto.id);
-        fecharModal();
-    }
-    fecharAlert('alert0');
-});
+     // Alert0 - Descartar alterações
+     // AGORA: .botao_cancelar (Sim, sair) EXECUTA a ação
+     document.querySelector('#alert0 .botao_cancelar').addEventListener('click', function () {
+          const modalAberto = document.querySelector('.modalBase[style*="display: block"]');
+          if (modalAberto) {
+               limparAlteracoes(modalAberto.id);
+               fecharModal();
+          }
+          fecharAlert('alert0');
+     });
 
-// .botao_delete (Cancelar) AGORA só fecha o alert
-document.querySelector('#alert0 .botao_delete').addEventListener('click', function () {
-    fecharAlert('alert0');
-});
+     // .botao_delete (Cancelar) AGORA só fecha o alert
+     document.querySelector('#alert0 .botao_delete').addEventListener('click', function () {
+          fecharAlert('alert0');
+     });
 
 
-// BOTÕES FECHAR_ALERT PARA TODOS OS ALERTS
-document.querySelectorAll('#fechar_alert').forEach(btn => {
-    btn.addEventListener('click', function() {
-        const alert = this.closest('.alert_modelo');
-        if (alert) {
-            fecharAlert(alert.id);
-        }
-    });
-});
+     // BOTÕES FECHAR_ALERT PARA TODOS OS ALERTS
+     document.querySelectorAll('#fechar_alert').forEach(btn => {
+          btn.addEventListener('click', function () {
+               const alert = this.closest('.alert_modelo');
+               if (alert) {
+                    fecharAlert(alert.id);
+               }
+          });
+     });
 
 /* ========================================
           CARREGAMENTO DE DADOS (NOVO)
@@ -1120,4 +1120,5 @@ document.querySelectorAll('#fechar_alert').forEach(btn => {
           }
      }
     
+
 });

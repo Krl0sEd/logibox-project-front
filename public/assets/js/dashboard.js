@@ -31,67 +31,81 @@ document.addEventListener("DOMContentLoaded", () => {
           cargo.innerText = usuario.tipo || "Usuário";
      }
 
-// =============================================
-// BUSCAR TOTAL DE PRODUTOS USANDO estoque.php
-// =============================================
+     // Apagar a primeira linha do gráfico E remover "usuário" e "histórico" do sidebar
+     const navUsuario = document.getElementById('menu-usuarios');
+     const navLog = document.getElementById('menu-log');
+     const linha_dados = document.getElementById('linha_dados');
 
-fetch("http://163.176.193.115/estoque.php")
-    .then(response => response.json())
-    .then(data => {
-        console.log("Dados recebidos do estoque:", data);
+     isAdmin = usuario.tipo === 'Administrador';
 
-        const totalProdutosEl = document.getElementById("quant_produto");
+     if (!isAdmin) {
+          navUsuario.style.display = "none";
+          navLog.style.display = "none";
+          linha_dados.style.display = "none";
+     };
 
-        // Se veio array, contamos os produtos
-        if (Array.isArray(data)) {
-            totalProdutosEl.innerText = data.length;
-        } else {
-            totalProdutosEl.innerText = "0";
-        }
-    })
-    .catch(error => {
-        console.error("Erro ao buscar produtos:", error);
-    });
 
-// =============================================
-// BUSCAR TOTAL DE USUÁRIO USANDO contador_usuarios.php (com animação)
-// =============================================
+     // =============================================
+     // BUSCAR TOTAL DE PRODUTOS USANDO estoque.php
+     // =============================================
 
-    function animarNumero(element, target) {
-    let current = 0;
-    const speed = 200; 
+     fetch("http://163.176.193.115/estoque.php")
+          .then(response => response.json())
+          .then(data => {
+               console.log("Dados recebidos do estoque:", data);
 
-    const intervalo = setInterval(() => {
-        current++;
-        element.textContent = current;
+               const totalProdutosEl = document.getElementById("quant_produto");
 
-        if (current >= target) {
-            clearInterval(intervalo);
-        }
-    }, speed);
-}
+               // Se veio array, contamos os produtos
+               if (Array.isArray(data)) {
+                    totalProdutosEl.innerText = data.length;
+               } else {
+                    totalProdutosEl.innerText = "0";
+               }
+          })
+          .catch(error => {
+               console.error("Erro ao buscar produtos:", error);
+          });
 
-fetch("http://163.176.193.115/contador_usuario.php")
-    .then(r => r.json())
-    .then(data => {
-        const span = document.getElementById("quant_user");
-        animarNumero(span, Number(data.total_usuarios));
-    });
+     // =============================================
+     // BUSCAR TOTAL DE USUÁRIO USANDO contador_usuarios.php (com animação)
+     // =============================================
 
-    // =============================================
-// BUSCAR TOTAL DE AÇÕES DO LOG
-// =============================================
+     function animarNumero(element, target) {
+          let current = 0;
+          const speed = 200;
 
-function carregarTotalAcoes() {
-    fetch("http://163.176.193.115/contador_log.php")
-        .then(r => r.json())
-        .then(data => {
-            document.getElementById("quant_açoes").textContent = data.total_acoes;
-        })
-        .catch(err => console.error("Erro ao buscar ações:", err));
-}
+          const intervalo = setInterval(() => {
+               current++;
+               element.textContent = current;
 
-carregarTotalAcoes();
+               if (current >= target) {
+                    clearInterval(intervalo);
+               }
+          }, speed);
+     }
+
+     fetch("http://163.176.193.115/contador_usuario.php")
+          .then(r => r.json())
+          .then(data => {
+               const span = document.getElementById("quant_user");
+               animarNumero(span, Number(data.total_usuarios));
+          });
+
+     // =============================================
+     // BUSCAR TOTAL DE AÇÕES DO LOG
+     // =============================================
+
+     function carregarTotalAcoes() {
+          fetch("http://163.176.193.115/contador_log.php")
+               .then(r => r.json())
+               .then(data => {
+                    document.getElementById("quant_açoes").textContent = data.total_acoes;
+               })
+               .catch(err => console.error("Erro ao buscar ações:", err));
+     }
+
+     carregarTotalAcoes();
 
 
      /* ========================================
@@ -102,7 +116,7 @@ carregarTotalAcoes();
      const gValor = document.getElementById('grafico_valor');
 
      // Gráfico de quantidade de Categorias
-     new Chart (gCategoria, {
+     new Chart(gCategoria, {
           type: 'pie',
           data: {
                labels: ['Alimentícios', 'Higiene', 'Eletrônicos', 'Bebidas', 'Papelaria'],
@@ -115,7 +129,7 @@ carregarTotalAcoes();
                          '#FFCE56',       // Amarelo - bebidas
                          '#824bc0ff'        // Roxo - Papelaria
                     ],
-                    borderColor: '#fff', 
+                    borderColor: '#fff',
                     borderWidth: 1
                }]
           },
@@ -138,26 +152,26 @@ carregarTotalAcoes();
      });
 
 
-          // Gráfico de produtos com maior preço unitário
+     // Gráfico de produtos com maior preço unitário
 
 
-     new Chart (gValor, {
-          type:'bar',
+     new Chart(gValor, {
+          type: 'bar',
           data: {
-               labels: ['Produto 1', 'Produto 2','Produto 3','Produto 4','Produto 5'],
-               datasets: [{ 
+               labels: ['Produto 1', 'Produto 2', 'Produto 3', 'Produto 4', 'Produto 5'],
+               datasets: [{
                     data: [20, 10, 30, 17, 50],
-                     backgroundColor: [
-                         '#FF6384',       
-                         '#36A2EB',       
-                         '#FFCE56',       
-                         '#4BC0C0',      
-                         '#824bc0ff'   
+                    backgroundColor: [
+                         '#FF6384',
+                         '#36A2EB',
+                         '#FFCE56',
+                         '#4BC0C0',
+                         '#824bc0ff'
                     ]
                }]
           },
           options: {
-               responsive: true, 
+               responsive: true,
                plugins: {
                     legend: {
                          display: false,

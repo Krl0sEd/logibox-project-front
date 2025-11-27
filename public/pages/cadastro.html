@@ -1,372 +1,257 @@
 <!doctype html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Logibox - Cadastro</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
-        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet" />
-        <link rel="shortcut icon" href="../assets/img/icon.ico" type="image/x-icon" />
-        <link rel="stylesheet" href="../assets/css/cadastro.css" />
-    </head>
-    <body>
-        <div class="main_container">
-            <div class="left_side"></div>
-            <div class="right_side">
-                <div class="form_container">
+
+<head>
+     <meta charset="UTF-8" />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <title>Logibox - Cadastro</title>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+     <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon/favicon.png">
+     <link rel="stylesheet" href="../assets/css/cadastro.css" />
+</head>
+
+<body>
+     <div class="main_container">
+          <div class="left_side"></div>
+          <div class="right_side">
+               <div class="form_container">
                     <div>
-                        <div class="form_header mt-2">
-                            <img src="../assets/img/logoBlackHorizontal.png" alt="Logibox" />
-                        </div>
-                        <div class="intro_text">
-                            <h5><strong>Cadastre-se e use a Logibox.</strong></h5>
-                            <p>
-                                Simplifique o controle de entregas e cadastre suas informações para ter acesso às nossas
-                                soluções logísticas com praticidade e segurança.
-                            </p>
-                        </div>
-                        <div class="steps mb-5">
-                            <div class="step active" data-step="0">Passo 1<br /><small>Dados pessoais</small></div>
-                            <div class="step" data-step="1">Passo 2<br /><small>Contato e endereço</small></div>
-                            <div class="step" data-step="2">Passo 3<br /><small>Acesso à conta</small></div>
-                        </div>
+                         <div class="form_header mt-2">
+                              <img src="../assets/img/logoBlackHorizontal.png" alt="Logibox" />
+                         </div>
+                         <div class="intro_text">
+                              <h5><strong>Cadastre-se e use a Logibox.</strong></h5>
+                              <p>
+                                   Simplifique o controle de entregas e cadastre suas informações para ter acesso às
+                                   nossas
+                                   soluções logísticas com praticidade e segurança.
+                              </p>
+                         </div>
+                         <div class="steps mb-5">
+                              <div class="step active" data-step="0">Passo 1<br /><small>Dados pessoais</small></div>
+                              <div class="step" data-step="1">Passo 2<br /><small>Contato e endereço</small></div>
+                              <div class="step" data-step="2">Passo 3<br /><small>Acesso à conta</small></div>
+                         </div>
                     </div>
                     <form id="multi_step_form" style="flex-grow: 1">
-                        <!-- Passo 1 -->
-                        <div class="form_step active" data-step="0">
-                            <div class="row">
-                                <div class="col">
-                                    <label for="nome">Nome Completo</label>
-                                    <input
-                                        id="nome"
-                                        name="nome"
-                                        type="text"
-                                        class="form-control"
-                                        placeholder="Ex: Paula Silva Ferreira"
-                                        data-key="nome"
-                                        data-step="0"
-                                        maxlength="80"
-                                        minlength="15"
-                                        />
-                                </div>
-                                <div class="col">
-                                    <label for="nome_materno">Nome Materno</label>
-                                    <input
-                                        id="nome_materno"
-                                        name="nome_materno"
-                                        type="text"
-                                        class="form-control"
-                                        placeholder="Ex: Ana Souza Ferreira"
-                                        data-key="nome_materno"
-                                        data-step="0"
-                                        maxlength="80"
-                                        minlength="15"
-                                        />
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <label for="email">E-mail</label>
-                                    <input
-                                        id="email"
-                                        name="email"
-                                        type="email"
-                                        class="form-control"
-                                        placeholder="exemplo@email.com"
-                                        data-key="email"
-                                        data-step="0"
-                                        />
-                                </div>
-                                <div class="col">
-                                    <label for="telefone">Telefone Celular</label>
-                                    <input
-                                        id="telefone"
-                                        name="telefone_celular"
-                                        type="tel"
-                                        inputmode="tel"
-                                        class="form-control"
-                                        placeholder="(+55) XX XXXXX-XXXX"
-                                        data-key="telefone_celular"
-                                        data-step="0"
-                                        />
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <label for="data_nasc">Data de nascimento</label>
-                                    <input
-                                        id="data_nasc"
-                                        name="data_nascimento"
-                                        type="date"
-                                        class="form-control"
-                                        data-key="data_nascimento"
-                                        data-step="0"
-                                        />
-                                </div>
-                                <div class="col">
-                                    <label for="sexo">Sexo</label>
-                                    <select id="sexo" name="sexo" class="form-select" data-key="sexo" data-step="0">
-                                        <option value="" disabled selected>Selecione...</option>
-                                        <option value="Feminino">Feminino</option>
-                                        <option value="Masculino">Masculino</option>
-                                        <option value="Outro">Outro</option>
-                                    </select>
-                                </div>
-                                <div class="col">
-                                    <label for="cpf">CPF</label>
-                                      <input
-                                          id="cpf"
-                                          name="cpf"
-                                          type="text"
-                                          inputmode="numeric"
-                                          class="form-control"
-                                          placeholder="000.000.000-00"
-                                          data-key="cpf"
-                                          data-step="0"
-                                          maxlength="14"
-                                      />
-                                </div>
-                            </div>
-                            <div class="text-end">
-                                <button type="reset" class="btn btn-outline-dark btn-sm limpar">
-                                <i class="bi bi-trash-fill"></i> Limpar
-                                </button>
-                            </div>
-                            <div class="text-center">
-                                <button type="button" class="btn btn-danger next_step">Continuar</button>
-                            </div>
-                        </div>
-                        <!-- Passo 2 -->
-                        <div class="form_step" data-step="1">
-                            <div class="row">
-                                <div class="col">
-                                    <label for="cep">CEP</label>
-                                    <input
-                                        id="cep"
-                                        name="cep"
-                                        type="tel"
-                                        inputmode="numeric"
-                                        class="form-control"
-                                        placeholder="00000-000"
-                                        data-key="cep"
-                                        data-step="1"
-                                        />
-                                </div>
-                                <div class="col">
-                                    <label for="estado">Estado</label>
-                                    <select id="estado" name="estado" class="form-select" data-key="estado">
-                                        <option value="" disabled selected hidden>Estado</option>
-                                        <option value="AC">Acre</option>
-                                        <option value="AL">Alagoas</option>
-                                        <option value="AP">Amapá</option>
-                                        <option value="AM">Amazonas</option>
-                                        <option value="BA">Bahia</option>
-                                        <option value="CE">Ceará</option>
-                                        <option value="DF">Distrito Federal</option>
-                                        <option value="ES">Espírito Santo</option>
-                                        <option value="GO">Goiás</option>
-                                        <option value="MA">Maranhão</option>
-                                        <option value="MT">Mato Grosso</option>
-                                        <option value="MS">Mato Grosso do Sul</option>
-                                        <option value="MG">Minas Gerais</option>
-                                        <option value="PA">Pará</option>
-                                        <option value="PB">Paraíba</option>
-                                        <option value="PR">Paraná</option>
-                                        <option value="PE">Pernambuco</option>
-                                        <option value="PI">Piauí</option>
-                                        <option value="RJ">Rio de Janeiro</option>
-                                        <option value="RN">Rio Grande do Norte</option>
-                                        <option value="RS">Rio Grande do Sul</option>
-                                        <option value="RO">Rondônia</option>
-                                        <option value="RR">Roraima</option>
-                                        <option value="SC">Santa Catarina</option>
-                                        <option value="SP">São Paulo</option>
-                                        <option value="SE">Sergipe</option>
-                                        <option value="TO">Tocantins</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <label for="cidade">Cidade</label>
-                                    <input
-                                        id="cidade"
-                                        name="cidade"
-                                        type="text"
-                                        class="form-control"
-                                        placeholder="Cidade"
-                                        data-key="cidade"
-                                        data-step="1"
-                                        />
-                                </div>
-                                <div class="col">
-                                    <label for="bairro">Bairro</label>
-                                    <input
-                                        id="bairro"
-                                        name="bairro"
-                                        type="text"
-                                        class="form-control"
-                                        placeholder="Bairro"
-                                        data-key="bairro"
-                                        data-step="1"
-                                        />
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <label for="numero">Nº da rua</label>
-                                    <input
-                                        id="numero"
-                                        name="numero_rua"
-                                        type="text"
-                                        class="form-control"
-                                        placeholder="Número"
-                                        data-key="numero_rua"
-                                        data-step="1"
-                                        />
-                                </div>
-                                <div class="col">
-                                    <label for="rua">Rua</label>
-                                    <input
-                                        id="rua"
-                                        name="rua"
-                                        type="text"
-                                        class="form-control"
-                                        placeholder="Rua"
-                                        data-key="rua"
-                                        data-step="1"
-                                        />
-                                </div>
-                            </div>
-                            <div class="mb-2">
-                                <label for="complemento">Complemento</label>
-                                <input
-                                    id="complemento"
-                                    name="complemento"
-                                    type="text"
-                                    class="form-control"
-                                    placeholder="Complemento"
-                                    data-key="complemento"
-                                    data-step="1"
-                                    />
-                            </div>
-                            <div class="text-end">
-                                <button type="reset" class="btn btn-outline-dark btn-sm limpar">
-                                <i class="bi bi-trash-fill"></i> Limpar
-                                </button>
-                            </div>
-                            <div class="text-center">
-                              <div class="group_buttons">
-                                   <button type="button" class="btn btn-danger prev_step">
-                                        <i class="bi bi-arrow-left"></i>
-                                        Voltar</button>
-                                   <button type="button" class="btn btn-danger next_step">
-                                         Continuar
-                                         <i class="bi bi-arrow-right"></i></button>
+                         <!-- Passo 1 -->
+                         <div class="form_step active" data-step="0">
+                              <div class="row">
+                                   <div class="col">
+                                        <label for="nome">Nome Completo</label>
+                                        <input id="nome" name="nome" type="text" class="form-control"
+                                             placeholder="Ex: Paula Silva Ferreira" data-key="nome" data-step="0"
+                                             maxlength="80" minlength="15" />
                                    </div>
-                            </div>
-                        </div>
-                        <!-- Passo 3 -->
-                        <div class="form_step" data-step="2">
-                            <div class="mb-2">
-                                <label for="login">Login</label>
-                                  <input
-                                      id="login"
-                                      name="login"
-                                      type="text"
-                                      class="form-control"
-                                      placeholder="6 letras"
-                                      data-key="login"
-                                      data-step="2"
-                                      minlength="6"
-                                      maxlength="6"
-                                  />
-                            </div>
-                            <div class="password-input-group">
-                                <label for="senha">Senha</label>
-                                  <input
-                                      id="senha"
-                                      name="senha"
-                                      type="password"
-                                      class="form-control"
-                                      placeholder="8 letras"
-                                      data-key="senha"
-                                      data-step="2"
-                                      autocomplete="new-password"
-                                      minlength="8"
-                                      maxlength="8"
-                                  />
-                                <button
-                                    type="button"
-                                    class="toggle-password mt-3"
-                                    data-target="senha"
-                                    aria-label="Mostrar ou ocultar senha"
-                                    >
-                                <i class="bi bi-eye"></i>
-                                </button>
-                            </div>
-                            <div class="password-input-group">
-                                <label for="repetir_senha">Repetir senha</label>
-                                  <input
-                                      id="repetir_senha"
-                                      type="password"
-                                      class="form-control"
-                                      placeholder="Repita a senha"
-                                      data-key="repetir_senha"
-                                      data-step="2"
-                                      autocomplete="new-password"
-                                      minlength="8"
-                                      maxlength="8"
-                                  />
-                                <button
-                                    type="button"
-                                    class="toggle-password mt-3"
-                                    data-target="repetir_senha"
-                                    aria-label="Mostrar ou ocultar senha"
-                                    >
-                                <i class="bi bi-eye"></i>
-                                </button>
-                            </div>
-                            <div class="limpar-container">
-                                <button type="reset" class="btn btn-outline-dark btn-sm limpar mt-2">
-                                <i class="bi bi-trash-fill"></i> Limpar
-                                </button>
-                            </div>
-                            <div class="text-center">
-                              <div class="group_buttons">
-                                   <button type="button" class="btn btn-danger prev_step">
-                                        <i class="bi bi-arrow-left"></i>
-                                        Voltar</button>
-                                   <button type="button" class="btn btn-danger next_step d-none" id="btn_next_final"></button>
-                                   <button type="submit" class="btn btn-success" id="btn_submit">Cadastrar</button>
-                                         <i class="bi bi-arrow-right"></i></button>
+                                   <div class="col">
+                                        <label for="nome_materno">Nome Materno</label>
+                                        <input id="nome_materno" name="nome_materno" type="text" class="form-control"
+                                             placeholder="Ex: Ana Souza Ferreira" data-key="nome_materno" data-step="0"
+                                             maxlength="80" minlength="15" />
                                    </div>
-                            </div>
-                        </div>
+                              </div>
+                              <div class="row">
+                                   <div class="col">
+                                        <label for="email">E-mail</label>
+                                        <input id="email" name="email" type="email" class="form-control"
+                                             placeholder="exemplo@email.com" data-key="email" data-step="0" />
+                                   </div>
+                                   <div class="col">
+                                        <label for="telefone">Telefone Celular</label>
+                                        <input id="telefone" name="telefone_celular" type="tel" inputmode="tel"
+                                             class="form-control" placeholder="(+55) XX XXXXX-XXXX"
+                                             data-key="telefone_celular" data-step="0" />
+                                   </div>
+                              </div>
+                              <div class="row">
+                                   <div class="col">
+                                        <label for="data_nasc">Data de nascimento</label>
+                                        <input id="data_nasc" name="data_nascimento" type="date" class="form-control"
+                                             data-key="data_nascimento" data-step="0" />
+                                   </div>
+                                   <div class="col">
+                                        <label for="sexo">Sexo</label>
+                                        <select id="sexo" name="sexo" class="form-select" data-key="sexo" data-step="0">
+                                             <option value="" disabled selected>Selecione...</option>
+                                             <option value="Feminino">Feminino</option>
+                                             <option value="Masculino">Masculino</option>
+                                             <option value="Outro">Outro</option>
+                                        </select>
+                                   </div>
+                                   <div class="col">
+                                        <label for="cpf">CPF</label>
+                                        <input id="cpf" name="cpf" type="text" inputmode="numeric" class="form-control"
+                                             placeholder="000.000.000-00" data-key="cpf" data-step="0" maxlength="14" />
+                                   </div>
+                              </div>
+                              <div class="text-end">
+                                   <button type="reset" class="btn btn-outline-dark btn-sm limpar">
+                                        <i class="bi bi-trash-fill"></i> Limpar
+                                   </button>
+                              </div>
+                              <div class="text-center">
+                                   <button type="button" class="btn btn-danger next_step">Continuar</button>
+                              </div>
+                         </div>
+                         <!-- Passo 2 -->
+                         <div class="form_step" data-step="1">
+                              <div class="row">
+                                   <div class="col">
+                                        <label for="cep">CEP</label>
+                                        <input id="cep" name="cep" type="tel" inputmode="numeric" class="form-control"
+                                             placeholder="00000-000" data-key="cep" data-step="1" />
+                                   </div>
+                                   <div class="col">
+                                        <label for="estado">Estado</label>
+                                        <select id="estado" name="estado" class="form-select" data-key="estado">
+                                             <option value="" disabled selected hidden>Estado</option>
+                                             <option value="AC">Acre</option>
+                                             <option value="AL">Alagoas</option>
+                                             <option value="AP">Amapá</option>
+                                             <option value="AM">Amazonas</option>
+                                             <option value="BA">Bahia</option>
+                                             <option value="CE">Ceará</option>
+                                             <option value="DF">Distrito Federal</option>
+                                             <option value="ES">Espírito Santo</option>
+                                             <option value="GO">Goiás</option>
+                                             <option value="MA">Maranhão</option>
+                                             <option value="MT">Mato Grosso</option>
+                                             <option value="MS">Mato Grosso do Sul</option>
+                                             <option value="MG">Minas Gerais</option>
+                                             <option value="PA">Pará</option>
+                                             <option value="PB">Paraíba</option>
+                                             <option value="PR">Paraná</option>
+                                             <option value="PE">Pernambuco</option>
+                                             <option value="PI">Piauí</option>
+                                             <option value="RJ">Rio de Janeiro</option>
+                                             <option value="RN">Rio Grande do Norte</option>
+                                             <option value="RS">Rio Grande do Sul</option>
+                                             <option value="RO">Rondônia</option>
+                                             <option value="RR">Roraima</option>
+                                             <option value="SC">Santa Catarina</option>
+                                             <option value="SP">São Paulo</option>
+                                             <option value="SE">Sergipe</option>
+                                             <option value="TO">Tocantins</option>
+                                        </select>
+                                   </div>
+                              </div>
+                              <div class="row">
+                                   <div class="col">
+                                        <label for="cidade">Cidade</label>
+                                        <input id="cidade" name="cidade" type="text" class="form-control"
+                                             placeholder="Cidade" data-key="cidade" data-step="1" />
+                                   </div>
+                                   <div class="col">
+                                        <label for="bairro">Bairro</label>
+                                        <input id="bairro" name="bairro" type="text" class="form-control"
+                                             placeholder="Bairro" data-key="bairro" data-step="1" />
+                                   </div>
+                              </div>
+                              <div class="row">
+                                   <div class="col">
+                                        <label for="numero">Nº da rua</label>
+                                        <input id="numero" name="numero_rua" type="text" class="form-control"
+                                             placeholder="Número" data-key="numero_rua" data-step="1" />
+                                   </div>
+                                   <div class="col">
+                                        <label for="rua">Rua</label>
+                                        <input id="rua" name="rua" type="text" class="form-control" placeholder="Rua"
+                                             data-key="rua" data-step="1" />
+                                   </div>
+                              </div>
+                              <div class="mb-2">
+                                   <label for="complemento">Complemento</label>
+                                   <input id="complemento" name="complemento" type="text" class="form-control"
+                                        placeholder="Complemento" data-key="complemento" data-step="1" />
+                              </div>
+                              <div class="text-end">
+                                   <button type="reset" class="btn btn-outline-dark btn-sm limpar">
+                                        <i class="bi bi-trash-fill"></i> Limpar
+                                   </button>
+                              </div>
+                              <div class="text-center">
+                                   <div class="group_buttons">
+                                        <button type="button" class="btn btn-danger prev_step">
+                                             <i class="bi bi-arrow-left"></i>
+                                             Voltar</button>
+                                        <button type="button" class="btn btn-danger next_step">
+                                             Continuar
+                                             <i class="bi bi-arrow-right"></i></button>
+                                   </div>
+                              </div>
+                         </div>
+                         <!-- Passo 3 -->
+                         <div class="form_step" data-step="2">
+                              <div class="mb-2">
+                                   <label for="login">Login</label>
+                                   <input id="login" name="login" type="text" class="form-control"
+                                        placeholder="6 letras" data-key="login" data-step="2" minlength="6"
+                                        maxlength="6" />
+                              </div>
+                              <div class="password-input-group">
+                                   <label for="senha">Senha</label>
+                                   <input id="senha" name="senha" type="password" class="form-control"
+                                        placeholder="8 letras" data-key="senha" data-step="2"
+                                        autocomplete="new-password" minlength="8" maxlength="8" />
+                                   <button type="button" class="toggle-password mt-3" data-target="senha"
+                                        aria-label="Mostrar ou ocultar senha">
+                                        <i class="bi bi-eye"></i>
+                                   </button>
+                              </div>
+                              <div class="password-input-group">
+                                   <label for="repetir_senha">Repetir senha</label>
+                                   <input id="repetir_senha" type="password" class="form-control"
+                                        placeholder="Repita a senha" data-key="repetir_senha" data-step="2"
+                                        autocomplete="new-password" minlength="8" maxlength="8" />
+                                   <button type="button" class="toggle-password mt-3" data-target="repetir_senha"
+                                        aria-label="Mostrar ou ocultar senha">
+                                        <i class="bi bi-eye"></i>
+                                   </button>
+                              </div>
+                              <div class="limpar-container">
+                                   <button type="reset" class="btn btn-outline-dark btn-sm limpar mt-2">
+                                        <i class="bi bi-trash-fill"></i> Limpar
+                                   </button>
+                              </div>
+                              <div class="text-center">
+                                   <div class="group_buttons">
+                                        <button type="button" class="btn btn-danger prev_step">
+                                             <i class="bi bi-arrow-left"></i>
+                                             Voltar</button>
+                                        <button type="button" class="btn btn-danger next_step d-none"
+                                             id="btn_next_final"></button>
+                                        <button type="submit" class="btn btn-success" id="btn_submit">Cadastrar<i
+                                                  class="bi bi-arrow-right"></i></button>
+
+                                   </div>
+                              </div>
+                         </div>
                     </form>
                     <p class="text-muted text-center small mt-3">
-                        Já possui uma conta? <a href="../pages/login.html">Faça seu login.</a>
+                         Já possui uma conta? <a href="../pages/login.html">Faça seu login.</a>
                     </p>
-                </div>
-            </div>
-        </div>
-        <!-- MODAL DE FEEDBACK -->
-        <div class="modal fade" id="feedback_modal" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content text-center">
+               </div>
+          </div>
+     </div>
+     <!-- MODAL DE FEEDBACK -->
+     <div class="modal fade" id="feedback_modal" tabindex="-1">
+          <div class="modal-dialog modal-dialog-centered">
+               <div class="modal-content text-center">
                     <div class="modal-header bg-danger text-white">
-                        <h5 class="modal-title" id="modal_title"></h5>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                         <h5 class="modal-title" id="modal_title"></h5>
+                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body" id="modal_message"></div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
                     </div>
-                </div>
-            </div>
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="../assets/js/cadastro.js"></script>
-    </body>
+               </div>
+          </div>
+     </div>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+     <script src="../assets/js/cadastro.js"></script>
+</body>
+
 </html>

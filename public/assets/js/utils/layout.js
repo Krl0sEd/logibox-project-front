@@ -92,12 +92,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
      header_btn.addEventListener("click", abrirSubMenu);
 
+     // Foto de perfil
+     const userData = localStorage.getItem("user");
+     const usuario = JSON.parse(userData);
+     const nomeUsuario = usuario.nome;
+
+     const avatarUrl = `https://api.dicebear.com/7.x/initials/svg?radius=20&seed=${encodeURIComponent(nomeUsuario)}`;
+
+     const avatarElement = document.getElementById("avatarUser");
+     avatarElement.src = avatarUrl;
 
 
 
-    /* ================================
-                     TOAST 
-     ================================*/
+     /* ================================
+                      TOAST 
+      ================================*/
      window.mostrarToast = function (titulo, texto, tipo = "sucesso") {
           const toast = document.getElementById("toast_unico");
           const tTitulo = document.getElementById("toast_titulo");

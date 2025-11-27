@@ -51,7 +51,7 @@
 
 
                          <div class="header_user_img">
-                              <img src="../assets//img/userImg.png" alt="Imagem do usuario">
+                               <img id="avatarUser" src="../assets/img/userImg.png" alt="Imagem do usuario" width="40" height="40">
                          </div>
                          <div class="header_user_text">
                               <span class="header_username">Nome Sobrenome</span>
@@ -270,7 +270,7 @@
                </div>
           </main>
      </div>
-        <!-- Toast -->
+     <!-- Toast -->
      <div class="toast_modelo" id="toast_unico">
           <button class="btn_fechar_toast">
                <i class="bi bi-x"></i>
@@ -285,29 +285,29 @@
           </div>
      </div>
 
-         <!-- Alert Sair da conta -->
-          <div class="alert_modelo" id="alert2">
-               <div class="conteudo_alert">
-                    <button class="fechar_modal" id="fechar_alert">
-                         <span class="fechar_modal_icone">&times;</span>
-                    </button>
+     <!-- Alert Sair da conta -->
+     <div class="alert_modelo" id="alert2">
+          <div class="conteudo_alert">
+               <button class="fechar_modal" id="fechar_alert">
+                    <span class="fechar_modal_icone">&times;</span>
+               </button>
 
-                    <div class="icone_modal">
-                         <div class="icone_modal_fill">
-                              <i class="bi bi-box-arrow-left"></i>
-                         </div>
-                    </div>
-
-                    <h2>Encerrar sessão</h2>
-                    <p>Tem certeza que deseja sair da sua conta? Essa ação desconectará você imediatamente.</p>
-                    <div class="alert_botoes">
-                         <button class="botao_cancelar">Sim, sair</button>
-                         <button class="botao_delete">Cancelar</button>
+               <div class="icone_modal">
+                    <div class="icone_modal_fill">
+                         <i class="bi bi-box-arrow-left"></i>
                     </div>
                </div>
-          </div>
 
-          
+               <h2>Encerrar sessão</h2>
+               <p>Tem certeza que deseja sair da sua conta? Essa ação desconectará você imediatamente.</p>
+               <div class="alert_botoes">
+                    <button class="botao_cancelar">Sim, sair</button>
+                    <button class="botao_delete">Cancelar</button>
+               </div>
+          </div>
+     </div>
+
+
      <div id="backdrop" class="backdrop"></div> <!-- adiciona um backdrop para o sidebar em telas pequenas -->
 
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
@@ -319,4 +319,5 @@
      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </body>
+
 </html>
