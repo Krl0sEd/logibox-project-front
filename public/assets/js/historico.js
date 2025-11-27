@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 carregarHistorico();
 
 function carregarHistorico() {
-    fetch("http://136.248.93.91/log.php")
+    fetch("http://163.176.193.115/log.php")
         .then(response => response.json())
         .then(logs => {
             const tbody = document.querySelector(".table_conteudo tbody");
