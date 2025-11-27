@@ -1,5 +1,40 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+     
+carregarHistorico();
+
+function carregarHistorico() {
+    fetch("http://136.248.93.91/log.php")
+        .then(response => response.json())
+        .then(logs => {
+            const tbody = document.querySelector(".table_conteudo tbody");
+            tbody.innerHTML = "";
+
+            logs.forEach(log => {
+                const tr = document.createElement("tr");
+
+                tr.innerHTML = `
+                    <td>${formatarData(log.data)}</td>
+                    <td>${log.usuario}</td>
+                    <td>${log.acao}</td>
+                `;
+
+                tbody.appendChild(tr);
+            });
+        })
+        .catch(error => console.error("Erro ao carregar logs:", error));
+}
+
+function formatarData(dataSQL) {
+    const data = new Date(dataSQL);
+    return data.toLocaleString("pt-BR", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+    });
+}
 
      /* =========================================================
                          ALERTS E MODAIS
@@ -163,6 +198,31 @@ document.addEventListener("DOMContentLoaded", () => {
      });
 
 
+      /* ========================================
+                Carregar dados do usuário
+     ======================================== */
+
+     const userData = localStorage.getItem("user");
+
+     if (!userData) {
+          window.location.href = "../pages/login.html";
+          return;
+     }
+
+     const usuario = JSON.parse(userData);
+
+     // Preenche "Bem vindo(a)" — span com id="userName"
+     const nameField = document.getElementById("userName");
+     if (nameField) {
+          nameField.innerText = usuario.nome || "Usuário";
+     }
+
+     // Preenche o nome no topo — span id="nomeCompleto"
+     const nomeTop = document.getElementById("nomeCompleto");
+     if (nomeTop) {
+          nomeTop.innerText = usuario.nome || "";
+     }
+
      // Preenche o cargo — span id="cargoUser"
      const cargoEl = document.getElementById("cargoUser");
      if (cargoEl) {
@@ -170,7 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
     cargoEl.innerText = cargoTexto;
 }
 
-     // Ajusta visibilidade de itens do menu conforme admin ou não
+// Ajusta visibilidade de itens do menu conforme admin ou não
      const navUsuario = document.getElementById('menu-usuarios');
      const navLog = document.getElementById('menu-log');
      const linha_dados = document.getElementById('linha_dados');
