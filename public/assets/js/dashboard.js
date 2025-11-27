@@ -108,84 +108,95 @@ document.addEventListener("DOMContentLoaded", () => {
      carregarTotalAcoes();
 
 
-     /* ========================================
-                         Gráficos
+    /* ========================================
+     Gráficos
+======================================== */
+
+// Elementos do canvas
+const gCategoria = document.getElementById('grafico_categoria');
+const gValor = document.getElementById('grafico_valor');
+
+// Buscar dados reais do backend
+fetch("http://163.176.193.115/dashboard_dados.php")
+    .then(res => res.json())
+    .then(data => {
+
+        /* ========================================
+             Gráfico 1 – Produtos por Categoria
         ======================================== */
 
-     const gCategoria = document.getElementById('grafico_categoria');
-     const gValor = document.getElementById('grafico_valor');
+        const categoriaLabels = data.categorias.map(item => item.categoria);
+        const categoriaValores = data.categorias.map(item => item.quantidade);
 
-     // Gráfico de quantidade de Categorias
-     new Chart(gCategoria, {
-          type: 'pie',
-          data: {
-               labels: ['Alimentícios', 'Higiene', 'Eletrônicos', 'Bebidas', 'Papelaria'],
-               datasets: [{
-                    data: [12, 15, 2, 3, 5],
+        new Chart(gCategoria, {
+            type: 'pie',
+            data: {
+                labels: categoriaLabels,
+                datasets: [{
+                    data: categoriaValores,
                     backgroundColor: [
-                         '#FF6384',       // Rosa - Alimenticios
-                         '#36A2EB',       // Azul - Higiene
-                         '#4BC0C0',    // Verde-água - Eletrônico
-                         '#FFCE56',       // Amarelo - bebidas
-                         '#824bc0ff'        // Roxo - Papelaria
+                        '#FF6384',
+                        '#36A2EB',
+                        '#4BC0C0',
+                        '#FFCE56',
+                        '#824bc0ff'
                     ],
                     borderColor: '#fff',
                     borderWidth: 1
-               }]
-          },
-          options: {
-               responsive: true,
-               maintainAspectRatio: false,
-               plugins: {
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
                     legend: {
-                         position: 'top',
-                         labels: {
-                              color: '#5f5a5aff',
-                              font: {
-                                   size: 12
-                              }
-                         }
-
-                    },
-               }
-          }
-     });
-
-
-     // Gráfico de produtos com maior preço unitário
-
-
-     new Chart(gValor, {
-          type: 'bar',
-          data: {
-               labels: ['Produto 1', 'Produto 2', 'Produto 3', 'Produto 4', 'Produto 5'],
-               datasets: [{
-                    data: [20, 10, 30, 17, 50],
-                    backgroundColor: [
-                         '#FF6384',
-                         '#36A2EB',
-                         '#FFCE56',
-                         '#4BC0C0',
-                         '#824bc0ff'
-                    ]
-               }]
-          },
-          options: {
-               responsive: true,
-               plugins: {
-                    legend: {
-                         display: false,
-                         position: 'top',
-                         labels: {
-                              color: '#5f5a5aff',
-                              font: {
-                                   size: 12
-                              }
-                         }
+                        position: 'top',
+                        labels: {
+                            color: '#5f5a5aff',
+                            font: { size: 12 }
+                        }
                     }
-               }
-          }
-     });
+                }
+            }
+        });
 
 
-});
+        /* ========================================
+             Gráfico 2 – Produtos com Maior Valor
+        ======================================== */
+
+        const valorLabels = data.top_valor.map(item => item.nome);
+        const valorDados = data.top_valor.map(item => item.total);
+
+        new Chart(gValor, {
+            type: 'bar',
+            data: {
+                labels: valorLabels,
+                datasets: [{
+                    data: valorDados,
+                    backgroundColor: [
+                        '#FF6384',
+                        '#36A2EB',
+                        '#FFCE56',
+                        '#4BC0C0',
+                        '#824bc0ff'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false,
+                        position: 'top',
+                        labels: {
+                            color: '#5f5a5aff',
+                            font: { size: 12 }
+                        }
+                    }
+                }
+            }
+        });
+
+    })
+    .catch(err => console.error("Erro ao carregar gráficos:", err));});

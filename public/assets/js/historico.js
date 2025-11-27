@@ -1,6 +1,28 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-     
+ fetch("http://163.176.193.115/log.php")
+    .then(response => response.json())
+    .then(data => {
+        // Atualiza número de registros
+        document.getElementById("totalLogs").textContent =
+            `${data.length} gravações de entrada.`;
+
+        // Aqui continua seu código para preencher a tabela
+        const tableBody = document.querySelector("#log-table-body");
+        tableBody.innerHTML = "";
+
+        data.forEach(item => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${item.data}</td>
+                <td>${item.usuario}</td>
+                <td>${item.acao}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    })
+    .catch(error => console.error("Erro ao buscar logs:", error));
+
 carregarHistorico();
 
 function carregarHistorico() {
