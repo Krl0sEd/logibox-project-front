@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-     /* ========================================
+/* ========================================
            Carregar dados do usuário
 ======================================== */
 
@@ -30,6 +30,26 @@ document.addEventListener("DOMContentLoaded", () => {
      if (cargo) {
           cargo.innerText = usuario.tipo || "Usuário";
      }
+
+     // Preenche o cargo — span id="cargoUser"
+     const cargoEl = document.getElementById("cargoUser");
+     if (cargoEl) {
+    const cargoTexto = Number(usuario.admin) === 1 ? "Administrador" : "Usuário Comum";
+    cargoEl.innerText = cargoTexto;
+}
+
+     // Ajusta visibilidade de itens do menu conforme admin ou não
+     const navUsuario = document.getElementById('menu-usuarios');
+     const navLog = document.getElementById('menu-log');
+     const linha_dados = document.getElementById('linha_dados');
+
+     // NOVO: verificar admin corretamente
+     const isAdmin = Number(usuario.admin) === 1;
+
+     if (!isAdmin) {
+    if (navUsuario) navUsuario.style.display = "none";
+    if (navLog) navLog.style.display = "none";
+    if (linha_dados) linha_dados.style.display = "none"; }
 
      /* ========================================
                          AUTH
