@@ -3,6 +3,9 @@
 A *Logibox* é um sistema de gerenciamento de estoque. Este repositório contém *apenas a parte de front-end* do projeto, construída com *HTML, CSS, JavaScript* e *Bootstrap*, seguindo boas práticas de organização de pastas e versionamento com Git.
 <br>
 
+## 🎬 Demonstração do Projeto
+
+[![Assista ao vídeo](https://img.youtube.com/vi/CQKah2Mv-3o/maxresdefault.jpg)](https://youtube.com/watch?v=CQKah2Mv-3o)
 
 ## 🏢 Sobre a Logibox
 A *Logibox* é uma empresa fictícia criada com o objetivo de desenvolver soluções digitais para controle de estoque.  
