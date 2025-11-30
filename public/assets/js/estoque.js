@@ -887,9 +887,9 @@ document.addEventListener("DOMContentLoaded", () => {
      });
 
 
-     /* ================================
-      CONFIGURAÇÃO DOS BOTÕES DE ALERT
-  ================================*/
+/* ================================
+CONFIGURAÇÃO DOS BOTÕES DE ALERT
+================================*/
 
 // Alert1 - Excluir produto (CONFIRMAÇÃO)
 document.querySelector('#alert1 .botao_cancelar').addEventListener('click', async function () {
@@ -964,7 +964,7 @@ document.querySelector('#alert1 .botao_cancelar').addEventListener('click', asyn
 
 /* ========================================
           CARREGAMENTO DE DADOS (NOVO)
-     ========================================*/
+========================================*/
     async function carregarProdutos() {
         try {
             // 1. Faz a requisição para o PHP
@@ -1093,7 +1093,7 @@ document.querySelector('#alert1 .botao_cancelar').addEventListener('click', asyn
 
 /* ========================================
        FUNÇÃO PARA CARREGAR DADOS NO MODAL DE EDIÇÃO
-    ========================================*/
+ ========================================*/
      async function carregarDadosEditar(id) {
           try {
                abrirModal("modalEdit");

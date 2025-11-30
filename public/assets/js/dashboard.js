@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
      carregarTotalAcoes();
 
 
-    /* ========================================
+/* ========================================
      Gráficos
 ======================================== */
 
@@ -199,4 +199,6 @@ fetch("http://163.176.193.115/dashboard_dados.php")
         });
 
     })
-    .catch(err => console.error("Erro ao carregar gráficos:", err));});
+    .catch(err => console.error("Erro ao carregar gráficos:", err));
+
+}); 
