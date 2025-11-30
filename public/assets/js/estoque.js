@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-/* ========================================
-           Carregar dados do usuário
-======================================== */
+  /* ========================================
+                Carregar dados do usuário
+     ======================================== */
 
      const userData = localStorage.getItem("user");
 
@@ -25,12 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
           nomeTop.innerText = usuario.nome || "";
      }
 
-     // Preenche o cargo — small id="cargoUser"
-     const cargo = document.getElementById("cargoUser");
-     if (cargo) {
-          cargo.innerText = usuario.tipo || "Usuário";
-     }
-
      // Preenche o cargo — span id="cargoUser"
      const cargoEl = document.getElementById("cargoUser");
      if (cargoEl) {
@@ -38,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     cargoEl.innerText = cargoTexto;
 }
 
-     // Ajusta visibilidade de itens do menu conforme admin ou não
+// Ajusta visibilidade de itens do menu conforme admin ou não
      const navUsuario = document.getElementById('menu-usuarios');
      const navLog = document.getElementById('menu-log');
      const linha_dados = document.getElementById('linha_dados');
@@ -1052,7 +1046,7 @@ document.querySelector('#alert1 .botao_cancelar').addEventListener('click', asyn
    
 /* ========================================
        FUNÇÃO PARA CARREGAR DADOS NO MODAL DE VISUALIZAÇÃO
-    ========================================*/
+========================================*/
     async function carregarDadosVisualizar(id) {
         try {
             // Abre o modal primeiro para dar feedback visual
