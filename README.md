@@ -53,3 +53,11 @@ O versionamento segue uma adaptação do *Git Flow*:
 - *fix/* → correções pequenas.  
 - *hotfix/* → correções urgentes direto no main.  
 - *docs/* → atualizações de documentação
+
+## 👨‍💻 Autor
+
+**Carlos Eduardo de Oliveira Bucazio**
+- 💻 Estudante de **Análise e Desenvolvimento de Sistemas** | Foco em **DevOps e Infraestrutura**
+- 📧 **Email**: [cbucazio@gmail.com](mailto:cbucazio@gmail.com)
+- 🌐 **GitHub**: [Krl0sEd](https://github.com/Krl0sEd)
+- 🧑‍💼 **Linkedin**: [linkedin.com/in/carlos-eduardo-de-oliveira-bucazio-516a7937a](https://www.linkedin.com/in/carlos-eduardo-de-oliveira-bucazio-516a7937a)
